@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import MembersPage from "./pages/admin/MembersPage";
 import ClassesPage from "./pages/admin/ClassesPage";
+import BillingPage from "./pages/admin/BillingPage";
 import CheckInPage from "./pages/CheckIn";
 import MemberDashboard from "./pages/member/MemberDashboard";
 import BookClassPage from "./pages/member/BookClassPage";
@@ -65,6 +66,11 @@ function AppRoutes() {
       <Route path="/admin/classes" element={
         <ProtectedRoute requiredRole="admin">
           <ClassesPage />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/billing" element={
+        <ProtectedRoute requiredRole="admin">
+          <BillingPage />
         </ProtectedRoute>
       } />
 

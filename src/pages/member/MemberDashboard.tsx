@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DashboardLayout } from '@/components/layout/DashboardLayout';
+import { MemberLayout } from '@/components/layout/MemberLayout';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -91,17 +91,17 @@ export default function MemberDashboard() {
   };
 
   return (
-    <DashboardLayout>
-      <div className="space-y-8 animate-fade-in">
+    <MemberLayout>
+      <div className="space-y-6 md:space-y-8 animate-fade-in">
         {/* Welcome Header */}
         <div>
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-2xl md:text-3xl font-bold">
             Welcome back, {profile?.full_name?.split(' ')[0] || 'Member'}!
           </h1>
-          <p className="text-muted-foreground mt-1">Here's your fitness overview</p>
+          <p className="text-muted-foreground mt-1 text-sm md:text-base">Here's your fitness overview</p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 md:gap-6 md:grid-cols-2">
           {/* Membership Card */}
           <Card className="glass-card">
             <CardHeader>
@@ -201,6 +201,6 @@ export default function MemberDashboard() {
           </CardContent>
         </Card>
       </div>
-    </DashboardLayout>
+    </MemberLayout>
   );
 }

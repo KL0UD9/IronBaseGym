@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { DashboardLayout } from '@/components/layout/DashboardLayout';
+import { MemberLayout } from '@/components/layout/MemberLayout';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -112,28 +112,29 @@ export default function BookClassPage() {
   }, {} as Record<string, ClassWithBookings[]>);
 
   return (
-    <DashboardLayout>
-      <div className="space-y-6 animate-fade-in">
+    <MemberLayout>
+      <div className="space-y-4 md:space-y-6 animate-fade-in">
         <div>
-          <h1 className="text-3xl font-bold">Book a Class</h1>
-          <p className="text-muted-foreground mt-1">Find and book your next workout</p>
+          <h1 className="text-2xl md:text-3xl font-bold">Book a Class</h1>
+          <p className="text-muted-foreground mt-1 text-sm md:text-base">Find and book your next workout</p>
         </div>
 
         {Object.entries(groupedClasses).map(([dateKey, dayClasses]) => {
           const date = new Date(dateKey);
           return (
             <Card key={dateKey} className="glass-card">
-              <CardHeader>
+              <CardHeader className="pb-3 md:pb-6">
                 <CardTitle className={cn(
-                  "flex items-center gap-2",
+                  "flex items-center gap-2 text-lg md:text-2xl",
                   isToday(date) && "text-primary"
                 )}>
                   <Calendar className="h-5 w-5" />
                   {isToday(date) ? 'Today' : format(date, 'EEEE, MMMM d')}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <CardContent className="pt-0">
+                {/* Mobile: vertical stack, Desktop: grid */}
+                <div className="flex flex-col gap-3 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-4">
                   {dayClasses.map((classItem) => {
                     const availableSpots = getAvailableSpots(classItem);
                     const isFull = availableSpots === 0;
@@ -200,12 +201,12 @@ export default function BookClassPage() {
 
         {classes.length === 0 && !loading && (
           <Card className="glass-card">
-            <CardContent className="py-12 text-center">
-              <p className="text-muted-foreground">No upcoming classes available</p>
+            <CardContent className="py-8 md:py-12 text-center">
+              <p className="text-muted-foreground text-sm md:text-base">No upcoming classes available</p>
             </CardContent>
           </Card>
         )}
       </div>
-    </DashboardLayout>
+    </MemberLayout>
   );
 }

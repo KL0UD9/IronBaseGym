@@ -13,6 +13,7 @@ import ClassesPage from "./pages/admin/ClassesPage";
 import CheckInPage from "./pages/CheckIn";
 import MemberDashboard from "./pages/member/MemberDashboard";
 import BookClassPage from "./pages/member/BookClassPage";
+import MyClassesPage from "./pages/member/MyClassesPage";
 import { Loader2 } from "lucide-react";
 
 const queryClient = new QueryClient();
@@ -75,7 +76,7 @@ function AppRoutes() {
       } />
       <Route path="/dashboard/classes" element={
         <ProtectedRoute>
-          <MemberDashboard />
+          <MyClassesPage />
         </ProtectedRoute>
       } />
       <Route path="/dashboard/book" element={

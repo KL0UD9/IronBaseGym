@@ -10,7 +10,9 @@ import {
   ChevronLeft,
   ChevronRight,
   Receipt,
-  Settings
+  Settings,
+  Package,
+  ShoppingBag
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
@@ -22,6 +24,7 @@ const adminNavItems = [
   { label: 'Members', icon: Users, path: '/admin/members' },
   { label: 'Classes', icon: Calendar, path: '/admin/classes' },
   { label: 'Billing', icon: Receipt, path: '/admin/billing' },
+  { label: 'Orders', icon: Package, path: '/admin/orders' },
   { label: 'Memberships', icon: CreditCard, path: '/admin/memberships' },
   { label: 'Check-In', icon: UserCheck, path: '/check-in' },
   { label: 'Settings', icon: Settings, path: '/admin/settings' },
@@ -31,6 +34,7 @@ const memberNavItems = [
   { label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
   { label: 'My Classes', icon: Calendar, path: '/dashboard/classes' },
   { label: 'Book Class', icon: Dumbbell, path: '/dashboard/book' },
+  { label: 'Store', icon: ShoppingBag, path: '/dashboard/store' },
 ];
 
 export function Sidebar() {

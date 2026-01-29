@@ -6,6 +6,75 @@
 
 @layer base {
   :root {
+    /* Light mode - Clean and professional */
+    --background: 0 0% 100%;
+    --foreground: 230 15% 10%;
+
+    /* Cards with subtle depth */
+    --card: 0 0% 98%;
+    --card-foreground: 230 15% 10%;
+
+    /* Popover surfaces */
+    --popover: 0 0% 100%;
+    --popover-foreground: 230 15% 10%;
+
+    /* Neon cyan-blue primary */
+    --primary: 190 100% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Subtle secondary */
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 230 15% 20%;
+
+    /* Muted elements */
+    --muted: 220 15% 95%;
+    --muted-foreground: 215 15% 45%;
+
+    /* Accent - neon glow */
+    --accent: 190 100% 90%;
+    --accent-foreground: 190 100% 25%;
+
+    /* Destructive - vibrant red */
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Success - vibrant green */
+    --success: 145 80% 35%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning - amber */
+    --warning: 38 92% 50%;
+    --warning-foreground: 230 15% 5%;
+
+    /* Borders and inputs */
+    --border: 220 15% 88%;
+    --input: 220 15% 92%;
+    --ring: 190 100% 40%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar - Light mode */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 230 15% 20%;
+    --sidebar-primary: 190 100% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 94%;
+    --sidebar-accent-foreground: 230 15% 10%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 190 100% 40%;
+
+    /* Custom gradients - Light mode */
+    --gradient-neon: linear-gradient(135deg, hsl(190 100% 40%) 0%, hsl(210 100% 45%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 98%) 0%, hsl(0 0% 96%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(0 0% 97%) 100%);
+    
+    /* Glow effects - Light mode */
+    --glow-primary: 0 0 20px hsl(190 100% 40% / 0.2);
+    --glow-success: 0 0 20px hsl(145 80% 35% / 0.2);
+    --glow-destructive: 0 0 20px hsl(0 85% 55% / 0.2);
+  }
+
+  .dark {
     /* Dark charcoal base */
     --background: 230 15% 5%;
     --foreground: 210 20% 98%;
@@ -51,8 +120,6 @@
     --input: 230 15% 15%;
     --ring: 190 100% 50%;
 
-    --radius: 0.75rem;
-
     /* Sidebar */
     --sidebar-background: 230 15% 6%;
     --sidebar-foreground: 210 20% 90%;
@@ -72,10 +139,6 @@
     --glow-primary: 0 0 20px hsl(190 100% 50% / 0.4);
     --glow-success: 0 0 20px hsl(145 80% 45% / 0.4);
     --glow-destructive: 0 0 20px hsl(0 85% 55% / 0.4);
-  }
-
-  .dark {
-    /* Already dark by default */
   }
 }
 

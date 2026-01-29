@@ -87,14 +87,10 @@ export function TrainerMap({ trainers, userLocation, filterRadius, onTrainerClic
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       
-      {/* User location marker */}
       <Marker position={[userLocation.lat, userLocation.lng]} icon={userIcon}>
-        <Popup>
-          <strong>Your Location</strong>
-        </Popup>
+        <Popup>Your Location</Popup>
       </Marker>
 
-      {/* Trainer markers */}
       {filteredTrainers.map((trainer) => (
         <Marker
           key={trainer.id}
@@ -105,11 +101,7 @@ export function TrainerMap({ trainers, userLocation, filterRadius, onTrainerClic
           }}
         >
           <Popup>
-            <strong>{trainer.full_name}</strong>
-            <br />
-            <span className="text-xs">
-              {haversineDistance(userLocation.lat, userLocation.lng, trainer.lat, trainer.lng).toFixed(1)} km away
-            </span>
+            {trainer.full_name} - {haversineDistance(userLocation.lat, userLocation.lng, trainer.lat, trainer.lng).toFixed(1)} km away
           </Popup>
         </Marker>
       ))}

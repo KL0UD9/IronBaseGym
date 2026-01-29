@@ -110,7 +110,8 @@
       "community": "Comunidad",
       "coach": "Entrenador",
       "videos": "Videos",
-      "profile": "Perfil"
+      "profile": "Perfil",
+      "nutrition": "Nutrición"
     }
   },
   "videos": {
@@ -285,6 +286,43 @@
       "trophyCase": "Vitrina de Trofeos",
       "statsTab": "Estadísticas",
       "progressStats": "Estadísticas de Progreso"
+    }
+  },
+  "nutrition": {
+    "title": "Seguimiento Nutricional",
+    "subtitle": "Rastrea tu ingesta diaria de alimentos y macros",
+    "searchFood": "Buscar Alimento",
+    "searchPlaceholder": "Buscar un alimento...",
+    "noFoodsFound": "No se encontraron alimentos",
+    "logFood": "Registrar Alimento",
+    "addFood": "Agregar Alimento",
+    "foodAdded": "¡Alimento agregado!",
+    "foodRemoved": "Alimento eliminado",
+    "errorAdding": "Error al agregar alimento",
+    "errorRemoving": "Error al eliminar alimento",
+    "mealType": "Comida",
+    "servings": "Porciones",
+    "dailyGoal": "Meta Calórica Diaria",
+    "goalUpdated": "¡Meta actualizada!",
+    "todaysMacros": "Macros de Hoy",
+    "noDataYet": "Sin alimentos registrados",
+    "total": "Total",
+    "caloriesRemaining": "Calorías Restantes",
+    "todaysLog": "Registro de Hoy",
+    "noLogsToday": "Sin alimentos registrados hoy",
+    "startLogging": "Haz clic en 'Registrar Alimento' para comenzar",
+    "foodsLogged": "Alimentos Registrados",
+    "totalCalories": "Calorías Totales",
+    "macros": {
+      "protein": "Proteína",
+      "carbs": "Carbohidratos",
+      "fat": "Grasa"
+    },
+    "meals": {
+      "breakfast": "Desayuno",
+      "lunch": "Almuerzo",
+      "dinner": "Cena",
+      "snack": "Merienda"
     }
   }
 }

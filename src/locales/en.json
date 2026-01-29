@@ -110,7 +110,8 @@
       "community": "Community",
       "coach": "Coach",
       "videos": "Videos",
-      "profile": "Profile"
+      "profile": "Profile",
+      "nutrition": "Nutrition"
     }
   },
   "videos": {
@@ -285,6 +286,43 @@
       "trophyCase": "Trophy Case",
       "statsTab": "Stats",
       "progressStats": "Progress Stats"
+    }
+  },
+  "nutrition": {
+    "title": "Nutrition Tracker",
+    "subtitle": "Track your daily food intake and macros",
+    "searchFood": "Search Food",
+    "searchPlaceholder": "Search for a food...",
+    "noFoodsFound": "No foods found",
+    "logFood": "Log Food",
+    "addFood": "Add Food",
+    "foodAdded": "Food added!",
+    "foodRemoved": "Food removed",
+    "errorAdding": "Error adding food",
+    "errorRemoving": "Error removing food",
+    "mealType": "Meal",
+    "servings": "Servings",
+    "dailyGoal": "Daily Calorie Goal",
+    "goalUpdated": "Goal updated!",
+    "todaysMacros": "Today's Macros",
+    "noDataYet": "No food logged yet",
+    "total": "Total",
+    "caloriesRemaining": "Calories Remaining",
+    "todaysLog": "Today's Food Log",
+    "noLogsToday": "No foods logged today",
+    "startLogging": "Click 'Log Food' to start tracking",
+    "foodsLogged": "Foods Logged",
+    "totalCalories": "Total Calories",
+    "macros": {
+      "protein": "Protein",
+      "carbs": "Carbs",
+      "fat": "Fat"
+    },
+    "meals": {
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "dinner": "Dinner",
+      "snack": "Snack"
     }
   }
 }

@@ -29,6 +29,7 @@ import { Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { GamificationProvider } from "@/contexts/GamificationContext";
 import { LevelUpModal } from "@/components/gamification/LevelUpModal";
+import { CommandSearch } from "@/components/CommandSearch";
 
 const queryClient = new QueryClient();
 
@@ -161,6 +162,7 @@ const App = () => (
             <CartProvider>
               <AppRoutes />
               <LevelUpModal />
+              <CommandSearch />
             </CartProvider>
           </GamificationProvider>
         </AuthProvider>

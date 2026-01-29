@@ -1,4 +1,15 @@
 {
+  "commandSearch": {
+    "placeholder": "Search trainers, products, videos, pages...",
+    "noResults": "No results found.",
+    "categories": {
+      "pages": "Pages",
+      "trainers": "Trainers",
+      "products": "Products",
+      "videos": "Videos",
+      "posts": "Community Posts"
+    }
+  },
   "common": {
     "loading": "Loading...",
     "save": "Save",

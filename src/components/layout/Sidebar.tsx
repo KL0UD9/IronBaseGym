@@ -15,6 +15,7 @@ import {
   Package,
   ShoppingBag,
   MessageSquare,
+  Film,
   Bot
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -45,6 +46,7 @@ export function Sidebar() {
     { label: t('nav.member.dashboard'), icon: LayoutDashboard, path: '/dashboard' },
     { label: t('nav.member.myClasses'), icon: Calendar, path: '/dashboard/classes' },
     { label: t('nav.member.bookClass'), icon: Dumbbell, path: '/dashboard/book' },
+    { label: 'Videos', icon: Film, path: '/dashboard/videos' },
     { label: t('nav.member.store'), icon: ShoppingBag, path: '/dashboard/store' },
     { label: t('nav.member.community'), icon: MessageSquare, path: '/dashboard/community' },
     { label: t('nav.member.coach'), icon: Bot, path: '/dashboard/coach' },

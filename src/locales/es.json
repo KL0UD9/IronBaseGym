@@ -97,7 +97,21 @@
       "bookClass": "Reservar Clase",
       "store": "Tienda",
       "community": "Comunidad",
-      "coach": "Entrenador"
+      "coach": "Entrenador",
+      "videos": "Videos"
+    }
+  },
+  "videos": {
+    "title": "Biblioteca de Entrenamientos",
+    "subtitle": "Contenido fitness premium. Entrena cuando quieras, donde quieras.",
+    "onDemand": "On-Demand",
+    "continueWatching": "Continuar Viendo",
+    "categories": {
+      "hiit": "HIIT",
+      "yoga": "Yoga",
+      "strength": "Fuerza",
+      "cardio": "Cardio",
+      "recovery": "Recuperación"
     }
   },
   "admin": {

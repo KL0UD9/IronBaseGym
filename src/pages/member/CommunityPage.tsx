@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
+import { useGamification, XP_REWARDS } from '@/contexts/GamificationContext';
 import { MemberLayout } from '@/components/layout/MemberLayout';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -28,6 +29,7 @@ interface Post {
 
 export default function CommunityPage() {
   const { user, profile } = useAuth();
+  const { awardXP, checkAchievements } = useGamification();
   const { toast } = useToast();
   const { t } = useTranslation();
   const queryClient = useQueryClient();
@@ -59,10 +61,23 @@ export default function CommunityPage() {
         .insert({ user_id: user!.id, content });
       if (error) throw error;
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       queryClient.invalidateQueries({ queryKey: ['community-posts'] });
       setNewPost('');
       toast({ title: t('community.toast.postCreated'), description: t('community.toast.postCreatedDesc') });
+      
+      // Award XP for posting
+      await awardXP(XP_REWARDS.POST_CREATED, 'Community Post');
+      
+      // Check post-related achievements
+      const { count } = await supabase
+        .from('posts')
+        .select('id', { count: 'exact', head: true })
+        .eq('user_id', user!.id);
+      
+      if (count) {
+        await checkAchievements('posts_created', count);
+      }
     },
     onError: () => {
       toast({ title: t('community.toast.error'), description: t('community.toast.errorDesc'), variant: 'destructive' });

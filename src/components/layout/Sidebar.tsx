@@ -17,7 +17,8 @@ import {
   MessageSquare,
   Film,
   Bot,
-  Map
+  Map,
+  User
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
@@ -52,6 +53,7 @@ export function Sidebar() {
     { label: t('nav.member.store'), icon: ShoppingBag, path: '/dashboard/store' },
     { label: t('nav.member.community'), icon: MessageSquare, path: '/dashboard/community' },
     { label: t('nav.member.coach'), icon: Bot, path: '/dashboard/coach' },
+    { label: t('nav.member.profile'), icon: User, path: '/dashboard/profile' },
   ];
 
   const navItems = isAdmin ? adminNavItems : memberNavItems;

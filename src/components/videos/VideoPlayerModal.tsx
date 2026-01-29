@@ -31,6 +31,7 @@ interface VideoPlayerModalProps {
   onOpenChange: (open: boolean) => void;
   initialProgress: number;
   onProgressUpdate: (progress: number, duration: number) => void;
+  onVideoComplete?: () => void;
 }
 
 export function VideoPlayerModal({
@@ -39,10 +40,12 @@ export function VideoPlayerModal({
   onOpenChange,
   initialProgress,
   onProgressUpdate,
+  onVideoComplete,
 }: VideoPlayerModalProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const progressInterval = useRef<NodeJS.Timeout | null>(null);
+  const hasAwardedXP = useRef(false);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -60,11 +63,20 @@ export function VideoPlayerModal({
       videoRef.current.currentTime = initialProgress;
       setCurrentTime(initialProgress);
       setIsLoading(true);
+      hasAwardedXP.current = false;
 
       // Start progress tracking interval
       progressInterval.current = setInterval(() => {
         if (videoRef.current && !videoRef.current.paused) {
-          onProgressUpdate(videoRef.current.currentTime, videoRef.current.duration);
+          const progress = videoRef.current.currentTime;
+          const videoDuration = videoRef.current.duration;
+          onProgressUpdate(progress, videoDuration);
+          
+          // Award XP when 90% complete (and hasn't been awarded yet)
+          if (!hasAwardedXP.current && progress / videoDuration >= 0.9) {
+            hasAwardedXP.current = true;
+            onVideoComplete?.();
+          }
         }
       }, 5000); // Save every 5 seconds
     }
@@ -202,6 +214,10 @@ export function VideoPlayerModal({
             onEnded={() => {
               setIsPlaying(false);
               onProgressUpdate(duration, duration);
+              if (!hasAwardedXP.current) {
+                hasAwardedXP.current = true;
+                onVideoComplete?.();
+              }
             }}
             poster={video.thumbnail_url || undefined}
           />

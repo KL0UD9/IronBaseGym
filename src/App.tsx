@@ -24,8 +24,11 @@ import CommunityPage from "./pages/member/CommunityPage";
 import CoachPage from "./pages/member/CoachPage";
 import VideosPage from "./pages/member/VideosPage";
 import TrainerMapPage from "./pages/member/TrainerMapPage";
+import ProfilePage from "./pages/member/ProfilePage";
 import { Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { GamificationProvider } from "@/contexts/GamificationContext";
+import { LevelUpModal } from "@/components/gamification/LevelUpModal";
 
 const queryClient = new QueryClient();
 
@@ -136,6 +139,11 @@ function AppRoutes() {
           <TrainerMapPage />
         </ProtectedRoute>
       } />
+      <Route path="/dashboard/profile" element={
+        <ProtectedRoute>
+          <ProfilePage />
+        </ProtectedRoute>
+      } />
 
       <Route path="*" element={<NotFound />} />
     </Routes>
@@ -149,9 +157,12 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
-          <CartProvider>
-            <AppRoutes />
-          </CartProvider>
+          <GamificationProvider>
+            <CartProvider>
+              <AppRoutes />
+              <LevelUpModal />
+            </CartProvider>
+          </GamificationProvider>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>

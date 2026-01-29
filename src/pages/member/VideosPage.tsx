@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
+import { useGamification, XP_REWARDS } from '@/contexts/GamificationContext';
 import { MemberLayout } from '@/components/layout/MemberLayout';
 import { VideoCard } from '@/components/videos/VideoCard';
 import { VideoPlayerModal } from '@/components/videos/VideoPlayerModal';
@@ -37,6 +38,7 @@ interface WatchHistory {
 
 export default function VideosPage() {
   const { user } = useAuth();
+  const { awardXP, checkAchievements } = useGamification();
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
@@ -132,6 +134,25 @@ export default function VideosPage() {
     }
   };
 
+  // Handle video completion for XP award
+  const handleVideoComplete = useCallback(async () => {
+    if (!user) return;
+    
+    // Award XP for completing video
+    await awardXP(XP_REWARDS.VIDEO_COMPLETED, 'Video Completed');
+    
+    // Check video-related achievements
+    const { count } = await supabase
+      .from('watch_history')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', user.id)
+      .eq('completed', true);
+    
+    if (count) {
+      await checkAchievements('videos_completed', count);
+    }
+  }, [user, awardXP, checkAchievements]);
+
   // Get "Continue Watching" videos (started but not completed)
   const continueWatching = watchHistory
     ?.filter((h) => h.progress_seconds > 0 && !h.completed)
@@ -210,6 +231,7 @@ export default function VideosPage() {
         onOpenChange={setIsPlayerOpen}
         initialProgress={selectedVideo ? getVideoProgress(selectedVideo.id) : 0}
         onProgressUpdate={handleProgressUpdate}
+        onVideoComplete={handleVideoComplete}
       />
     </MemberLayout>
   );

@@ -5,9 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
+import { useGamification, XP_REWARDS } from '@/contexts/GamificationContext';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
-import { Loader2, CheckCircle, CreditCard } from 'lucide-react';
+import { Loader2, CheckCircle, CreditCard, Sparkles } from 'lucide-react';
 
 interface CheckoutModalProps {
   open: boolean;
@@ -17,6 +18,7 @@ interface CheckoutModalProps {
 export function CheckoutModal({ open, onOpenChange }: CheckoutModalProps) {
   const { items, totalPrice, clearCart } = useCart();
   const { user } = useAuth();
+  const { awardXP, checkAchievements } = useGamification();
   const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
@@ -76,6 +78,20 @@ export function CheckoutModal({ open, onOpenChange }: CheckoutModalProps) {
 
       setIsComplete(true);
       clearCart();
+      
+      // Award XP for purchase
+      await awardXP(XP_REWARDS.PURCHASE_MADE, 'Store Purchase');
+      
+      // Check purchase-related achievements
+      const { count } = await supabase
+        .from('orders')
+        .select('id', { count: 'exact', head: true })
+        .eq('user_id', user.id);
+      
+      if (count) {
+        await checkAchievements('purchases_made', count);
+      }
+      
       toast.success('Order placed successfully!');
     } catch (error: any) {
       console.error('Checkout error:', error);
@@ -100,7 +116,11 @@ export function CheckoutModal({ open, onOpenChange }: CheckoutModalProps) {
             <DialogDescription>
               {t('store.checkout.complete.subtitle')}
             </DialogDescription>
-            <Button className="mt-6" onClick={handleClose}>
+            <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-medium">
+              <Sparkles className="h-4 w-4" />
+              +{XP_REWARDS.PURCHASE_MADE} XP Earned!
+            </div>
+            <Button className="mt-6 w-full" onClick={handleClose}>
               {t('store.cart.continueShopping')}
             </Button>
           </div>

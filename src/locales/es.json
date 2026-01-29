@@ -98,7 +98,8 @@
       "store": "Tienda",
       "community": "Comunidad",
       "coach": "Entrenador",
-      "videos": "Videos"
+      "videos": "Videos",
+      "profile": "Perfil"
     }
   },
   "videos": {
@@ -250,5 +251,29 @@
     "trainerLocation": "Ubicación del Entrenador",
     "trainerDescription": "Reserva una sesión con este entrenador para comenzar tu viaje fitness personalizado.",
     "bookNow": "Reservar Ahora"
+  },
+  "gamification": {
+    "levelUp": {
+      "title": "¡SUBISTE DE NIVEL!",
+      "reached": "Has alcanzado",
+      "keepGoing": "¡Sigue ganando XP para desbloquear más niveles y logros!",
+      "continue": "Continuar"
+    },
+    "trophyCase": {
+      "title": "Vitrina de Trofeos",
+      "unlocked": "Desbloqueados",
+      "locked": "Bloqueados",
+      "unlockedAt": "Desbloqueado",
+      "empty": "Sin logros aún. ¡Comienza tu viaje!"
+    },
+    "profile": {
+      "totalXP": "XP Total",
+      "achievements": "Logros",
+      "level": "Nivel",
+      "currentXP": "XP Actual",
+      "trophyCase": "Vitrina de Trofeos",
+      "statsTab": "Estadísticas",
+      "progressStats": "Estadísticas de Progreso"
+    }
   }
 }

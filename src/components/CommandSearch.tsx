@@ -29,6 +29,7 @@ import {
   Package,
   UserCheck,
   CreditCard,
+  Apple,
 } from 'lucide-react';
 
 interface SearchResult {
@@ -131,6 +132,7 @@ export function CommandSearch() {
     { id: 'classes', title: t('nav.member.myClasses'), path: '/dashboard/classes', icon: <Calendar className="h-4 w-4" /> },
     { id: 'book', title: t('nav.member.bookClass'), path: '/dashboard/book', icon: <Dumbbell className="h-4 w-4" /> },
     { id: 'videos', title: t('nav.member.videos'), path: '/dashboard/videos', icon: <Film className="h-4 w-4" /> },
+    { id: 'nutrition', title: t('nav.member.nutrition'), path: '/dashboard/nutrition', icon: <Apple className="h-4 w-4" /> },
     { id: 'map', title: t('map.title'), path: '/dashboard/map', icon: <Map className="h-4 w-4" /> },
     { id: 'store', title: t('nav.member.store'), path: '/dashboard/store', icon: <ShoppingBag className="h-4 w-4" /> },
     { id: 'community', title: t('nav.member.community'), path: '/dashboard/community', icon: <MessageSquare className="h-4 w-4" /> },

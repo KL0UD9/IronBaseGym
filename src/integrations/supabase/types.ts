@@ -159,6 +159,87 @@ export type Database = {
           },
         ]
       }
+      daily_food_logs: {
+        Row: {
+          created_at: string
+          date: string
+          food_id: string
+          id: string
+          meal_type: string
+          servings: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date?: string
+          food_id: string
+          id?: string
+          meal_type?: string
+          servings?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          food_id?: string
+          id?: string
+          meal_type?: string
+          servings?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "daily_food_logs_food_id_fkey"
+            columns: ["food_id"]
+            isOneToOne: false
+            referencedRelation: "foods"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "daily_food_logs_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      foods: {
+        Row: {
+          calories: number
+          carbs: number
+          category: string | null
+          created_at: string
+          fat: number
+          id: string
+          name: string
+          protein: number
+          serving_size: string
+        }
+        Insert: {
+          calories?: number
+          carbs?: number
+          category?: string | null
+          created_at?: string
+          fat?: number
+          id?: string
+          name: string
+          protein?: number
+          serving_size?: string
+        }
+        Update: {
+          calories?: number
+          carbs?: number
+          category?: string | null
+          created_at?: string
+          fat?: number
+          id?: string
+          name?: string
+          protein?: number
+          serving_size?: string
+        }
+        Relationships: []
+      }
       levels: {
         Row: {
           created_at: string

@@ -23,6 +23,7 @@ import StorePage from "./pages/member/StorePage";
 import CommunityPage from "./pages/member/CommunityPage";
 import CoachPage from "./pages/member/CoachPage";
 import VideosPage from "./pages/member/VideosPage";
+import TrainerMapPage from "./pages/member/TrainerMapPage";
 import { Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -128,6 +129,11 @@ function AppRoutes() {
       <Route path="/dashboard/videos" element={
         <ProtectedRoute>
           <VideosPage />
+        </ProtectedRoute>
+      } />
+      <Route path="/dashboard/map" element={
+        <ProtectedRoute>
+          <TrainerMapPage />
         </ProtectedRoute>
       } />
 

@@ -236,9 +236,19 @@
     "password": "Contraseña",
     "forgotPassword": "¿Olvidaste tu contraseña?"
   },
-  "language": {
+"language": {
     "toggle": "Idioma",
     "en": "Inglés",
     "es": "Español"
+  },
+  "map": {
+    "title": "Buscar Entrenador",
+    "subtitle": "Descubre entrenadores personales cerca de ti",
+    "trainersFound": "entrenadores",
+    "within5km": "Dentro de 5km",
+    "away": "de distancia",
+    "trainerLocation": "Ubicación del Entrenador",
+    "trainerDescription": "Reserva una sesión con este entrenador para comenzar tu viaje fitness personalizado.",
+    "bookNow": "Reservar Ahora"
   }
 }

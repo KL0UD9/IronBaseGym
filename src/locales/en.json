@@ -380,5 +380,44 @@
       "semiFinal": "Semi-Final",
       "quarterFinal": "Quarter-Final"
     }
+  },
+  "referral": {
+    "title": "Refer & Earn",
+    "subtitle": "Invite friends and earn credit for each signup",
+    "yourCode": "Your Referral Code",
+    "codeDescription": "Share this code with friends to earn $10 for each signup",
+    "shareLink": "Or share your referral link",
+    "copyLink": "Copy Link",
+    "share": "Share",
+    "codeCopied": "Referral code copied!",
+    "linkCopied": "Referral link copied!",
+    "copyError": "Failed to copy",
+    "shareTitle": "Join IronBase Gym!",
+    "shareText": "Use my referral code to sign up and we both earn rewards!",
+    "howItWorks": "How it works",
+    "step1": "Share your unique code with friends",
+    "step2": "They sign up using your code",
+    "step3": "You earn $10 credit for each signup!",
+    "totalEarned": "Total Earned",
+    "friendsReferred": "Friends Referred",
+    "pending": "Pending",
+    "peopleReferred": "People I Referred",
+    "friend": "Friend",
+    "date": "Date",
+    "reward": "Reward",
+    "status": "Status",
+    "noReferrals": "No referrals yet",
+    "startSharing": "Start sharing your code to earn rewards!",
+    "anonymous": "Anonymous",
+    "referralCode": "Referral Code",
+    "valid": "Valid!",
+    "invalid": "Invalid",
+    "bonusMessage": "You'll get a bonus when you sign up with this code!",
+    "appliedSuccess": "Referral code applied! Your friend earned a reward.",
+    "statuses": {
+      "pending": "Pending",
+      "credited": "Credited",
+      "expired": "Expired"
+    }
   }
 }

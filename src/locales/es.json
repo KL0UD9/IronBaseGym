@@ -380,5 +380,44 @@
       "semiFinal": "Semifinal",
       "quarterFinal": "Cuartos de Final"
     }
+  },
+  "referral": {
+    "title": "Referir y Ganar",
+    "subtitle": "Invita amigos y gana crédito por cada registro",
+    "yourCode": "Tu Código de Referido",
+    "codeDescription": "Comparte este código con amigos para ganar $10 por cada registro",
+    "shareLink": "O comparte tu enlace de referido",
+    "copyLink": "Copiar Enlace",
+    "share": "Compartir",
+    "codeCopied": "¡Código de referido copiado!",
+    "linkCopied": "¡Enlace de referido copiado!",
+    "copyError": "Error al copiar",
+    "shareTitle": "¡Únete a IronBase Gym!",
+    "shareText": "Usa mi código de referido para registrarte y ambos ganamos recompensas!",
+    "howItWorks": "Cómo funciona",
+    "step1": "Comparte tu código único con amigos",
+    "step2": "Ellos se registran usando tu código",
+    "step3": "¡Ganas $10 de crédito por cada registro!",
+    "totalEarned": "Total Ganado",
+    "friendsReferred": "Amigos Referidos",
+    "pending": "Pendiente",
+    "peopleReferred": "Personas que Referí",
+    "friend": "Amigo",
+    "date": "Fecha",
+    "reward": "Recompensa",
+    "status": "Estado",
+    "noReferrals": "Sin referidos aún",
+    "startSharing": "¡Empieza a compartir tu código para ganar recompensas!",
+    "anonymous": "Anónimo",
+    "referralCode": "Código de Referido",
+    "valid": "¡Válido!",
+    "invalid": "Inválido",
+    "bonusMessage": "¡Recibirás un bono al registrarte con este código!",
+    "appliedSuccess": "¡Código de referido aplicado! Tu amigo ganó una recompensa.",
+    "statuses": {
+      "pending": "Pendiente",
+      "credited": "Acreditado",
+      "expired": "Expirado"
+    }
   }
 }

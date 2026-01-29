@@ -22,17 +22,19 @@ export default function ProfilePage() {
     <MemberLayout>
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Profile Header */}
-        <Card className="glass-card overflow-hidden">
+        <Card className="glass-card">
           <div className="h-24 bg-gradient-to-r from-primary/20 via-primary/10 to-accent/20" />
-          <CardContent className="relative pt-0 pb-6 overflow-visible">
-            <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 -mt-12 relative z-10">
-              <Avatar className="h-24 w-24 border-4 border-background shadow-xl flex-shrink-0">
-                <AvatarImage src={profile?.avatar_url || undefined} />
-                <AvatarFallback className="text-2xl bg-primary/20 text-primary">
-                  {getInitials(profile?.full_name || '')}
-                </AvatarFallback>
-              </Avatar>
-              <div className="text-center sm:text-left flex-1 min-w-0">
+          <CardContent className="pt-0 pb-6">
+            <div className="flex flex-col sm:flex-row items-center sm:items-end gap-4 -mt-12">
+              <div className="relative z-10">
+                <Avatar className="h-24 w-24 border-4 border-background shadow-xl">
+                  <AvatarImage src={profile?.avatar_url || undefined} />
+                  <AvatarFallback className="text-2xl bg-primary/20 text-primary">
+                    {getInitials(profile?.full_name || '')}
+                  </AvatarFallback>
+                </Avatar>
+              </div>
+              <div className="text-center sm:text-left flex-1 min-w-0 pt-2 sm:pt-0">
                 <h1 className="text-2xl font-bold truncate">{profile?.full_name || t('common.user')}</h1>
                 <p className="text-muted-foreground capitalize">{profile?.role}</p>
               </div>

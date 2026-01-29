@@ -19,6 +19,7 @@ interface AuthContextType {
   signUp: (email: string, password: string, fullName: string) => Promise<{ error: Error | null; data?: { user: User | null } }>;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
+  refreshProfile: () => Promise<void>;
   isAdmin: boolean;
   isTrainer: boolean;
   isMember: boolean;
@@ -108,6 +109,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const isTrainer = profile?.role === 'trainer';
   const isMember = profile?.role === 'member';
 
+  const refreshProfile = async () => {
+    if (user) {
+      await fetchProfile(user.id);
+    }
+  };
+
   return (
     <AuthContext.Provider value={{
       user,
@@ -117,6 +124,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       signUp,
       signIn,
       signOut,
+      refreshProfile,
       isAdmin,
       isTrainer,
       isMember

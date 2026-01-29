@@ -1,18 +1,22 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MemberLayout } from '@/components/layout/MemberLayout';
 import { useAuth } from '@/contexts/AuthContext';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
 import { XPDisplay } from '@/components/gamification/XPDisplay';
 import { TrophyCase } from '@/components/gamification/TrophyCase';
+import { ProfileEditModal } from '@/components/profile/ProfileEditModal';
 import { useGamification } from '@/contexts/GamificationContext';
-import { User, Trophy, BarChart3 } from 'lucide-react';
+import { User, Trophy, BarChart3, Pencil } from 'lucide-react';
 
 export default function ProfilePage() {
   const { t } = useTranslation();
   const { profile } = useAuth();
   const { stats, userAchievements } = useGamification();
+  const [editModalOpen, setEditModalOpen] = useState(false);
 
   const getInitials = (name: string) => {
     return name?.split(' ').map(n => n[0]).join('').toUpperCase() || '?';
@@ -35,7 +39,17 @@ export default function ProfilePage() {
                 </Avatar>
               </div>
               <div className="text-center sm:text-left flex-1 min-w-0 pt-2 sm:pt-0">
-                <h1 className="text-2xl font-bold truncate">{profile?.full_name || t('common.user')}</h1>
+                <div className="flex items-center gap-2">
+                  <h1 className="text-2xl font-bold truncate">{profile?.full_name || t('common.user')}</h1>
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="h-8 w-8"
+                    onClick={() => setEditModalOpen(true)}
+                  >
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                </div>
                 <p className="text-muted-foreground capitalize">{profile?.role}</p>
               </div>
               <XPDisplay className="w-full sm:w-auto flex-shrink-0" />
@@ -101,6 +115,9 @@ export default function ProfilePage() {
             </Card>
           </TabsContent>
         </Tabs>
+        
+        {/* Edit Profile Modal */}
+        <ProfileEditModal open={editModalOpen} onOpenChange={setEditModalOpen} />
       </div>
     </MemberLayout>
   );

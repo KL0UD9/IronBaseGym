@@ -297,6 +297,20 @@
       "progressStats": "Estadísticas de Progreso"
     }
   },
+  "profile": {
+    "edit": {
+      "title": "Editar Perfil",
+      "fullName": "Nombre Completo",
+      "fullNamePlaceholder": "Ingresa tu nombre completo",
+      "avatarUrl": "URL del Avatar (opcional)",
+      "avatarHint": "Haz clic para subir o ingresa URL abajo",
+      "success": "¡Perfil actualizado!",
+      "successDescription": "Tu perfil ha sido actualizado exitosamente.",
+      "error": "Error al actualizar",
+      "fileTooLarge": "Archivo muy grande",
+      "maxFileSize": "El tamaño máximo es 2MB"
+    }
+  },
   "nutrition": {
     "title": "Seguimiento Nutricional",
     "subtitle": "Rastrea tu ingesta diaria de alimentos y macros",

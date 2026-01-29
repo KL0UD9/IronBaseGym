@@ -7,9 +7,11 @@ import { TrainerDrawer } from '@/components/map/TrainerDrawer';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { supabase } from '@/integrations/supabase/client';
-import { Loader2, MapPin, Users } from 'lucide-react';
+import { Loader2, MapPin, Users, MapPinOff } from 'lucide-react';
 import { haversineDistance } from '@/lib/haversine';
+import { useGeolocation } from '@/hooks/useGeolocation';
 
 interface Trainer {
   id: string;
@@ -19,8 +21,6 @@ interface Trainer {
   lng: number;
 }
 
-// Mocked user location (NYC area)
-const USER_LOCATION = { lat: 40.7128, lng: -74.006 };
 const FILTER_RADIUS_KM = 5;
 
 export default function TrainerMapPage() {
@@ -28,6 +28,10 @@ export default function TrainerMapPage() {
   const [selectedTrainer, setSelectedTrainer] = useState<Trainer | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [filterEnabled, setFilterEnabled] = useState(false);
+  
+  // Use real browser geolocation
+  const { lat, lng, error: geoError, loading: geoLoading } = useGeolocation();
+  const userLocation = { lat, lng };
 
   const { data: trainers = [], isLoading } = useQuery({
     queryKey: ['trainers-with-location'],
@@ -49,14 +53,14 @@ export default function TrainerMapPage() {
     
     return trainers.filter((trainer) => {
       const distance = haversineDistance(
-        USER_LOCATION.lat,
-        USER_LOCATION.lng,
+        userLocation.lat,
+        userLocation.lng,
         trainer.lat,
         trainer.lng
       );
       return distance <= FILTER_RADIUS_KM;
     }).length;
-  }, [trainers, filterEnabled]);
+  }, [trainers, filterEnabled, userLocation]);
 
   const handleTrainerClick = (trainer: Trainer) => {
     setSelectedTrainer(trainer);
@@ -65,14 +69,14 @@ export default function TrainerMapPage() {
 
   const selectedDistance = selectedTrainer
     ? haversineDistance(
-        USER_LOCATION.lat,
-        USER_LOCATION.lng,
+        userLocation.lat,
+        userLocation.lng,
         selectedTrainer.lat,
         selectedTrainer.lng
       )
     : undefined;
 
-  if (isLoading) {
+  if (isLoading || geoLoading) {
     return (
       <MemberLayout>
         <div className="flex items-center justify-center h-[calc(100vh-4rem)]">
@@ -114,13 +118,21 @@ export default function TrainerMapPage() {
               </div>
             </div>
           </div>
+          
+          {/* Geolocation Warning */}
+          {geoError && (
+            <Alert variant="default" className="mt-2">
+              <MapPinOff className="h-4 w-4" />
+              <AlertDescription className="text-sm">{geoError}</AlertDescription>
+            </Alert>
+          )}
         </div>
 
         {/* Map Container */}
         <div className="flex-1 relative">
           <TrainerMap
             trainers={trainers}
-            userLocation={USER_LOCATION}
+            userLocation={userLocation}
             filterRadius={filterEnabled ? FILTER_RADIUS_KM : null}
             onTrainerClick={handleTrainerClick}
           />

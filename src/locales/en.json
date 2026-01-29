@@ -97,7 +97,21 @@
       "bookClass": "Book Class",
       "store": "Store",
       "community": "Community",
-      "coach": "Coach"
+      "coach": "Coach",
+      "videos": "Videos"
+    }
+  },
+  "videos": {
+    "title": "Workout Library",
+    "subtitle": "Premium fitness content. Train anytime, anywhere.",
+    "onDemand": "On-Demand",
+    "continueWatching": "Continue Watching",
+    "categories": {
+      "hiit": "HIIT",
+      "yoga": "Yoga",
+      "strength": "Strength",
+      "cardio": "Cardio",
+      "recovery": "Recovery"
     }
   },
   "admin": {

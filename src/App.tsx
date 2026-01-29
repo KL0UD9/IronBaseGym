@@ -22,6 +22,7 @@ import MyClassesPage from "./pages/member/MyClassesPage";
 import StorePage from "./pages/member/StorePage";
 import CommunityPage from "./pages/member/CommunityPage";
 import CoachPage from "./pages/member/CoachPage";
+import VideosPage from "./pages/member/VideosPage";
 import { Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -122,6 +123,11 @@ function AppRoutes() {
       <Route path="/dashboard/coach" element={
         <ProtectedRoute>
           <CoachPage />
+        </ProtectedRoute>
+      } />
+      <Route path="/dashboard/videos" element={
+        <ProtectedRoute>
+          <VideosPage />
         </ProtectedRoute>
       } />
 

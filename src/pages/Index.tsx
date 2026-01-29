@@ -56,7 +56,7 @@ export default function Index() {
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in">
               <Button 
                 size="lg" 
-                onClick={() => navigate('/auth')}
+                onClick={() => navigate('/login')}
                 className="gap-2 text-lg px-8"
               >
                 Get Started
@@ -139,7 +139,7 @@ export default function Index() {
                 <Button 
                   className="w-full" 
                   variant={plan.popular ? 'default' : 'outline'}
-                  onClick={() => navigate('/auth')}
+                  onClick={() => navigate('/login')}
                 >
                   Get Started
                 </Button>

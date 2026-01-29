@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetFooter } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -9,6 +10,7 @@ import { CheckoutModal } from './CheckoutModal';
 
 export function ShoppingCartSidebar() {
   const { items, isCartOpen, setIsCartOpen, updateQuantity, removeFromCart, totalPrice, totalItems } = useCart();
+  const { t } = useTranslation();
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   return (
@@ -18,21 +20,21 @@ export function ShoppingCartSidebar() {
           <SheetHeader>
             <SheetTitle className="flex items-center gap-2">
               <ShoppingBag className="h-5 w-5" />
-              Shopping Cart ({totalItems})
+              {t('store.cart.title')} ({totalItems})
             </SheetTitle>
           </SheetHeader>
 
           {items.length === 0 ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center py-8">
               <ShoppingBag className="h-16 w-16 text-muted-foreground/50 mb-4" />
-              <p className="text-lg font-medium">Your cart is empty</p>
-              <p className="text-sm text-muted-foreground mt-1">Add some gym gear to get started!</p>
+              <p className="text-lg font-medium">{t('store.cart.empty')}</p>
+              <p className="text-sm text-muted-foreground mt-1">{t('store.cart.emptySubtitle')}</p>
               <Button 
                 variant="outline" 
                 className="mt-4"
                 onClick={() => setIsCartOpen(false)}
               >
-                Continue Shopping
+                {t('store.cart.continueShopping')}
               </Button>
             </div>
           ) : (
@@ -50,7 +52,7 @@ export function ShoppingCartSidebar() {
                           />
                         ) : (
                           <div className="h-full w-full flex items-center justify-center text-muted-foreground text-xs">
-                            No img
+                            {t('store.cart.noImage')}
                           </div>
                         )}
                       </div>
@@ -97,16 +99,16 @@ export function ShoppingCartSidebar() {
                 <Separator />
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Subtotal</span>
+                    <span className="text-muted-foreground">{t('store.cart.subtotal')}</span>
                     <span>${totalPrice.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Shipping</span>
-                    <span className="text-primary">Free</span>
+                    <span className="text-muted-foreground">{t('store.cart.shipping')}</span>
+                    <span className="text-primary">{t('store.cart.free')}</span>
                   </div>
                   <Separator />
                   <div className="flex justify-between text-lg font-bold">
-                    <span>Total</span>
+                    <span>{t('store.cart.total')}</span>
                     <span className="text-primary">${totalPrice.toFixed(2)}</span>
                   </div>
                 </div>
@@ -119,7 +121,7 @@ export function ShoppingCartSidebar() {
                       setIsCheckoutOpen(true);
                     }}
                   >
-                    Checkout
+                    {t('store.cart.checkout')}
                   </Button>
                 </SheetFooter>
               </div>

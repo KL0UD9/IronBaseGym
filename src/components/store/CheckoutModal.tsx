@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -16,6 +17,7 @@ interface CheckoutModalProps {
 export function CheckoutModal({ open, onOpenChange }: CheckoutModalProps) {
   const { items, totalPrice, clearCart } = useCart();
   const { user } = useAuth();
+  const { t } = useTranslation();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
@@ -94,12 +96,12 @@ export function CheckoutModal({ open, onOpenChange }: CheckoutModalProps) {
         {isComplete ? (
           <div className="py-8 text-center">
             <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-            <DialogTitle className="text-2xl mb-2">Order Complete!</DialogTitle>
+            <DialogTitle className="text-2xl mb-2">{t('store.checkout.complete.title')}</DialogTitle>
             <DialogDescription>
-              Thank you for your purchase. Your order has been confirmed and will be ready for pickup soon.
+              {t('store.checkout.complete.subtitle')}
             </DialogDescription>
             <Button className="mt-6" onClick={handleClose}>
-              Continue Shopping
+              {t('store.cart.continueShopping')}
             </Button>
           </div>
         ) : (
@@ -107,10 +109,10 @@ export function CheckoutModal({ open, onOpenChange }: CheckoutModalProps) {
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
                 <CreditCard className="h-5 w-5" />
-                Checkout
+                {t('store.checkout.title')}
               </DialogTitle>
               <DialogDescription>
-                Review your order and complete your purchase.
+                {t('store.checkout.subtitle')}
               </DialogDescription>
             </DialogHeader>
 
@@ -127,23 +129,23 @@ export function CheckoutModal({ open, onOpenChange }: CheckoutModalProps) {
               </div>
               <Separator />
               <div className="flex justify-between font-bold text-lg">
-                <span>Total</span>
+                <span>{t('store.cart.total')}</span>
                 <span className="text-primary">${totalPrice.toFixed(2)}</span>
               </div>
             </div>
 
             <DialogFooter className="gap-2 sm:gap-0">
               <Button variant="outline" onClick={handleClose} disabled={isProcessing}>
-                Cancel
+                {t('common.cancel')}
               </Button>
               <Button onClick={handleCheckout} disabled={isProcessing}>
                 {isProcessing ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Processing...
+                    {t('store.checkout.processing')}
                   </>
                 ) : (
-                  'Confirm Order'
+                  t('store.checkout.confirmOrder')
                 )}
               </Button>
             </DialogFooter>

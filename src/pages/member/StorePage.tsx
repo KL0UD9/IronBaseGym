@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MemberLayout } from '@/components/layout/MemberLayout';
 import { ProductCard } from '@/components/store/ProductCard';
 import { CartButton } from '@/components/store/CartButton';
 import { ShoppingCartSidebar } from '@/components/store/ShoppingCartSidebar';
 import { supabase } from '@/integrations/supabase/client';
-import { ShoppingBag, Filter } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
 
 interface Product {
   id: string;
@@ -23,6 +22,7 @@ interface Product {
 const CATEGORIES = ['all', 'apparel', 'supplements', 'accessories', 'equipment'];
 
 export default function StorePage() {
+  const { t } = useTranslation();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -49,6 +49,10 @@ export default function StorePage() {
     ? products
     : products.filter(p => p.category === selectedCategory);
 
+  const getCategoryLabel = (category: string) => {
+    return t(`store.categories.${category}`);
+  };
+
   return (
     <MemberLayout>
       <ShoppingCartSidebar />
@@ -59,9 +63,9 @@ export default function StorePage() {
           <div>
             <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2">
               <ShoppingBag className="h-7 w-7 text-primary" />
-              Merch Store
+              {t('store.title')}
             </h1>
-            <p className="text-muted-foreground mt-1">Premium gym gear and supplements</p>
+            <p className="text-muted-foreground mt-1">{t('store.subtitle')}</p>
           </div>
           <CartButton />
         </div>
@@ -76,7 +80,7 @@ export default function StorePage() {
               className="capitalize"
               onClick={() => setSelectedCategory(category)}
             >
-              {category}
+              {getCategoryLabel(category)}
             </Button>
           ))}
         </div>
@@ -95,8 +99,8 @@ export default function StorePage() {
         ) : filteredProducts.length === 0 ? (
           <div className="text-center py-12">
             <ShoppingBag className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-            <p className="text-lg font-medium">No products found</p>
-            <p className="text-muted-foreground">Try selecting a different category</p>
+            <p className="text-lg font-medium">{t('store.noProducts')}</p>
+            <p className="text-muted-foreground">{t('store.tryDifferentCategory')}</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">

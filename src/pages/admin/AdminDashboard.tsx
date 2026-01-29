@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { KPICard } from '@/components/ui/kpi-card';
 import { Users, DollarSign, UserCheck, Calendar } from 'lucide-react';
@@ -17,6 +18,7 @@ interface ClassWithTrainer {
 }
 
 export default function AdminDashboard() {
+  const { t } = useTranslation();
   const [activeMembers, setActiveMembers] = useState(0);
   const [monthlyRevenue, setMonthlyRevenue] = useState(0);
   const [todayCheckIns, setTodayCheckIns] = useState(0);
@@ -109,31 +111,31 @@ export default function AdminDashboard() {
       <div className="space-y-8 animate-fade-in">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold">Command Center</h1>
-          <p className="text-muted-foreground mt-1">Welcome to your gym management dashboard</p>
+          <h1 className="text-3xl font-bold">{t('admin.dashboard.title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('admin.dashboard.subtitle')}</p>
         </div>
 
         {/* KPI Cards */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <KPICard
-            title="Active Members"
+            title={t('admin.dashboard.kpi.activeMembers')}
             value={activeMembers}
             icon={Users}
             trend={{ value: 12, positive: true }}
           />
           <KPICard
-            title="Monthly Revenue"
+            title={t('admin.dashboard.kpi.monthlyRevenue')}
             value={`$${monthlyRevenue.toLocaleString()}`}
             icon={DollarSign}
             trend={{ value: 8, positive: true }}
           />
           <KPICard
-            title="Today's Check-ins"
+            title={t('admin.dashboard.kpi.todayCheckIns')}
             value={todayCheckIns}
             icon={UserCheck}
           />
           <KPICard
-            title="Classes This Week"
+            title={t('admin.dashboard.kpi.classesThisWeek')}
             value={weeklyClasses.length}
             icon={Calendar}
           />
@@ -144,7 +146,7 @@ export default function AdminDashboard() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calendar className="h-5 w-5 text-primary" />
-              Weekly Class Schedule
+              {t('admin.dashboard.calendar.title')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -182,7 +184,7 @@ export default function AdminDashboard() {
                     ))}
                     {getClassesForDay(day.date).length === 0 && (
                       <p className="text-xs text-muted-foreground text-center py-4">
-                        No classes
+                        {t('admin.dashboard.calendar.noClasses')}
                       </p>
                     )}
                   </div>

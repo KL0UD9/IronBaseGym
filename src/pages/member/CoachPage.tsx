@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
@@ -20,6 +21,7 @@ interface ChatMessage {
 
 export default function CoachPage() {
   const { user } = useAuth();
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [message, setMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -56,7 +58,7 @@ export default function CoachPage() {
       // Wait 2 seconds then send mock AI response
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      const aiResponse = "That's a great goal! Keep pushing! 💪";
+      const aiResponse = t('coach.mockResponse');
       const { error: aiMsgError } = await supabase
         .from('chat_messages')
         .insert({ user_id: user!.id, content: aiResponse, role: 'assistant' });
@@ -96,8 +98,8 @@ export default function CoachPage() {
                 <Bot className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <CardTitle className="text-xl">AI Fitness Coach</CardTitle>
-                <p className="text-sm text-muted-foreground">Your personal training assistant</p>
+                <CardTitle className="text-xl">{t('coach.title')}</CardTitle>
+                <p className="text-sm text-muted-foreground">{t('coach.subtitle')}</p>
               </div>
               <Sparkles className="h-5 w-5 text-primary ml-auto animate-pulse" />
             </div>
@@ -115,9 +117,9 @@ export default function CoachPage() {
                   <div className="p-4 rounded-2xl bg-primary/10 mb-4">
                     <Bot className="h-12 w-12 text-primary" />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">Start a Conversation</h3>
+                  <h3 className="text-lg font-semibold mb-2">{t('coach.emptyState.title')}</h3>
                   <p className="text-muted-foreground max-w-sm">
-                    Ask me about workouts, nutrition, or your fitness goals. I'm here to help!
+                    {t('coach.emptyState.subtitle')}
                   </p>
                 </div>
               ) : (
@@ -165,7 +167,7 @@ export default function CoachPage() {
                 <Input
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Ask your coach anything..."
+                  placeholder={t('coach.input.placeholder')}
                   className="flex-1 bg-background/50"
                   disabled={sendMessage.isPending}
                 />

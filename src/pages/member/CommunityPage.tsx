@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
@@ -28,6 +29,7 @@ interface Post {
 export default function CommunityPage() {
   const { user, profile } = useAuth();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [newPost, setNewPost] = useState('');
 
@@ -60,10 +62,10 @@ export default function CommunityPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['community-posts'] });
       setNewPost('');
-      toast({ title: 'Post created!', description: 'Your post is now live.' });
+      toast({ title: t('community.toast.postCreated'), description: t('community.toast.postCreatedDesc') });
     },
     onError: () => {
-      toast({ title: 'Error', description: 'Failed to create post.', variant: 'destructive' });
+      toast({ title: t('community.toast.error'), description: t('community.toast.errorDesc'), variant: 'destructive' });
     }
   });
 
@@ -116,8 +118,8 @@ export default function CommunityPage() {
     <MemberLayout>
       <div className="max-w-2xl mx-auto space-y-6">
         <div>
-          <h1 className="text-3xl font-bold gradient-text">Community</h1>
-          <p className="text-muted-foreground">Connect with fellow gym members</p>
+          <h1 className="text-3xl font-bold gradient-text">{t('community.title')}</h1>
+          <p className="text-muted-foreground">{t('community.subtitle')}</p>
         </div>
 
         {/* Create Post Card */}
@@ -132,7 +134,7 @@ export default function CommunityPage() {
                   </AvatarFallback>
                 </Avatar>
                 <Textarea
-                  placeholder="What's on your mind? Share your workout, progress, or motivation..."
+                  placeholder={t('community.createPost.placeholder')}
                   value={newPost}
                   onChange={(e) => setNewPost(e.target.value)}
                   className="min-h-[80px] resize-none bg-background/50"
@@ -149,7 +151,7 @@ export default function CommunityPage() {
                   ) : (
                     <Send className="h-4 w-4" />
                   )}
-                  Post
+                  {t('community.createPost.button')}
                 </Button>
               </div>
             </form>
@@ -165,8 +167,8 @@ export default function CommunityPage() {
           <Card className="glass-card">
             <CardContent className="py-12 text-center">
               <MessageCircle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <p className="text-lg font-medium">No posts yet</p>
-              <p className="text-muted-foreground">Be the first to share something!</p>
+              <p className="text-lg font-medium">{t('community.noPosts')}</p>
+              <p className="text-muted-foreground">{t('community.beFirst')}</p>
             </CardContent>
           </Card>
         ) : (

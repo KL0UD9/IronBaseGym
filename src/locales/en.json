@@ -1,0 +1,230 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All",
+    "noResults": "No results found",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "signOut": "Sign Out",
+    "login": "Log In",
+    "signUp": "Sign Up",
+    "user": "User",
+    "logout": "Logout"
+  },
+  "brand": {
+    "name": "IronBase",
+    "tagline": "Where champions are forged"
+  },
+  "landing": {
+    "hero": {
+      "headline": "IronBase",
+      "subheadline": "Where champions are forged. Join the most advanced fitness community.",
+      "cta": "Start Your Journey",
+      "ctaTrial": "Start Free Trial"
+    },
+    "stats": {
+      "activeMembers": "Active Members",
+      "weeklyClasses": "Weekly Classes",
+      "openAccess": "Open Access"
+    },
+    "features": {
+      "title": "Why",
+      "titleHighlight": "IronBase",
+      "subtitle": "Everything you need to transform your body and mind",
+      "access": {
+        "title": "24/7 Access",
+        "description": "Train on your schedule. Our doors never close, so your progress never stops."
+      },
+      "equipment": {
+        "title": "Pro Equipment",
+        "description": "State-of-the-art machines and free weights for every training style."
+      },
+      "sauna": {
+        "title": "Sauna Recovery",
+        "description": "Unwind and recover in our premium infrared sauna after every session."
+      }
+    },
+    "pricing": {
+      "title": "Membership",
+      "titleHighlight": "Plans",
+      "subtitle": "Choose the plan that fits your fitness journey",
+      "mostPopular": "Most Popular",
+      "perMonth": "/mo",
+      "perMonths": "mo",
+      "getStarted": "Get Started",
+      "features": {
+        "gymAccess": "Full gym access",
+        "lockerRoom": "Locker room access",
+        "groupClasses": "Group classes",
+        "personalTraining": "Personal training session"
+      }
+    },
+    "cta": {
+      "title": "Ready to",
+      "titleHighlight": "Transform",
+      "subtitle": "Join hundreds of members who are already crushing their fitness goals."
+    },
+    "footer": {
+      "copyright": "© 2026 IronBase. All rights reserved."
+    }
+  },
+  "nav": {
+    "admin": {
+      "dashboard": "Dashboard",
+      "members": "Members",
+      "classes": "Classes",
+      "billing": "Billing",
+      "orders": "Orders",
+      "memberships": "Memberships",
+      "checkIn": "Check-In",
+      "settings": "Settings"
+    },
+    "member": {
+      "dashboard": "Dashboard",
+      "home": "Home",
+      "myClasses": "My Classes",
+      "bookClass": "Book Class",
+      "store": "Store",
+      "community": "Community",
+      "coach": "Coach"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Command Center",
+      "subtitle": "Welcome to your gym management dashboard",
+      "kpi": {
+        "activeMembers": "Active Members",
+        "monthlyRevenue": "Monthly Revenue",
+        "todayCheckIns": "Today's Check-ins",
+        "classesThisWeek": "Classes This Week"
+      },
+      "calendar": {
+        "title": "Weekly Class Schedule",
+        "noClasses": "No classes"
+      }
+    },
+    "orders": {
+      "title": "Orders",
+      "subtitle": "Manage store orders and fulfillment",
+      "kpi": {
+        "totalRevenue": "Total Revenue",
+        "totalOrders": "Total Orders",
+        "avgOrderValue": "Avg Order Value",
+        "pendingOrders": "Pending Orders"
+      },
+      "table": {
+        "orderId": "Order ID",
+        "customer": "Customer",
+        "items": "Items",
+        "total": "Total",
+        "status": "Status",
+        "date": "Date",
+        "actions": "Actions"
+      },
+      "status": {
+        "pending": "Pending",
+        "confirmed": "Confirmed",
+        "shipped": "Shipped",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "noOrders": "No orders yet",
+      "ordersWillAppear": "Orders from the merch store will appear here."
+    }
+  },
+  "store": {
+    "title": "Merch Store",
+    "subtitle": "Premium gym gear and supplements",
+    "categories": {
+      "all": "all",
+      "apparel": "apparel",
+      "supplements": "supplements",
+      "accessories": "accessories",
+      "equipment": "equipment"
+    },
+    "product": {
+      "outOfStock": "Out of Stock",
+      "inStock": "in stock",
+      "addToCart": "Add to Cart",
+      "maxInCart": "Max in Cart"
+    },
+    "cart": {
+      "title": "Shopping Cart",
+      "empty": "Your cart is empty",
+      "emptySubtitle": "Add some gym gear to get started!",
+      "continueShopping": "Continue Shopping",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "free": "Free",
+      "total": "Total",
+      "checkout": "Checkout",
+      "noImage": "No img"
+    },
+    "checkout": {
+      "title": "Checkout",
+      "subtitle": "Review your order and complete your purchase.",
+      "confirmOrder": "Confirm Order",
+      "processing": "Processing...",
+      "complete": {
+        "title": "Order Complete!",
+        "subtitle": "Thank you for your purchase. Your order has been confirmed and will be ready for pickup soon."
+      }
+    },
+    "noProducts": "No products found",
+    "tryDifferentCategory": "Try selecting a different category"
+  },
+  "community": {
+    "title": "Community",
+    "subtitle": "Connect with fellow gym members",
+    "createPost": {
+      "placeholder": "What's on your mind? Share your workout, progress, or motivation...",
+      "button": "Post"
+    },
+    "noPosts": "No posts yet",
+    "beFirst": "Be the first to share something!",
+    "toast": {
+      "postCreated": "Post created!",
+      "postCreatedDesc": "Your post is now live.",
+      "error": "Error",
+      "errorDesc": "Failed to create post."
+    }
+  },
+  "coach": {
+    "title": "AI Fitness Coach",
+    "subtitle": "Your personal training assistant",
+    "emptyState": {
+      "title": "Start a Conversation",
+      "subtitle": "Ask me about workouts, nutrition, or your fitness goals. I'm here to help!"
+    },
+    "input": {
+      "placeholder": "Ask your coach anything..."
+    },
+    "mockResponse": "That's a great goal! Keep pushing! 💪"
+  },
+  "auth": {
+    "welcome": "Welcome back",
+    "signIn": "Sign in to your account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?"
+  },
+  "language": {
+    "toggle": "Language",
+    "en": "English",
+    "es": "Spanish"
+  }
+}

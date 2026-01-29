@@ -9,7 +9,8 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
-  Receipt
+  Receipt,
+  Settings
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
@@ -23,6 +24,7 @@ const adminNavItems = [
   { label: 'Billing', icon: Receipt, path: '/admin/billing' },
   { label: 'Memberships', icon: CreditCard, path: '/admin/memberships' },
   { label: 'Check-In', icon: UserCheck, path: '/check-in' },
+  { label: 'Settings', icon: Settings, path: '/admin/settings' },
 ];
 
 const memberNavItems = [

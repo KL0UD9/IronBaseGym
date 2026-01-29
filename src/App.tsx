@@ -11,6 +11,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import MembersPage from "./pages/admin/MembersPage";
 import ClassesPage from "./pages/admin/ClassesPage";
 import BillingPage from "./pages/admin/BillingPage";
+import SettingsPage from "./pages/admin/SettingsPage";
 import CheckInPage from "./pages/CheckIn";
 import MemberDashboard from "./pages/member/MemberDashboard";
 import BookClassPage from "./pages/member/BookClassPage";
@@ -71,6 +72,11 @@ function AppRoutes() {
       <Route path="/admin/billing" element={
         <ProtectedRoute requiredRole="admin">
           <BillingPage />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin/settings" element={
+        <ProtectedRoute requiredRole="admin">
+          <SettingsPage />
         </ProtectedRoute>
       } />
 

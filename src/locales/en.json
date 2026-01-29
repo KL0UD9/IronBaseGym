@@ -230,7 +230,7 @@
   },
   "coach": {
     "title": "AI Fitness Coach",
-    "subtitle": "Your personal training assistant",
+    "subtitle": "Your personal training assistant powered by AI",
     "emptyState": {
       "title": "Start a Conversation",
       "subtitle": "Ask me about workouts, nutrition, or your fitness goals. I'm here to help!"
@@ -238,7 +238,16 @@
     "input": {
       "placeholder": "Ask your coach anything..."
     },
-    "mockResponse": "That's a great goal! Keep pushing! 💪"
+    "mockResponse": "That's a great goal! Keep pushing! 💪",
+    "suggestions": {
+      "workout": "What's a good leg workout?",
+      "nutrition": "How much protein should I eat?",
+      "motivation": "I need motivation to workout"
+    },
+    "errorResponse": "I'm having trouble responding right now. Please try again in a moment.",
+    "fallbackResponse": "I apologize, but I'm experiencing technical difficulties. Please try again later or check out our workout videos in the meantime!",
+    "aiError": "Failed to get AI response. Using fallback.",
+    "sendError": "Failed to send message. Please try again."
   },
   "auth": {
     "welcome": "Welcome back",

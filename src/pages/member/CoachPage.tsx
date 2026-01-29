@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Bot, Send, Loader2, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { toast } from 'sonner';
 
 interface ChatMessage {
   id: string;
@@ -43,7 +44,7 @@ export default function CoachPage() {
     enabled: !!user
   });
 
-  // Send message mutation
+  // Send message mutation with real AI
   const sendMessage = useMutation({
     mutationFn: async (content: string) => {
       // Save user message
@@ -52,17 +53,39 @@ export default function CoachPage() {
         .insert({ user_id: user!.id, content, role: 'user' });
       if (userMsgError) throw userMsgError;
 
-      // Simulate AI typing
+      // Invalidate to show user message immediately
+      await queryClient.invalidateQueries({ queryKey: ['chat-messages', user?.id] });
+
+      // Show typing indicator
       setIsTyping(true);
       
-      // Wait 2 seconds then send mock AI response
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      const aiResponse = t('coach.mockResponse');
-      const { error: aiMsgError } = await supabase
-        .from('chat_messages')
-        .insert({ user_id: user!.id, content: aiResponse, role: 'assistant' });
-      if (aiMsgError) throw aiMsgError;
+      try {
+        // Call AI coach edge function
+        const { data, error } = await supabase.functions.invoke('ai-coach', {
+          body: { 
+            message: content,
+            conversationHistory: messages?.slice(-10) || []
+          }
+        });
+
+        if (error) throw error;
+
+        const aiResponse = data.response || t('coach.errorResponse');
+        
+        // Save AI response
+        const { error: aiMsgError } = await supabase
+          .from('chat_messages')
+          .insert({ user_id: user!.id, content: aiResponse, role: 'assistant' });
+        if (aiMsgError) throw aiMsgError;
+      } catch (error) {
+        console.error('AI Coach error:', error);
+        // Save fallback response
+        const fallbackResponse = t('coach.fallbackResponse');
+        await supabase
+          .from('chat_messages')
+          .insert({ user_id: user!.id, content: fallbackResponse, role: 'assistant' });
+        toast.error(t('coach.aiError'));
+      }
       
       setIsTyping(false);
     },
@@ -70,8 +93,10 @@ export default function CoachPage() {
       queryClient.invalidateQueries({ queryKey: ['chat-messages', user?.id] });
       setMessage('');
     },
-    onError: () => {
+    onError: (error) => {
+      console.error('Send message error:', error);
       setIsTyping(false);
+      toast.error(t('coach.sendError'));
     }
   });
 
@@ -121,6 +146,19 @@ export default function CoachPage() {
                   <p className="text-muted-foreground max-w-sm">
                     {t('coach.emptyState.subtitle')}
                   </p>
+                  <div className="mt-4 flex flex-wrap justify-center gap-2">
+                    {[t('coach.suggestions.workout'), t('coach.suggestions.nutrition'), t('coach.suggestions.motivation')].map((suggestion, i) => (
+                      <Button
+                        key={i}
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setMessage(suggestion)}
+                        className="text-xs"
+                      >
+                        {suggestion}
+                      </Button>
+                    ))}
+                  </div>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -134,7 +172,7 @@ export default function CoachPage() {
                     >
                       <div
                         className={cn(
-                          "max-w-[80%] rounded-2xl px-4 py-3 text-sm",
+                          "max-w-[80%] rounded-2xl px-4 py-3 text-sm whitespace-pre-wrap",
                           msg.role === 'user'
                             ? 'bg-primary text-primary-foreground rounded-br-md'
                             : 'bg-muted text-foreground rounded-bl-md'

@@ -71,6 +71,11 @@ function AppRoutes() {
       <Route path="/auth" element={<Navigate to="/login" replace />} />
       <Route path="/check-in" element={<CheckInPage />} />
       
+      {/* Legacy /member/* redirects to /dashboard/* */}
+      <Route path="/member/community" element={<Navigate to="/dashboard/community" replace />} />
+      <Route path="/member/coach" element={<Navigate to="/dashboard/coach" replace />} />
+      <Route path="/member/*" element={<Navigate to="/dashboard" replace />} />
+      
       {/* Admin Routes */}
       <Route path="/admin" element={
         <ProtectedRoute requiredRole="admin">

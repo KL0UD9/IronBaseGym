@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   LayoutDashboard, 
   Users, 
@@ -19,33 +20,35 @@ import {
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
+import { LanguageToggle } from '@/components/LanguageToggle';
 import { useState } from 'react';
-
-const adminNavItems = [
-  { label: 'Dashboard', icon: LayoutDashboard, path: '/admin' },
-  { label: 'Members', icon: Users, path: '/admin/members' },
-  { label: 'Classes', icon: Calendar, path: '/admin/classes' },
-  { label: 'Billing', icon: Receipt, path: '/admin/billing' },
-  { label: 'Orders', icon: Package, path: '/admin/orders' },
-  { label: 'Memberships', icon: CreditCard, path: '/admin/memberships' },
-  { label: 'Check-In', icon: UserCheck, path: '/check-in' },
-  { label: 'Settings', icon: Settings, path: '/admin/settings' },
-];
-
-const memberNavItems = [
-  { label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
-  { label: 'My Classes', icon: Calendar, path: '/dashboard/classes' },
-  { label: 'Book Class', icon: Dumbbell, path: '/dashboard/book' },
-  { label: 'Store', icon: ShoppingBag, path: '/dashboard/store' },
-  { label: 'Community', icon: MessageSquare, path: '/dashboard/community' },
-  { label: 'Coach', icon: Bot, path: '/dashboard/coach' },
-];
 
 export function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
   const { signOut, isAdmin, profile } = useAuth();
+  const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(false);
+
+  const adminNavItems = [
+    { label: t('nav.admin.dashboard'), icon: LayoutDashboard, path: '/admin' },
+    { label: t('nav.admin.members'), icon: Users, path: '/admin/members' },
+    { label: t('nav.admin.classes'), icon: Calendar, path: '/admin/classes' },
+    { label: t('nav.admin.billing'), icon: Receipt, path: '/admin/billing' },
+    { label: t('nav.admin.orders'), icon: Package, path: '/admin/orders' },
+    { label: t('nav.admin.memberships'), icon: CreditCard, path: '/admin/memberships' },
+    { label: t('nav.admin.checkIn'), icon: UserCheck, path: '/check-in' },
+    { label: t('nav.admin.settings'), icon: Settings, path: '/admin/settings' },
+  ];
+
+  const memberNavItems = [
+    { label: t('nav.member.dashboard'), icon: LayoutDashboard, path: '/dashboard' },
+    { label: t('nav.member.myClasses'), icon: Calendar, path: '/dashboard/classes' },
+    { label: t('nav.member.bookClass'), icon: Dumbbell, path: '/dashboard/book' },
+    { label: t('nav.member.store'), icon: ShoppingBag, path: '/dashboard/store' },
+    { label: t('nav.member.community'), icon: MessageSquare, path: '/dashboard/community' },
+    { label: t('nav.member.coach'), icon: Bot, path: '/dashboard/coach' },
+  ];
 
   const navItems = isAdmin ? adminNavItems : memberNavItems;
 
@@ -64,7 +67,7 @@ export function Sidebar() {
         {!collapsed && (
           <div className="flex items-center gap-2">
             <Dumbbell className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold gradient-text">IronBase</span>
+            <span className="text-xl font-bold gradient-text">{t('brand.name')}</span>
           </div>
         )}
         {collapsed && <Dumbbell className="h-8 w-8 text-primary mx-auto" />}
@@ -78,8 +81,15 @@ export function Sidebar() {
         </Button>
       </div>
 
+      {/* Language Toggle */}
+      {!collapsed && (
+        <div className="px-4 py-2 border-b border-sidebar-border">
+          <LanguageToggle />
+        </div>
+      )}
+
       {/* Navigation */}
-      <nav className="flex-1 p-4 space-y-2">
+      <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (
@@ -107,7 +117,7 @@ export function Sidebar() {
       <div className="p-4 border-t border-sidebar-border">
         {!collapsed && profile && (
           <div className="mb-4 px-3">
-            <p className="font-medium truncate">{profile.full_name || 'User'}</p>
+            <p className="font-medium truncate">{profile.full_name || t('common.user')}</p>
             <p className="text-xs text-muted-foreground capitalize">{profile.role}</p>
           </div>
         )}
@@ -120,7 +130,7 @@ export function Sidebar() {
           )}
         >
           <LogOut className="h-5 w-5 shrink-0" />
-          {!collapsed && <span>Sign Out</span>}
+          {!collapsed && <span>{t('common.signOut')}</span>}
         </Button>
       </div>
     </aside>

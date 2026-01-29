@@ -1,19 +1,21 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { LayoutDashboard, Calendar, MessageSquare, Bot, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
-
-const memberNavItems = [
-  { label: 'Home', icon: LayoutDashboard, path: '/dashboard' },
-  { label: 'Classes', icon: Calendar, path: '/dashboard/classes' },
-  { label: 'Community', icon: MessageSquare, path: '/dashboard/community' },
-  { label: 'Coach', icon: Bot, path: '/dashboard/coach' },
-];
 
 export function BottomTabBar() {
   const location = useLocation();
   const navigate = useNavigate();
   const { signOut } = useAuth();
+  const { t } = useTranslation();
+
+  const memberNavItems = [
+    { label: t('nav.member.home'), icon: LayoutDashboard, path: '/dashboard' },
+    { label: t('nav.member.myClasses').split(' ')[0], icon: Calendar, path: '/dashboard/classes' },
+    { label: t('nav.member.community'), icon: MessageSquare, path: '/dashboard/community' },
+    { label: t('nav.member.coach'), icon: Bot, path: '/dashboard/coach' },
+  ];
 
   const handleSignOut = async () => {
     await signOut();
@@ -55,7 +57,7 @@ export function BottomTabBar() {
           className="flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-lg text-muted-foreground hover:text-destructive transition-all min-w-[64px]"
         >
           <LogOut className="h-5 w-5" />
-          <span className="text-xs font-medium">Logout</span>
+          <span className="text-xs font-medium">{t('common.logout')}</span>
         </button>
       </div>
     </nav>

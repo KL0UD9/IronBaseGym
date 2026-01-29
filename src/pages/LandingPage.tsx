@@ -1,29 +1,32 @@
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Dumbbell, Clock, Wrench, Flame, ArrowRight, Check, Sparkles } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
-
-const features = [
-  {
-    icon: Clock,
-    title: '24/7 Access',
-    description: 'Train on your schedule. Our doors never close, so your progress never stops.'
-  },
-  {
-    icon: Wrench,
-    title: 'Pro Equipment',
-    description: 'State-of-the-art machines and free weights for every training style.'
-  },
-  {
-    icon: Flame,
-    title: 'Sauna Recovery',
-    description: 'Unwind and recover in our premium infrared sauna after every session.'
-  }
-];
+import { LanguageToggle } from '@/components/LanguageToggle';
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const features = [
+    {
+      icon: Clock,
+      title: t('landing.features.access.title'),
+      description: t('landing.features.access.description')
+    },
+    {
+      icon: Wrench,
+      title: t('landing.features.equipment.title'),
+      description: t('landing.features.equipment.description')
+    },
+    {
+      icon: Flame,
+      title: t('landing.features.sauna.title'),
+      description: t('landing.features.sauna.description')
+    }
+  ];
 
   const { data: memberships, isLoading } = useQuery({
     queryKey: ['memberships-landing'],
@@ -39,6 +42,11 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Language Toggle - Fixed Position */}
+      <div className="fixed top-4 right-4 z-50">
+        <LanguageToggle />
+      </div>
+
       {/* Hero Section - Full Screen */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
@@ -60,11 +68,11 @@ export default function LandingPage() {
           </div>
 
           <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-6 animate-fade-in">
-            <span className="gradient-text">IronBase</span>
+            <span className="gradient-text">{t('landing.hero.headline')}</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto animate-fade-in">
-            Where champions are forged. Join the most advanced fitness community.
+            {t('landing.hero.subheadline')}
           </p>
 
           {/* Neon CTA Button */}
@@ -78,7 +86,7 @@ export default function LandingPage() {
               }}
             >
               <Sparkles className="h-5 w-5 mr-2 animate-pulse" />
-              Start Your Journey
+              {t('landing.hero.cta')}
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
@@ -87,15 +95,15 @@ export default function LandingPage() {
           <div className="mt-20 flex flex-wrap justify-center gap-8 md:gap-16 text-muted-foreground animate-fade-in">
             <div className="text-center">
               <p className="text-4xl font-bold text-foreground">500+</p>
-              <p className="text-sm">Active Members</p>
+              <p className="text-sm">{t('landing.stats.activeMembers')}</p>
             </div>
             <div className="text-center">
               <p className="text-4xl font-bold text-foreground">50+</p>
-              <p className="text-sm">Weekly Classes</p>
+              <p className="text-sm">{t('landing.stats.weeklyClasses')}</p>
             </div>
             <div className="text-center">
               <p className="text-4xl font-bold text-foreground">24/7</p>
-              <p className="text-sm">Open Access</p>
+              <p className="text-sm">{t('landing.stats.openAccess')}</p>
             </div>
           </div>
         </div>
@@ -113,10 +121,10 @@ export default function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Why <span className="gradient-text">IronBase</span>?
+              {t('landing.features.title')} <span className="gradient-text">{t('landing.features.titleHighlight')}</span>?
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Everything you need to transform your body and mind
+              {t('landing.features.subtitle')}
             </p>
           </div>
           
@@ -143,10 +151,10 @@ export default function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Membership <span className="gradient-text">Plans</span>
+              {t('landing.pricing.title')} <span className="gradient-text">{t('landing.pricing.titleHighlight')}</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Choose the plan that fits your fitness journey
+              {t('landing.pricing.subtitle')}
             </p>
           </div>
           
@@ -168,7 +176,7 @@ export default function LandingPage() {
                     {isPopular && (
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                         <span className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
-                          Most Popular
+                          {t('landing.pricing.mostPopular')}
                         </span>
                       </div>
                     )}
@@ -176,7 +184,7 @@ export default function LandingPage() {
                     <p className="text-4xl font-bold mb-2">
                       ${plan.price}
                       <span className="text-sm font-normal text-muted-foreground">
-                        /{plan.duration_months === 1 ? 'mo' : `${plan.duration_months} mo`}
+                        /{plan.duration_months === 1 ? t('landing.pricing.perMonth').replace('/', '') : `${plan.duration_months} ${t('landing.pricing.perMonths')}`}
                       </span>
                     </p>
                     {plan.description && (
@@ -185,22 +193,22 @@ export default function LandingPage() {
                     <ul className="space-y-3 mb-8">
                       <li className="flex items-center gap-2 text-sm">
                         <Check className="h-4 w-4 text-primary" />
-                        Full gym access
+                        {t('landing.pricing.features.gymAccess')}
                       </li>
                       <li className="flex items-center gap-2 text-sm">
                         <Check className="h-4 w-4 text-primary" />
-                        Locker room access
+                        {t('landing.pricing.features.lockerRoom')}
                       </li>
                       {index >= 1 && (
                         <li className="flex items-center gap-2 text-sm">
                           <Check className="h-4 w-4 text-primary" />
-                          Group classes
+                          {t('landing.pricing.features.groupClasses')}
                         </li>
                       )}
                       {index >= 2 && (
                         <li className="flex items-center gap-2 text-sm">
                           <Check className="h-4 w-4 text-primary" />
-                          Personal training session
+                          {t('landing.pricing.features.personalTraining')}
                         </li>
                       )}
                     </ul>
@@ -209,7 +217,7 @@ export default function LandingPage() {
                       variant={isPopular ? 'default' : 'outline'}
                       onClick={() => navigate('/login')}
                     >
-                      Get Started
+                      {t('landing.pricing.getStarted')}
                     </Button>
                   </div>
                 );
@@ -223,17 +231,17 @@ export default function LandingPage() {
       <section className="py-24 bg-gradient-dark">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to <span className="gradient-text">Transform</span>?
+            {t('landing.cta.title')} <span className="gradient-text">{t('landing.cta.titleHighlight')}</span>?
           </h2>
           <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
-            Join hundreds of members who are already crushing their fitness goals.
+            {t('landing.cta.subtitle')}
           </p>
           <Button 
             size="lg" 
             onClick={() => navigate('/login')}
             className="text-lg px-10 py-6"
           >
-            Start Free Trial
+            {t('landing.hero.ctaTrial')}
             <ArrowRight className="h-5 w-5 ml-2" />
           </Button>
         </div>
@@ -245,10 +253,10 @@ export default function LandingPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <Dumbbell className="h-6 w-6 text-primary" />
-              <span className="font-bold gradient-text">IronBase</span>
+              <span className="font-bold gradient-text">{t('brand.name')}</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              © 2026 IronBase. All rights reserved.
+              {t('landing.footer.copyright')}
             </p>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -20,6 +21,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { addToCart, items } = useCart();
+  const { t } = useTranslation();
   
   const cartItem = items.find(item => item.id === product.id);
   const currentQuantityInCart = cartItem?.quantity || 0;
@@ -57,7 +59,7 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
         {isOutOfStock && (
           <div className="absolute inset-0 bg-background/80 flex items-center justify-center">
-            <Badge variant="destructive">Out of Stock</Badge>
+            <Badge variant="destructive">{t('store.product.outOfStock')}</Badge>
           </div>
         )}
       </div>
@@ -71,7 +73,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="mt-2 flex items-center justify-between">
           <span className="text-xl font-bold text-primary">${product.price.toFixed(2)}</span>
           <span className="text-xs text-muted-foreground">
-            {product.stock_count} in stock
+            {product.stock_count} {t('store.product.inStock')}
           </span>
         </div>
       </CardContent>
@@ -82,7 +84,7 @@ export function ProductCard({ product }: ProductCardProps) {
           disabled={isOutOfStock || maxReached}
         >
           <ShoppingCart className="h-4 w-4" />
-          {maxReached ? 'Max in Cart' : 'Add to Cart'}
+          {maxReached ? t('store.product.maxInCart') : t('store.product.addToCart')}
         </Button>
       </CardFooter>
     </Card>

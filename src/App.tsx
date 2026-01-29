@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
+import '@/lib/i18n';
 import LandingPage from "./pages/LandingPage";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
@@ -22,11 +23,13 @@ import StorePage from "./pages/member/StorePage";
 import CommunityPage from "./pages/member/CommunityPage";
 import CoachPage from "./pages/member/CoachPage";
 import { Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const queryClient = new QueryClient();
 
 function ProtectedRoute({ children, requiredRole }: { children: React.ReactNode; requiredRole?: 'admin' | 'trainer' | 'member' }) {
   const { user, profile, loading } = useAuth();
+  const { t } = useTranslation();
 
   if (loading) {
     return (
@@ -41,7 +44,6 @@ function ProtectedRoute({ children, requiredRole }: { children: React.ReactNode;
   }
 
   if (requiredRole && profile?.role !== requiredRole) {
-    // Redirect based on actual role
     if (profile?.role === 'admin') {
       return <Navigate to="/admin" replace />;
     }

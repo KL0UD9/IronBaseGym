@@ -1,0 +1,230 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "all": "Todo",
+    "noResults": "No se encontraron resultados",
+    "error": "Error",
+    "success": "Éxito",
+    "confirm": "Confirmar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "submit": "Enviar",
+    "signOut": "Cerrar Sesión",
+    "login": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "user": "Usuario",
+    "logout": "Salir"
+  },
+  "brand": {
+    "name": "IronBase",
+    "tagline": "Donde se forjan los campeones"
+  },
+  "landing": {
+    "hero": {
+      "headline": "IronBase",
+      "subheadline": "Donde se forjan los campeones. Únete a la comunidad fitness más avanzada.",
+      "cta": "Comienza Tu Viaje",
+      "ctaTrial": "Prueba Gratis"
+    },
+    "stats": {
+      "activeMembers": "Miembros Activos",
+      "weeklyClasses": "Clases Semanales",
+      "openAccess": "Acceso Abierto"
+    },
+    "features": {
+      "title": "¿Por qué",
+      "titleHighlight": "IronBase",
+      "subtitle": "Todo lo que necesitas para transformar tu cuerpo y mente",
+      "access": {
+        "title": "Acceso 24/7",
+        "description": "Entrena a tu horario. Nuestras puertas nunca cierran, así que tu progreso nunca se detiene."
+      },
+      "equipment": {
+        "title": "Equipo Pro",
+        "description": "Máquinas de última generación y pesas libres para todo estilo de entrenamiento."
+      },
+      "sauna": {
+        "title": "Recuperación en Sauna",
+        "description": "Relájate y recupérate en nuestro sauna infrarrojo premium después de cada sesión."
+      }
+    },
+    "pricing": {
+      "title": "Planes de",
+      "titleHighlight": "Membresía",
+      "subtitle": "Elige el plan que se adapte a tu viaje fitness",
+      "mostPopular": "Más Popular",
+      "perMonth": "/mes",
+      "perMonths": "meses",
+      "getStarted": "Comenzar",
+      "features": {
+        "gymAccess": "Acceso completo al gimnasio",
+        "lockerRoom": "Acceso a vestidores",
+        "groupClasses": "Clases grupales",
+        "personalTraining": "Sesión de entrenamiento personal"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para",
+      "titleHighlight": "Transformarte",
+      "subtitle": "Únete a cientos de miembros que ya están logrando sus metas fitness."
+    },
+    "footer": {
+      "copyright": "© 2026 IronBase. Todos los derechos reservados."
+    }
+  },
+  "nav": {
+    "admin": {
+      "dashboard": "Panel",
+      "members": "Miembros",
+      "classes": "Clases",
+      "billing": "Facturación",
+      "orders": "Pedidos",
+      "memberships": "Membresías",
+      "checkIn": "Registro",
+      "settings": "Configuración"
+    },
+    "member": {
+      "dashboard": "Panel",
+      "home": "Inicio",
+      "myClasses": "Mis Clases",
+      "bookClass": "Reservar Clase",
+      "store": "Tienda",
+      "community": "Comunidad",
+      "coach": "Entrenador"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Centro de Control",
+      "subtitle": "Bienvenido a tu panel de gestión del gimnasio",
+      "kpi": {
+        "activeMembers": "Miembros Activos",
+        "monthlyRevenue": "Ingresos Mensuales",
+        "todayCheckIns": "Registros de Hoy",
+        "classesThisWeek": "Clases Esta Semana"
+      },
+      "calendar": {
+        "title": "Horario Semanal de Clases",
+        "noClasses": "Sin clases"
+      }
+    },
+    "orders": {
+      "title": "Pedidos",
+      "subtitle": "Gestiona los pedidos de la tienda y envíos",
+      "kpi": {
+        "totalRevenue": "Ingresos Totales",
+        "totalOrders": "Total de Pedidos",
+        "avgOrderValue": "Valor Promedio",
+        "pendingOrders": "Pedidos Pendientes"
+      },
+      "table": {
+        "orderId": "ID Pedido",
+        "customer": "Cliente",
+        "items": "Artículos",
+        "total": "Total",
+        "status": "Estado",
+        "date": "Fecha",
+        "actions": "Acciones"
+      },
+      "status": {
+        "pending": "Pendiente",
+        "confirmed": "Confirmado",
+        "shipped": "Enviado",
+        "completed": "Completado",
+        "cancelled": "Cancelado"
+      },
+      "noOrders": "Sin pedidos aún",
+      "ordersWillAppear": "Los pedidos de la tienda aparecerán aquí."
+    }
+  },
+  "store": {
+    "title": "Tienda de Merch",
+    "subtitle": "Ropa y suplementos premium para el gym",
+    "categories": {
+      "all": "todo",
+      "apparel": "ropa",
+      "supplements": "suplementos",
+      "accessories": "accesorios",
+      "equipment": "equipo"
+    },
+    "product": {
+      "outOfStock": "Agotado",
+      "inStock": "en stock",
+      "addToCart": "Agregar al Carrito",
+      "maxInCart": "Máximo en Carrito"
+    },
+    "cart": {
+      "title": "Carrito de Compras",
+      "empty": "Tu carrito está vacío",
+      "emptySubtitle": "¡Agrega algo de equipo para empezar!",
+      "continueShopping": "Continuar Comprando",
+      "subtotal": "Subtotal",
+      "shipping": "Envío",
+      "free": "Gratis",
+      "total": "Total",
+      "checkout": "Pagar",
+      "noImage": "Sin img"
+    },
+    "checkout": {
+      "title": "Pago",
+      "subtitle": "Revisa tu pedido y completa tu compra.",
+      "confirmOrder": "Confirmar Pedido",
+      "processing": "Procesando...",
+      "complete": {
+        "title": "¡Pedido Completo!",
+        "subtitle": "Gracias por tu compra. Tu pedido ha sido confirmado y estará listo para recoger pronto."
+      }
+    },
+    "noProducts": "No se encontraron productos",
+    "tryDifferentCategory": "Intenta seleccionar una categoría diferente"
+  },
+  "community": {
+    "title": "Comunidad",
+    "subtitle": "Conecta con otros miembros del gimnasio",
+    "createPost": {
+      "placeholder": "¿Qué tienes en mente? Comparte tu entrenamiento, progreso o motivación...",
+      "button": "Publicar"
+    },
+    "noPosts": "Sin publicaciones aún",
+    "beFirst": "¡Sé el primero en compartir algo!",
+    "toast": {
+      "postCreated": "¡Publicación creada!",
+      "postCreatedDesc": "Tu publicación está en vivo.",
+      "error": "Error",
+      "errorDesc": "Error al crear la publicación."
+    }
+  },
+  "coach": {
+    "title": "Entrenador IA",
+    "subtitle": "Tu asistente de entrenamiento personal",
+    "emptyState": {
+      "title": "Inicia una Conversación",
+      "subtitle": "Pregúntame sobre entrenamientos, nutrición o tus metas fitness. ¡Estoy aquí para ayudar!"
+    },
+    "input": {
+      "placeholder": "Pregunta a tu entrenador..."
+    },
+    "mockResponse": "¡Es una gran meta! ¡Sigue adelante! 💪"
+  },
+  "auth": {
+    "welcome": "Bienvenido de nuevo",
+    "signIn": "Inicia sesión en tu cuenta",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?"
+  },
+  "language": {
+    "toggle": "Idioma",
+    "en": "Inglés",
+    "es": "Español"
+  }
+}

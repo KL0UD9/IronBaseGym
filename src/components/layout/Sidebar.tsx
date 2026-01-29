@@ -12,7 +12,9 @@ import {
   Receipt,
   Settings,
   Package,
-  ShoppingBag
+  ShoppingBag,
+  MessageSquare,
+  Bot
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
@@ -35,6 +37,8 @@ const memberNavItems = [
   { label: 'My Classes', icon: Calendar, path: '/dashboard/classes' },
   { label: 'Book Class', icon: Dumbbell, path: '/dashboard/book' },
   { label: 'Store', icon: ShoppingBag, path: '/dashboard/store' },
+  { label: 'Community', icon: MessageSquare, path: '/dashboard/community' },
+  { label: 'Coach', icon: Bot, path: '/dashboard/coach' },
 ];
 
 export function Sidebar() {

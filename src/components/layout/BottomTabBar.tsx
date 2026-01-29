@@ -1,13 +1,13 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Calendar, Dumbbell, ShoppingBag, LogOut } from 'lucide-react';
+import { LayoutDashboard, Calendar, MessageSquare, Bot, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
 
 const memberNavItems = [
   { label: 'Home', icon: LayoutDashboard, path: '/dashboard' },
   { label: 'Classes', icon: Calendar, path: '/dashboard/classes' },
-  { label: 'Book', icon: Dumbbell, path: '/dashboard/book' },
-  { label: 'Store', icon: ShoppingBag, path: '/dashboard/store' },
+  { label: 'Community', icon: MessageSquare, path: '/dashboard/community' },
+  { label: 'Coach', icon: Bot, path: '/dashboard/coach' },
 ];
 
 export function BottomTabBar() {

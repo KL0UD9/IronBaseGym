@@ -297,6 +297,20 @@
       "progressStats": "Progress Stats"
     }
   },
+  "profile": {
+    "edit": {
+      "title": "Edit Profile",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Enter your full name",
+      "avatarUrl": "Avatar URL (optional)",
+      "avatarHint": "Click to upload or enter URL below",
+      "success": "Profile updated!",
+      "successDescription": "Your profile has been updated successfully.",
+      "error": "Update failed",
+      "fileTooLarge": "File too large",
+      "maxFileSize": "Maximum file size is 2MB"
+    }
+  },
   "nutrition": {
     "title": "Nutrition Tracker",
     "subtitle": "Track your daily food intake and macros",

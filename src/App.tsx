@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+import { CartProvider } from "@/contexts/CartContext";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
@@ -12,10 +13,12 @@ import MembersPage from "./pages/admin/MembersPage";
 import ClassesPage from "./pages/admin/ClassesPage";
 import BillingPage from "./pages/admin/BillingPage";
 import SettingsPage from "./pages/admin/SettingsPage";
+import OrdersPage from "./pages/admin/OrdersPage";
 import CheckInPage from "./pages/CheckIn";
 import MemberDashboard from "./pages/member/MemberDashboard";
 import BookClassPage from "./pages/member/BookClassPage";
 import MyClassesPage from "./pages/member/MyClassesPage";
+import StorePage from "./pages/member/StorePage";
 import { Loader2 } from "lucide-react";
 
 const queryClient = new QueryClient();
@@ -79,6 +82,11 @@ function AppRoutes() {
           <SettingsPage />
         </ProtectedRoute>
       } />
+      <Route path="/admin/orders" element={
+        <ProtectedRoute requiredRole="admin">
+          <OrdersPage />
+        </ProtectedRoute>
+      } />
 
       {/* Member Routes */}
       <Route path="/dashboard" element={
@@ -96,6 +104,11 @@ function AppRoutes() {
           <BookClassPage />
         </ProtectedRoute>
       } />
+      <Route path="/dashboard/store" element={
+        <ProtectedRoute>
+          <StorePage />
+        </ProtectedRoute>
+      } />
 
       <Route path="*" element={<NotFound />} />
     </Routes>
@@ -109,7 +122,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
-          <AppRoutes />
+          <CartProvider>
+            <AppRoutes />
+          </CartProvider>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>

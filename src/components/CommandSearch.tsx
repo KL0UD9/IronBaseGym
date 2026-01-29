@@ -31,6 +31,7 @@ import {
   CreditCard,
   Apple,
   Swords,
+  Gift,
 } from 'lucide-react';
 
 interface SearchResult {
@@ -135,6 +136,7 @@ export function CommandSearch() {
     { id: 'videos', title: t('nav.member.videos'), path: '/dashboard/videos', icon: <Film className="h-4 w-4" /> },
     { id: 'nutrition', title: t('nav.member.nutrition'), path: '/dashboard/nutrition', icon: <Apple className="h-4 w-4" /> },
     { id: 'arena', title: t('arena.title'), path: '/dashboard/arena', icon: <Swords className="h-4 w-4" /> },
+    { id: 'referrals', title: t('referral.title'), path: '/dashboard/referrals', icon: <Gift className="h-4 w-4" /> },
     { id: 'map', title: t('map.title'), path: '/dashboard/map', icon: <Map className="h-4 w-4" /> },
     { id: 'store', title: t('nav.member.store'), path: '/dashboard/store', icon: <ShoppingBag className="h-4 w-4" /> },
     { id: 'community', title: t('nav.member.community'), path: '/dashboard/community', icon: <MessageSquare className="h-4 w-4" /> },

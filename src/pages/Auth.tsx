@@ -1,20 +1,25 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Dumbbell, Loader2 } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Dumbbell, Loader2, Gift } from 'lucide-react';
 import { toast } from 'sonner';
 import { z } from 'zod';
+import { useTranslation } from 'react-i18next';
 
 const emailSchema = z.string().email('Invalid email address');
 const passwordSchema = z.string().min(6, 'Password must be at least 6 characters');
 
 export default function Auth() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { signIn, signUp, user, loading, profile } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,6 +31,18 @@ export default function Auth() {
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
   const [signupName, setSignupName] = useState('');
+  const [referralCode, setReferralCode] = useState('');
+  const [referralValid, setReferralValid] = useState<boolean | null>(null);
+  const [checkingReferral, setCheckingReferral] = useState(false);
+
+  // Check for referral code in URL
+  useEffect(() => {
+    const refCode = searchParams.get('ref');
+    if (refCode) {
+      setReferralCode(refCode);
+      validateReferralCode(refCode);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (user && profile) {
@@ -36,6 +53,35 @@ export default function Auth() {
       }
     }
   }, [user, profile, navigate]);
+
+  const validateReferralCode = async (code: string) => {
+    if (!code.trim()) {
+      setReferralValid(null);
+      return;
+    }
+
+    setCheckingReferral(true);
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('id, full_name')
+      .eq('referral_code', code.toUpperCase())
+      .maybeSingle();
+    
+    setCheckingReferral(false);
+    setReferralValid(!!data && !error);
+  };
+
+  const handleReferralCodeChange = (value: string) => {
+    const upperValue = value.toUpperCase();
+    setReferralCode(upperValue);
+    
+    // Debounce validation
+    if (upperValue.length >= 8) {
+      validateReferralCode(upperValue);
+    } else {
+      setReferralValid(null);
+    }
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,18 +129,37 @@ export default function Auth() {
     }
 
     setIsLoading(true);
-    const { error } = await signUp(signupEmail, signupPassword, signupName);
-    setIsLoading(false);
-
+    const { error, data } = await signUp(signupEmail, signupPassword, signupName);
+    
     if (error) {
+      setIsLoading(false);
       if (error.message.includes('already registered')) {
         toast.error('This email is already registered. Please sign in.');
       } else {
         toast.error(error.message);
       }
-    } else {
-      toast.success('Account created successfully!');
+      return;
     }
+
+    // Process referral if valid code was entered
+    if (referralCode && referralValid && data?.user) {
+      try {
+        const { data: result, error: refError } = await supabase.rpc('process_referral', {
+          referrer_code: referralCode,
+          new_user_id: data.user.id,
+        });
+        
+        if (result && !refError) {
+          toast.success(t('referral.appliedSuccess'));
+        }
+      } catch {
+        // Referral failed but signup succeeded - don't block
+        console.error('Referral processing failed');
+      }
+    }
+
+    setIsLoading(false);
+    toast.success('Account created successfully!');
   };
 
   if (loading) {
@@ -123,7 +188,7 @@ export default function Auth() {
         </CardHeader>
 
         <CardContent>
-          <Tabs defaultValue="login" className="w-full">
+          <Tabs defaultValue={searchParams.get('ref') ? 'signup' : 'login'} className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-6">
               <TabsTrigger value="login">Sign In</TabsTrigger>
               <TabsTrigger value="signup">Sign Up</TabsTrigger>
@@ -198,6 +263,44 @@ export default function Auth() {
                     required
                   />
                 </div>
+                
+                {/* Referral Code Field */}
+                <div className="space-y-2">
+                  <Label htmlFor="referral-code" className="flex items-center gap-2">
+                    <Gift className="h-4 w-4 text-primary" />
+                    {t('referral.referralCode')} <span className="text-muted-foreground text-xs">({t('common.optional')})</span>
+                  </Label>
+                  <div className="relative">
+                    <Input
+                      id="referral-code"
+                      type="text"
+                      placeholder="GYM-XXXX-000"
+                      value={referralCode}
+                      onChange={(e) => handleReferralCodeChange(e.target.value)}
+                      className="font-mono uppercase"
+                    />
+                    {checkingReferral && (
+                      <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-muted-foreground" />
+                    )}
+                    {!checkingReferral && referralValid === true && (
+                      <Badge className="absolute right-2 top-1/2 -translate-y-1/2 bg-green-500/10 text-green-500 text-xs">
+                        {t('referral.valid')}
+                      </Badge>
+                    )}
+                    {!checkingReferral && referralValid === false && (
+                      <Badge className="absolute right-2 top-1/2 -translate-y-1/2 bg-destructive/10 text-destructive text-xs">
+                        {t('referral.invalid')}
+                      </Badge>
+                    )}
+                  </div>
+                  {referralValid && (
+                    <p className="text-xs text-green-600 dark:text-green-400 flex items-center gap-1">
+                      <Gift className="h-3 w-3" />
+                      {t('referral.bonusMessage')}
+                    </p>
+                  )}
+                </div>
+
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? (
                     <Loader2 className="h-4 w-4 animate-spin" />

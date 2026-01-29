@@ -20,7 +20,8 @@ import {
   Map,
   User,
   Apple,
-  Swords
+  Swords,
+  Gift
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
@@ -53,6 +54,7 @@ export function Sidebar() {
     { label: t('nav.member.videos'), icon: Film, path: '/dashboard/videos' },
     { label: t('nav.member.nutrition'), icon: Apple, path: '/dashboard/nutrition' },
     { label: t('arena.title'), icon: Swords, path: '/dashboard/arena' },
+    { label: t('referral.title'), icon: Gift, path: '/dashboard/referrals' },
     { label: t('map.title'), icon: Map, path: '/dashboard/map' },
     { label: t('nav.member.store'), icon: ShoppingBag, path: '/dashboard/store' },
     { label: t('nav.member.community'), icon: MessageSquare, path: '/dashboard/community' },

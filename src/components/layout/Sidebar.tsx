@@ -43,7 +43,6 @@ export function Sidebar() {
     { label: t('nav.admin.classes'), icon: Calendar, path: '/admin/classes' },
     { label: t('nav.admin.billing'), icon: Receipt, path: '/admin/billing' },
     { label: t('nav.admin.orders'), icon: Package, path: '/admin/orders' },
-    { label: t('nav.admin.memberships'), icon: CreditCard, path: '/admin/memberships' },
     { label: t('nav.admin.checkIn'), icon: UserCheck, path: '/check-in' },
     { label: t('nav.admin.settings'), icon: Settings, path: '/admin/settings' },
   ];

@@ -236,9 +236,19 @@
     "password": "Password",
     "forgotPassword": "Forgot password?"
   },
-  "language": {
+"language": {
     "toggle": "Language",
     "en": "English",
     "es": "Spanish"
+  },
+  "map": {
+    "title": "Find a Trainer",
+    "subtitle": "Discover personal trainers near you",
+    "trainersFound": "trainers",
+    "within5km": "Within 5km",
+    "away": "away",
+    "trainerLocation": "Trainer Location",
+    "trainerDescription": "Book a session with this trainer to start your personalized fitness journey.",
+    "bookNow": "Book Now"
   }
 }

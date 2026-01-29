@@ -8,6 +8,7 @@ import { format } from 'date-fns';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { CheckInHeatmap } from '@/components/CheckInHeatmap';
 
 interface BookingWithClass {
   id: string;
@@ -159,6 +160,9 @@ export default function MemberDashboard() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Check-In Heatmap */}
+        <CheckInHeatmap />
 
         {/* Upcoming Classes */}
         <Card className="glass-card">

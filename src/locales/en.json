@@ -98,7 +98,8 @@
       "store": "Store",
       "community": "Community",
       "coach": "Coach",
-      "videos": "Videos"
+      "videos": "Videos",
+      "profile": "Profile"
     }
   },
   "videos": {
@@ -250,5 +251,29 @@
     "trainerLocation": "Trainer Location",
     "trainerDescription": "Book a session with this trainer to start your personalized fitness journey.",
     "bookNow": "Book Now"
+  },
+  "gamification": {
+    "levelUp": {
+      "title": "LEVEL UP!",
+      "reached": "You've reached",
+      "keepGoing": "Keep earning XP to unlock more levels and achievements!",
+      "continue": "Continue"
+    },
+    "trophyCase": {
+      "title": "Trophy Case",
+      "unlocked": "Unlocked",
+      "locked": "Locked",
+      "unlockedAt": "Unlocked",
+      "empty": "No achievements yet. Start your journey!"
+    },
+    "profile": {
+      "totalXP": "Total XP",
+      "achievements": "Achievements",
+      "level": "Level",
+      "currentXP": "Current XP",
+      "trophyCase": "Trophy Case",
+      "statsTab": "Stats",
+      "progressStats": "Progress Stats"
+    }
   }
 }

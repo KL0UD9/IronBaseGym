@@ -3,12 +3,13 @@ import { MemberLayout } from '@/components/layout/MemberLayout';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, CreditCard, Dumbbell } from 'lucide-react';
+import { Calendar, CreditCard, Dumbbell, Sparkles } from 'lucide-react';
 import { format } from 'date-fns';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { CheckInHeatmap } from '@/components/CheckInHeatmap';
+import { XPDisplay } from '@/components/gamification/XPDisplay';
 
 interface BookingWithClass {
   id: string;
@@ -94,12 +95,15 @@ export default function MemberDashboard() {
   return (
     <MemberLayout>
       <div className="space-y-6 md:space-y-8 animate-fade-in">
-        {/* Welcome Header */}
-        <div>
-          <h1 className="text-2xl md:text-3xl font-bold">
-            Welcome back, {profile?.full_name?.split(' ')[0] || 'Member'}!
-          </h1>
-          <p className="text-muted-foreground mt-1 text-sm md:text-base">Here's your fitness overview</p>
+        {/* Welcome Header with XP */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold">
+              Welcome back, {profile?.full_name?.split(' ')[0] || 'Member'}!
+            </h1>
+            <p className="text-muted-foreground mt-1 text-sm md:text-base">Here's your fitness overview</p>
+          </div>
+          <XPDisplay compact className="self-start md:self-auto" />
         </div>
 
         <div className="grid gap-4 md:gap-6 md:grid-cols-2">

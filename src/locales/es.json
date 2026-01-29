@@ -1,4 +1,15 @@
 {
+  "commandSearch": {
+    "placeholder": "Buscar entrenadores, productos, videos, páginas...",
+    "noResults": "No se encontraron resultados.",
+    "categories": {
+      "pages": "Páginas",
+      "trainers": "Entrenadores",
+      "products": "Productos",
+      "videos": "Videos",
+      "posts": "Posts de Comunidad"
+    }
+  },
   "common": {
     "loading": "Cargando...",
     "save": "Guardar",

@@ -26,6 +26,7 @@ import VideosPage from "./pages/member/VideosPage";
 import TrainerMapPage from "./pages/member/TrainerMapPage";
 import ProfilePage from "./pages/member/ProfilePage";
 import NutritionPage from "./pages/member/NutritionPage";
+import ArenaPage from "./pages/member/ArenaPage";
 import { Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { GamificationProvider } from "@/contexts/GamificationContext";
@@ -149,6 +150,11 @@ function AppRoutes() {
       <Route path="/dashboard/nutrition" element={
         <ProtectedRoute>
           <NutritionPage />
+        </ProtectedRoute>
+      } />
+      <Route path="/dashboard/arena" element={
+        <ProtectedRoute>
+          <ArenaPage />
         </ProtectedRoute>
       } />
 

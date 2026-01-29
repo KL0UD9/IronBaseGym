@@ -230,7 +230,7 @@
   },
   "coach": {
     "title": "Entrenador IA",
-    "subtitle": "Tu asistente de entrenamiento personal",
+    "subtitle": "Tu asistente de entrenamiento personal con IA",
     "emptyState": {
       "title": "Inicia una Conversación",
       "subtitle": "Pregúntame sobre entrenamientos, nutrición o tus metas fitness. ¡Estoy aquí para ayudar!"
@@ -238,7 +238,16 @@
     "input": {
       "placeholder": "Pregunta a tu entrenador..."
     },
-    "mockResponse": "¡Es una gran meta! ¡Sigue adelante! 💪"
+    "mockResponse": "¡Es una gran meta! ¡Sigue adelante! 💪",
+    "suggestions": {
+      "workout": "¿Cuál es un buen entrenamiento de piernas?",
+      "nutrition": "¿Cuánta proteína debo comer?",
+      "motivation": "Necesito motivación para entrenar"
+    },
+    "errorResponse": "Tengo problemas para responder ahora. Por favor intenta de nuevo.",
+    "fallbackResponse": "Lo siento, estoy experimentando dificultades técnicas. ¡Por favor intenta más tarde o revisa nuestros videos de entrenamiento mientras tanto!",
+    "aiError": "Error al obtener respuesta de IA. Usando respuesta alternativa.",
+    "sendError": "Error al enviar mensaje. Por favor intenta de nuevo."
   },
   "auth": {
     "welcome": "Bienvenido de nuevo",

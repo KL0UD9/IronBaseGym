@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { useMemo } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { haversineDistance } from '@/lib/haversine';
@@ -47,16 +47,6 @@ interface TrainerMapProps {
   onTrainerClick: (trainer: Trainer) => void;
 }
 
-function MapController({ center }: { center: [number, number] }) {
-  const map = useMap();
-  
-  useEffect(() => {
-    map.setView(center, 13);
-  }, [center, map]);
-  
-  return null;
-}
-
 export function TrainerMap({ trainers, userLocation, filterRadius, onTrainerClick }: TrainerMapProps) {
   const filteredTrainers = useMemo(() => {
     if (filterRadius === null) return trainers;
@@ -81,7 +71,6 @@ export function TrainerMap({ trainers, userLocation, filterRadius, onTrainerClic
       className="h-full w-full"
       style={{ height: '100%', width: '100%' }}
     >
-      <MapController center={center} />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -91,20 +80,23 @@ export function TrainerMap({ trainers, userLocation, filterRadius, onTrainerClic
         <Popup>Your Location</Popup>
       </Marker>
 
-      {filteredTrainers.map((trainer) => (
-        <Marker
-          key={trainer.id}
-          position={[trainer.lat, trainer.lng]}
-          icon={trainerIcon}
-          eventHandlers={{
-            click: () => onTrainerClick(trainer),
-          }}
-        >
-          <Popup>
-            {trainer.full_name} - {haversineDistance(userLocation.lat, userLocation.lng, trainer.lat, trainer.lng).toFixed(1)} km away
-          </Popup>
-        </Marker>
-      ))}
+      {filteredTrainers.map((trainer) => {
+        const distance = haversineDistance(userLocation.lat, userLocation.lng, trainer.lat, trainer.lng);
+        const popupText = `${trainer.full_name} - ${distance.toFixed(1)} km away`;
+        
+        return (
+          <Marker
+            key={trainer.id}
+            position={[trainer.lat, trainer.lng]}
+            icon={trainerIcon}
+            eventHandlers={{
+              click: () => onTrainerClick(trainer),
+            }}
+          >
+            <Popup>{popupText}</Popup>
+          </Marker>
+        );
+      })}
     </MapContainer>
   );
 }

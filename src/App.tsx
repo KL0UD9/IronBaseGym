@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
-import Index from "./pages/Index";
+import LandingPage from "./pages/LandingPage";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -19,6 +19,8 @@ import MemberDashboard from "./pages/member/MemberDashboard";
 import BookClassPage from "./pages/member/BookClassPage";
 import MyClassesPage from "./pages/member/MyClassesPage";
 import StorePage from "./pages/member/StorePage";
+import CommunityPage from "./pages/member/CommunityPage";
+import CoachPage from "./pages/member/CoachPage";
 import { Loader2 } from "lucide-react";
 
 const queryClient = new QueryClient();
@@ -52,8 +54,9 @@ function ProtectedRoute({ children, requiredRole }: { children: React.ReactNode;
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Index />} />
-      <Route path="/auth" element={<Auth />} />
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<Auth />} />
+      <Route path="/auth" element={<Navigate to="/login" replace />} />
       <Route path="/check-in" element={<CheckInPage />} />
       
       {/* Admin Routes */}
@@ -107,6 +110,16 @@ function AppRoutes() {
       <Route path="/dashboard/store" element={
         <ProtectedRoute>
           <StorePage />
+        </ProtectedRoute>
+      } />
+      <Route path="/dashboard/community" element={
+        <ProtectedRoute>
+          <CommunityPage />
+        </ProtectedRoute>
+      } />
+      <Route path="/dashboard/coach" element={
+        <ProtectedRoute>
+          <CoachPage />
         </ProtectedRoute>
       } />
 

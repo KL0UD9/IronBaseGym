@@ -300,6 +300,74 @@ export type Database = {
           },
         ]
       }
+      matches: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          id: string
+          match_number: number
+          player_1_id: string | null
+          player_2_id: string | null
+          round_number: number
+          scheduled_at: string | null
+          tournament_id: string
+          winner_id: string | null
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          match_number: number
+          player_1_id?: string | null
+          player_2_id?: string | null
+          round_number: number
+          scheduled_at?: string | null
+          tournament_id: string
+          winner_id?: string | null
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          match_number?: number
+          player_1_id?: string | null
+          player_2_id?: string | null
+          round_number?: number
+          scheduled_at?: string | null
+          tournament_id?: string
+          winner_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "matches_player_1_id_fkey"
+            columns: ["player_1_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "matches_player_2_id_fkey"
+            columns: ["player_2_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "matches_tournament_id_fkey"
+            columns: ["tournament_id"]
+            isOneToOne: false
+            referencedRelation: "tournaments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "matches_winner_id_fkey"
+            columns: ["winner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       memberships: {
         Row: {
           created_at: string
@@ -436,6 +504,52 @@ export type Database = {
           },
         ]
       }
+      predictions: {
+        Row: {
+          created_at: string
+          id: string
+          match_id: string
+          predicted_winner_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          match_id: string
+          predicted_winner_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          match_id?: string
+          predicted_winner_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "predictions_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "predictions_predicted_winner_id_fkey"
+            columns: ["predicted_winner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "predictions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       products: {
         Row: {
           category: string | null
@@ -504,6 +618,89 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      tournament_participants: {
+        Row: {
+          created_at: string
+          id: string
+          seed_number: number | null
+          tournament_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          seed_number?: number | null
+          tournament_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          seed_number?: number | null
+          tournament_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tournament_participants_tournament_id_fkey"
+            columns: ["tournament_id"]
+            isOneToOne: false
+            referencedRelation: "tournaments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tournament_participants_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tournaments: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          max_participants: number
+          name: string
+          start_date: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          max_participants?: number
+          name: string
+          start_date: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          max_participants?: number
+          name?: string
+          start_date?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tournaments_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_achievements: {
         Row: {

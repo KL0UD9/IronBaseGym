@@ -19,7 +19,8 @@ import {
   Bot,
   Map,
   User,
-  Apple
+  Apple,
+  Swords
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
@@ -51,6 +52,7 @@ export function Sidebar() {
     { label: t('nav.member.bookClass'), icon: Dumbbell, path: '/dashboard/book' },
     { label: t('nav.member.videos'), icon: Film, path: '/dashboard/videos' },
     { label: t('nav.member.nutrition'), icon: Apple, path: '/dashboard/nutrition' },
+    { label: t('arena.title'), icon: Swords, path: '/dashboard/arena' },
     { label: t('map.title'), icon: Map, path: '/dashboard/map' },
     { label: t('nav.member.store'), icon: ShoppingBag, path: '/dashboard/store' },
     { label: t('nav.member.community'), icon: MessageSquare, path: '/dashboard/community' },

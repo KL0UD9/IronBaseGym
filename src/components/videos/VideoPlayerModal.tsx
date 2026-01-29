@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { VisuallyHidden } from '@/components/ui/visually-hidden';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import {
@@ -192,9 +193,13 @@ export function VideoPlayerModal({
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent
-        className="max-w-[100vw] max-h-[100vh] w-screen h-screen p-0 bg-black border-none"
+        className="max-w-[100vw] max-h-[100vh] w-screen h-screen p-0 bg-black border-none [&>button]:hidden"
         ref={containerRef}
+        aria-describedby={undefined}
       >
+        <VisuallyHidden>
+          <DialogTitle>{video.title}</DialogTitle>
+        </VisuallyHidden>
         <div
           className="relative w-full h-full flex items-center justify-center"
           onClick={togglePlay}

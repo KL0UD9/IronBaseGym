@@ -27,6 +27,7 @@ import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { LanguageToggle } from '@/components/LanguageToggle';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { useState } from 'react';
 
 export function Sidebar() {
@@ -93,10 +94,16 @@ export function Sidebar() {
         </Button>
       </div>
 
-      {/* Language Toggle */}
+      {/* Language & Theme Toggle */}
       {!collapsed && (
-        <div className="px-4 py-2 border-b border-sidebar-border">
+        <div className="px-4 py-2 border-b border-sidebar-border flex items-center justify-between gap-2">
           <LanguageToggle />
+          <ThemeToggle />
+        </div>
+      )}
+      {collapsed && (
+        <div className="px-2 py-2 border-b border-sidebar-border flex justify-center">
+          <ThemeToggle />
         </div>
       )}
 

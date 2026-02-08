@@ -292,6 +292,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "likes_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "posts_with_author"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "likes_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
@@ -1013,7 +1020,17 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      posts_with_author: {
+        Row: {
+          author_avatar: string | null
+          author_name: string | null
+          content: string | null
+          created_at: string | null
+          id: string | null
+          image_url: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       get_user_role: {

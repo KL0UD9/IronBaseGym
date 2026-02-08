@@ -18,12 +18,8 @@ interface Post {
   content: string;
   image_url: string | null;
   created_at: string;
-  user_id: string;
-  profiles: {
-    id: string;
-    full_name: string;
-    avatar_url: string | null;
-  };
+  author_name: string;
+  author_avatar: string | null;
   likes: { user_id: string }[];
 }
 
@@ -36,21 +32,30 @@ export default function CommunityPage() {
   const [newPost, setNewPost] = useState('');
   const likeLockRef = useRef<Set<string>>(new Set());
 
-  // Fetch posts with profiles and likes
+  // Fetch posts with author info (using view that doesn't expose user_ids)
   const { data: posts, isLoading } = useQuery({
     queryKey: ['community-posts'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('posts')
-        .select(`
-          *,
-          profiles:user_id (id, full_name, avatar_url),
-          likes (user_id)
-        `)
+      // Get posts from the secure view
+      const { data: postsData, error: postsError } = await supabase
+        .from('posts_with_author')
+        .select('*')
         .order('created_at', { ascending: false });
       
-      if (error) throw error;
-      return data as Post[];
+      if (postsError) throw postsError;
+      
+      // Get likes separately (user needs to see their own like status)
+      const { data: likesData, error: likesError } = await supabase
+        .from('likes')
+        .select('post_id, user_id');
+      
+      if (likesError) throw likesError;
+      
+      // Combine posts with their likes
+      return postsData.map(post => ({
+        ...post,
+        likes: likesData?.filter(like => like.post_id === post.id) || []
+      })) as Post[];
     }
   });
 
@@ -264,13 +269,13 @@ export default function CommunityPage() {
                     {/* Post Header */}
                     <div className="flex items-start gap-3 mb-3">
                       <Avatar className="h-10 w-10">
-                        <AvatarImage src={post.profiles.avatar_url || undefined} />
+                        <AvatarImage src={post.author_avatar || undefined} />
                         <AvatarFallback className="bg-primary/20 text-primary">
-                          {getInitials(post.profiles.full_name)}
+                          {getInitials(post.author_name)}
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex-1 min-w-0">
-                        <p className="font-semibold truncate">{post.profiles.full_name}</p>
+                        <p className="font-semibold truncate">{post.author_name}</p>
                         <p className="text-xs text-muted-foreground">
                           {formatDistanceToNow(new Date(post.created_at), { addSuffix: true })}
                         </p>

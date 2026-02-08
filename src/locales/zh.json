@@ -1,0 +1,452 @@
+{
+  "commandSearch": {
+    "placeholder": "搜索教练、产品、视频、页面...",
+    "noResults": "未找到结果。",
+    "categories": {
+      "pages": "页面",
+      "trainers": "教练",
+      "products": "产品",
+      "videos": "视频",
+      "posts": "社区帖子"
+    }
+  },
+  "common": {
+    "loading": "加载中...",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "add": "添加",
+    "search": "搜索",
+    "filter": "筛选",
+    "all": "全部",
+    "noResults": "未找到结果",
+    "error": "错误",
+    "success": "成功",
+    "confirm": "确认",
+    "back": "返回",
+    "next": "下一步",
+    "submit": "提交",
+    "signOut": "退出登录",
+    "login": "登录",
+    "signUp": "注册",
+    "user": "用户",
+    "logout": "退出"
+  },
+  "brand": {
+    "name": "IronBase",
+    "tagline": "冠军的摇篮"
+  },
+  "landing": {
+    "hero": {
+      "headline": "IronBase",
+      "subheadline": "冠军的摇篮。加入最先进的健身社区。",
+      "cta": "开启您的旅程",
+      "ctaTrial": "开始免费试用"
+    },
+    "stats": {
+      "activeMembers": "活跃会员",
+      "weeklyClasses": "每周课程",
+      "openAccess": "全天候开放"
+    },
+    "features": {
+      "title": "为什么选择",
+      "titleHighlight": "IronBase",
+      "subtitle": "您实现身心蜕变所需的一切",
+      "access": {
+        "title": "全天候开放",
+        "description": "按您的时间安排训练。我们的大门永不关闭，您的进步永不停止。"
+      },
+      "equipment": {
+        "title": "专业设备",
+        "description": "为各种训练风格提供最先进的器械和自由重量。"
+      },
+      "sauna": {
+        "title": "桑拿恢复",
+        "description": "每次训练后在我们优质的红外桑拿房中放松和恢复。"
+      }
+    },
+    "pricing": {
+      "title": "会员",
+      "titleHighlight": "计划",
+      "subtitle": "选择适合您健身之旅的计划",
+      "mostPopular": "最受欢迎",
+      "perMonth": "/月",
+      "perMonths": "月",
+      "getStarted": "立即开始",
+      "features": {
+        "gymAccess": "健身房全场通行",
+        "lockerRoom": "更衣室使用权",
+        "groupClasses": "团体课程",
+        "personalTraining": "私人训练课程"
+      }
+    },
+    "cta": {
+      "title": "准备好",
+      "titleHighlight": "蜕变",
+      "subtitle": "加入数百名正在实现健身目标的会员。"
+    },
+    "footer": {
+      "copyright": "© 2026 IronBase。保留所有权利。"
+    }
+  },
+  "nav": {
+    "admin": {
+      "dashboard": "控制台",
+      "members": "会员",
+      "classes": "课程",
+      "billing": "账单",
+      "orders": "订单",
+      "memberships": "会员资格",
+      "checkIn": "签到",
+      "settings": "设置"
+    },
+    "member": {
+      "dashboard": "控制台",
+      "home": "首页",
+      "myClasses": "我的课程",
+      "bookClass": "预约课程",
+      "store": "商店",
+      "community": "社区",
+      "coach": "教练",
+      "videos": "视频",
+      "profile": "个人资料",
+      "nutrition": "营养"
+    }
+  },
+  "videos": {
+    "title": "健身视频库",
+    "subtitle": "优质健身内容。随时随地训练。",
+    "onDemand": "点播",
+    "continueWatching": "继续观看",
+    "categories": {
+      "hiit": "高强度间歇训练",
+      "yoga": "瑜伽",
+      "strength": "力量训练",
+      "cardio": "有氧运动",
+      "recovery": "恢复训练"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "指挥中心",
+      "subtitle": "欢迎来到您的健身房管理控制台",
+      "kpi": {
+        "activeMembers": "活跃会员",
+        "monthlyRevenue": "月收入",
+        "todayCheckIns": "今日签到",
+        "classesThisWeek": "本周课程"
+      },
+      "calendar": {
+        "title": "每周课程表",
+        "noClasses": "无课程"
+      }
+    },
+    "orders": {
+      "title": "订单",
+      "subtitle": "管理商店订单和配送",
+      "kpi": {
+        "totalRevenue": "总收入",
+        "totalOrders": "总订单",
+        "avgOrderValue": "平均订单金额",
+        "pendingOrders": "待处理订单"
+      },
+      "table": {
+        "orderId": "订单编号",
+        "customer": "客户",
+        "items": "商品",
+        "total": "总计",
+        "status": "状态",
+        "date": "日期",
+        "actions": "操作"
+      },
+      "status": {
+        "pending": "待处理",
+        "confirmed": "已确认",
+        "shipped": "已发货",
+        "completed": "已完成",
+        "cancelled": "已取消"
+      },
+      "noOrders": "暂无订单",
+      "ordersWillAppear": "商店订单将显示在这里。"
+    }
+  },
+  "store": {
+    "title": "商品商店",
+    "subtitle": "优质健身装备和补剂",
+    "categories": {
+      "all": "全部",
+      "apparel": "服装",
+      "supplements": "补剂",
+      "accessories": "配件",
+      "equipment": "器材"
+    },
+    "product": {
+      "outOfStock": "缺货",
+      "inStock": "有货",
+      "addToCart": "加入购物车",
+      "maxInCart": "购物车已达上限"
+    },
+    "cart": {
+      "title": "购物车",
+      "empty": "您的购物车是空的",
+      "emptySubtitle": "添加一些健身装备开始购物吧！",
+      "continueShopping": "继续购物",
+      "subtotal": "小计",
+      "shipping": "运费",
+      "free": "免费",
+      "total": "总计",
+      "checkout": "结账",
+      "noImage": "无图"
+    },
+    "checkout": {
+      "title": "结账",
+      "subtitle": "确认您的订单并完成购买。",
+      "confirmOrder": "确认订单",
+      "processing": "处理中...",
+      "complete": {
+        "title": "订单完成！",
+        "subtitle": "感谢您的购买。您的订单已确认，即将准备好取货。"
+      }
+    },
+    "noProducts": "未找到产品",
+    "tryDifferentCategory": "请尝试选择其他类别"
+  },
+  "community": {
+    "title": "社区",
+    "subtitle": "与健身房会员交流互动",
+    "createPost": {
+      "placeholder": "有什么想法？分享您的锻炼、进展或动力...",
+      "button": "发布"
+    },
+    "noPosts": "暂无帖子",
+    "beFirst": "成为第一个分享的人！",
+    "toast": {
+      "postCreated": "帖子已发布！",
+      "postCreatedDesc": "您的帖子已上线。",
+      "error": "错误",
+      "errorDesc": "发布帖子失败。"
+    }
+  },
+  "coach": {
+    "title": "AI健身教练",
+    "subtitle": "您的AI驱动私人训练助手",
+    "emptyState": {
+      "title": "开始对话",
+      "subtitle": "向我咨询锻炼、营养或您的健身目标。我随时为您服务！"
+    },
+    "input": {
+      "placeholder": "向您的教练提问..."
+    },
+    "mockResponse": "这是个很好的目标！继续努力！💪",
+    "suggestions": {
+      "workout": "推荐一个腿部训练计划？",
+      "nutrition": "我应该摄入多少蛋白质？",
+      "motivation": "我需要锻炼的动力"
+    },
+    "errorResponse": "我现在无法回复。请稍后再试。",
+    "fallbackResponse": "抱歉，我遇到了技术问题。请稍后再试，或者先查看我们的健身视频！",
+    "aiError": "获取AI回复失败。使用备用回复。",
+    "sendError": "发送消息失败。请重试。",
+    "editMessage": "编辑消息",
+    "retryResponse": "重新生成回复",
+    "saveEdit": "保存",
+    "cancelEdit": "取消"
+  },
+  "auth": {
+    "welcome": "欢迎回来",
+    "signIn": "登录您的账户",
+    "noAccount": "还没有账户？",
+    "hasAccount": "已有账户？",
+    "email": "邮箱",
+    "password": "密码",
+    "forgotPassword": "忘记密码？"
+  },
+  "language": {
+    "toggle": "语言",
+    "en": "英语",
+    "es": "西班牙语",
+    "ja": "日语",
+    "zh": "中文"
+  },
+  "map": {
+    "title": "寻找教练",
+    "subtitle": "发现您附近的私人教练",
+    "trainersFound": "位教练",
+    "within5km": "5公里内",
+    "away": "距离",
+    "trainerLocation": "教练位置",
+    "trainerDescription": "预约这位教练，开启您的个性化健身之旅。",
+    "bookNow": "立即预约"
+  },
+  "gamification": {
+    "levelUp": {
+      "title": "升级！",
+      "reached": "您已达到",
+      "keepGoing": "继续获取经验值解锁更多等级和成就！",
+      "continue": "继续"
+    },
+    "trophyCase": {
+      "title": "奖杯柜",
+      "unlocked": "已解锁",
+      "locked": "未解锁",
+      "unlockedAt": "解锁于",
+      "empty": "暂无成就。开始您的旅程吧！"
+    },
+    "profile": {
+      "totalXP": "总经验值",
+      "achievements": "成就",
+      "level": "等级",
+      "currentXP": "当前经验值",
+      "trophyCase": "奖杯柜",
+      "statsTab": "统计",
+      "progressStats": "进度统计"
+    }
+  },
+  "profile": {
+    "edit": {
+      "title": "编辑个人资料",
+      "fullName": "姓名",
+      "fullNamePlaceholder": "输入您的姓名",
+      "avatarUrl": "头像链接（可选）",
+      "avatarHint": "点击上传或在下方输入链接",
+      "success": "个人资料已更新！",
+      "successDescription": "您的个人资料已成功更新。",
+      "error": "更新失败",
+      "fileTooLarge": "文件过大",
+      "maxFileSize": "最大文件大小为2MB"
+    }
+  },
+  "nutrition": {
+    "title": "营养追踪",
+    "subtitle": "追踪您的每日饮食摄入和营养素",
+    "searchFood": "搜索食物",
+    "searchPlaceholder": "搜索食物...",
+    "noFoodsFound": "未找到食物",
+    "logFood": "记录食物",
+    "addFood": "添加食物",
+    "foodAdded": "食物已添加！",
+    "foodRemoved": "食物已移除",
+    "errorAdding": "添加食物出错",
+    "errorRemoving": "移除食物出错",
+    "mealType": "餐次",
+    "servings": "份数",
+    "dailyGoal": "每日卡路里目标",
+    "goalUpdated": "目标已更新！",
+    "todaysMacros": "今日营养素",
+    "noDataYet": "暂无食物记录",
+    "total": "总计",
+    "caloriesRemaining": "剩余卡路里",
+    "todaysLog": "今日食物记录",
+    "noLogsToday": "今日暂无记录",
+    "startLogging": "点击「记录食物」开始追踪",
+    "foodsLogged": "已记录食物",
+    "totalCalories": "总卡路里",
+    "macros": {
+      "protein": "蛋白质",
+      "carbs": "碳水化合物",
+      "fat": "脂肪"
+    },
+    "meals": {
+      "breakfast": "早餐",
+      "lunch": "午餐",
+      "dinner": "晚餐",
+      "snack": "零食"
+    }
+  },
+  "arena": {
+    "title": "竞技场",
+    "subtitle": "加入比赛，与会员们一决高下",
+    "bracket": "比赛对阵表",
+    "createTournament": "创建比赛",
+    "tournamentName": "比赛名称",
+    "namePlaceholder": "例如：2026夏季争霸赛",
+    "description": "描述",
+    "descriptionPlaceholder": "可选的比赛描述...",
+    "startDate": "开始日期",
+    "selectDate": "选择日期",
+    "bracketSize": "参赛规模",
+    "participants": "名参赛者",
+    "create": "创建比赛",
+    "tournamentCreated": "比赛已创建！",
+    "errorCreating": "创建比赛出错",
+    "join": "加入比赛",
+    "joined": "已加入",
+    "joinedTournament": "您已加入比赛！",
+    "errorJoining": "加入比赛出错",
+    "viewBracket": "查看对阵表",
+    "noDescription": "暂无描述",
+    "startTournament": "开始比赛",
+    "tournamentStarted": "比赛已开始！",
+    "tbd": "待定",
+    "clickToSetWinner": "点击选手设置获胜者",
+    "winnerSet": "获胜者已设置！",
+    "errorSettingWinner": "设置获胜者出错",
+    "predictWinner": "预测获胜者",
+    "changePrediction": "更改预测",
+    "yourPrediction": "您的预测",
+    "predictionSaved": "预测已保存！",
+    "errorSavingPrediction": "保存预测出错",
+    "champion": "冠军",
+    "awaitingChampion": "等待冠军",
+    "winner": "获胜者",
+    "round": "轮次",
+    "totalTournaments": "总比赛数",
+    "activeTournaments": "进行中",
+    "yourTournaments": "您的比赛",
+    "predictions": "预测",
+    "noActiveTournaments": "暂无进行中的比赛",
+    "noUpcomingTournaments": "暂无即将开始的比赛",
+    "noCompletedTournaments": "暂无已完成的比赛",
+    "status": {
+      "upcoming": "即将开始",
+      "active": "进行中",
+      "completed": "已完成"
+    },
+    "rounds": {
+      "plural": "轮",
+      "final": "决赛",
+      "semiFinal": "半决赛",
+      "quarterFinal": "四分之一决赛"
+    }
+  },
+  "referral": {
+    "title": "推荐奖励",
+    "subtitle": "邀请好友，每次注册获得奖励",
+    "yourCode": "您的推荐码",
+    "codeDescription": "分享此推荐码，每次好友注册可获得$10奖励",
+    "shareLink": "或分享您的推荐链接",
+    "copyLink": "复制链接",
+    "share": "分享",
+    "codeCopied": "推荐码已复制！",
+    "linkCopied": "推荐链接已复制！",
+    "copyError": "复制失败",
+    "shareTitle": "加入IronBase健身房！",
+    "shareText": "使用我的推荐码注册，我们都能获得奖励！",
+    "howItWorks": "如何运作",
+    "step1": "与好友分享您的专属推荐码",
+    "step2": "他们使用您的推荐码注册",
+    "step3": "每次注册您可获得$10奖励！",
+    "totalEarned": "总收入",
+    "friendsReferred": "推荐好友数",
+    "pending": "待处理",
+    "peopleReferred": "我推荐的人",
+    "friend": "好友",
+    "date": "日期",
+    "reward": "奖励",
+    "status": "状态",
+    "noReferrals": "暂无推荐",
+    "startSharing": "开始分享您的推荐码获得奖励！",
+    "anonymous": "匿名",
+    "referralCode": "推荐码",
+    "valid": "有效！",
+    "invalid": "无效",
+    "bonusMessage": "使用此推荐码注册将获得额外奖励！",
+    "appliedSuccess": "推荐码已应用！您的好友获得了奖励。",
+    "statuses": {
+      "pending": "待处理",
+      "credited": "已到账",
+      "expired": "已过期"
+    }
+  }
+}

@@ -36,12 +36,11 @@ export default function TrainerMapPage() {
   const { data: trainers = [], isLoading } = useQuery({
     queryKey: ['trainers-with-location'],
     queryFn: async () => {
+      // Security: Use the trainer_locations view which only exposes trainer locations
+      // This prevents regular member location data from being exposed
       const { data, error } = await supabase
-        .from('profiles')
-        .select('id, full_name, avatar_url, lat, lng')
-        .eq('role', 'trainer')
-        .not('lat', 'is', null)
-        .not('lng', 'is', null);
+        .from('trainer_locations')
+        .select('id, full_name, avatar_url, lat, lng');
 
       if (error) throw error;
       return data as Trainer[];

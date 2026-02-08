@@ -9,8 +9,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Bot, Send, Loader2, Sparkles } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
+import { ChatMessage } from '@/components/coach/ChatMessage';
 
 interface ChatMessage {
   id: string;
@@ -163,24 +163,11 @@ export default function CoachPage() {
               ) : (
                 <div className="space-y-4">
                   {messages?.map((msg) => (
-                    <div
+                    <ChatMessage
                       key={msg.id}
-                      className={cn(
-                        "flex",
-                        msg.role === 'user' ? 'justify-end' : 'justify-start'
-                      )}
-                    >
-                      <div
-                        className={cn(
-                          "max-w-[80%] rounded-2xl px-4 py-3 text-sm whitespace-pre-wrap",
-                          msg.role === 'user'
-                            ? 'bg-primary text-primary-foreground rounded-br-md'
-                            : 'bg-muted text-foreground rounded-bl-md'
-                        )}
-                      >
-                        {msg.content}
-                      </div>
-                    </div>
+                      content={msg.content}
+                      role={msg.role}
+                    />
                   ))}
                   
                   {/* Typing Indicator */}

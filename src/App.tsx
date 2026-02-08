@@ -41,6 +41,7 @@ function ProtectedRoute({ children, requiredRole }: { children: React.ReactNode;
   const { user, profile, loading } = useAuth();
   const { t } = useTranslation();
 
+  // Show loading while auth or profile is loading
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -53,17 +54,27 @@ function ProtectedRoute({ children, requiredRole }: { children: React.ReactNode;
     return <Navigate to="/auth" replace />;
   }
 
-  if (requiredRole) {
+  // Wait for profile to be loaded before checking roles
+  // This prevents premature redirects when profile hasn't loaded yet
+  if (requiredRole && !profile) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (requiredRole && profile) {
     // Admin can access admin routes, trainers can access trainer routes
-    if (requiredRole === 'admin' && profile?.role !== 'admin') {
+    if (requiredRole === 'admin' && profile.role !== 'admin') {
       // Non-admins trying to access admin routes
       return <Navigate to="/dashboard" replace />;
     }
-    if (requiredRole === 'trainer' && profile?.role !== 'trainer' && profile?.role !== 'admin') {
+    if (requiredRole === 'trainer' && profile.role !== 'trainer' && profile.role !== 'admin') {
       // Only trainers and admins can access trainer routes
       return <Navigate to="/dashboard" replace />;
     }
-    if (requiredRole === 'member' && profile?.role === 'admin') {
+    if (requiredRole === 'member' && profile.role === 'admin') {
       // Admins trying to access member-only routes go to admin dashboard
       return <Navigate to="/admin" replace />;
     }

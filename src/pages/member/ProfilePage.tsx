@@ -29,15 +29,15 @@ export default function ProfilePage() {
         <Card className="glass-card overflow-hidden">
           <div className="h-24 bg-gradient-to-r from-primary/20 via-primary/10 to-accent/20" />
           <CardContent className="pt-6 pb-6">
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
               <Avatar className="h-24 w-24 border-4 border-background shadow-xl flex-shrink-0">
                 <AvatarImage src={profile?.avatar_url || undefined} />
                 <AvatarFallback className="text-2xl bg-primary/20 text-primary">
                   {getInitials(profile?.full_name || '')}
                 </AvatarFallback>
               </Avatar>
-              <div className="text-center sm:text-left flex-1 min-w-0">
-                <div className="flex items-center gap-2">
+              <div className="text-center sm:text-left flex-1 min-w-0 flex flex-col justify-center">
+                <div className="flex items-center gap-2 sm:justify-start justify-center">
                   <h1 className="text-2xl font-bold truncate">{profile?.full_name || t('common.user')}</h1>
                   <Button 
                     variant="ghost" 

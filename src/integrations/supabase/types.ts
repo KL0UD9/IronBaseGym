@@ -1190,15 +1190,15 @@ export type Database = {
           avatar_url?: string | null
           full_name?: string | null
           id?: string | null
-          lat?: number | null
-          lng?: number | null
+          lat?: never
+          lng?: never
         }
         Update: {
           avatar_url?: string | null
           full_name?: string | null
           id?: string | null
-          lat?: number | null
-          lng?: number | null
+          lat?: never
+          lng?: never
         }
         Relationships: []
       }

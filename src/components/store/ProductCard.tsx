@@ -39,7 +39,7 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <Card className="glass-card overflow-hidden group">
+    <Card className="glass-card overflow-hidden group flex flex-col h-full">
       <div className="relative aspect-square overflow-hidden bg-muted/30">
         {product.image_url ? (
           <img
@@ -63,14 +63,12 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
       </div>
-      <CardContent className="p-4">
+      <CardContent className="p-4 flex-1 flex flex-col">
         <h3 className="font-semibold text-lg truncate">{product.name}</h3>
-        {product.description && (
-          <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-            {product.description}
-          </p>
-        )}
-        <div className="mt-2 flex items-center justify-between">
+        <p className="text-sm text-muted-foreground mt-1 line-clamp-2 min-h-[2.5rem]">
+          {product.description || '\u00A0'}
+        </p>
+        <div className="mt-auto pt-2 flex items-center justify-between">
           <span className="text-xl font-bold text-primary">${product.price.toFixed(2)}</span>
           <span className="text-xs text-muted-foreground">
             {product.stock_count} {t('store.product.inStock')}

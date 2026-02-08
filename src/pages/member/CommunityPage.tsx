@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -34,6 +34,7 @@ export default function CommunityPage() {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [newPost, setNewPost] = useState('');
+  const likeLockRef = useRef<Set<string>>(new Set());
 
   // Fetch posts with profiles and likes
   const { data: posts, isLoading } = useQuery({
@@ -87,13 +88,8 @@ export default function CommunityPage() {
   // Toggle like mutation
   const toggleLike = useMutation({
     mutationFn: async (postId: string) => {
-      if (!user?.id) {
-        console.error('No user ID available for like toggle');
-        throw new Error('Not authenticated');
-      }
-      
-      console.log('Toggle like for post:', postId, 'user:', user.id);
-      
+      if (!user?.id) throw new Error('Not authenticated');
+
       // Fetch fresh like status directly from DB to avoid stale cache issues
       const { data: existingLike, error: fetchError } = await supabase
         .from('likes')
@@ -101,61 +97,59 @@ export default function CommunityPage() {
         .eq('post_id', postId)
         .eq('user_id', user.id)
         .maybeSingle();
-      
-      if (fetchError) {
-        console.error('Error fetching like status:', fetchError);
-        throw fetchError;
-      }
-      
-      console.log('Existing like:', existingLike);
-      
+
+      if (fetchError) throw fetchError;
+
       if (existingLike) {
-        // Unlike - delete the existing like
-        console.log('Deleting like...');
+        // Unlike
         const { error } = await supabase
           .from('likes')
           .delete()
           .eq('post_id', postId)
           .eq('user_id', user.id);
-        if (error) {
-          console.error('Error deleting like:', error);
-          throw error;
-        }
-        console.log('Like deleted successfully');
-        return { action: 'unliked' };
-      } else {
-        // Like - insert new like
-        console.log('Inserting like...');
-        const { error } = await supabase
-          .from('likes')
-          .insert({ user_id: user.id, post_id: postId });
-        if (error) {
-          console.error('Error inserting like:', error);
-          throw error;
-        }
-        console.log('Like inserted successfully');
-        return { action: 'liked' };
+        if (error) throw error;
+        return { action: 'unliked' as const };
       }
+
+      // Like (idempotent - ignores duplicates)
+      const { error } = await supabase
+        .from('likes')
+        .upsert(
+          { user_id: user.id, post_id: postId },
+          { onConflict: 'user_id,post_id', ignoreDuplicates: true }
+        );
+      if (error) throw error;
+      return { action: 'liked' as const };
     },
-    onSuccess: (data) => {
-      console.log('Toggle like success:', data);
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['community-posts'] });
     },
-    onError: (error) => {
-      console.error('Toggle like error:', error);
-    }
+    onError: () => {
+      toast({
+        title: t('community.toast.error'),
+        description: t('community.toast.errorDesc'),
+        variant: 'destructive',
+      });
+    },
   });
 
   // Subscribe to realtime updates
-  supabase
-    .channel('posts-realtime')
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'posts' }, () => {
-      queryClient.invalidateQueries({ queryKey: ['community-posts'] });
-    })
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'likes' }, () => {
-      queryClient.invalidateQueries({ queryKey: ['community-posts'] });
-    })
-    .subscribe();
+  useEffect(() => {
+    const channel = supabase
+      .channel('posts-realtime')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'posts' }, () => {
+        queryClient.invalidateQueries({ queryKey: ['community-posts'] });
+      })
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'likes' }, () => {
+        queryClient.invalidateQueries({ queryKey: ['community-posts'] });
+      })
+      .subscribe();
+
+    return () => {
+      channel.unsubscribe();
+    };
+  }, [queryClient]);
+
 
   const handleSubmitPost = (e: React.FormEvent) => {
     e.preventDefault();
@@ -166,6 +160,19 @@ export default function CommunityPage() {
   const getInitials = (name: string) => {
     return name?.split(' ').map(n => n[0]).join('').toUpperCase() || '?';
   };
+
+  const handleToggleLike = (postId: string) => {
+    // Guard against double-triggered clicks (and fast taps on mobile)
+    if (likeLockRef.current.has(postId)) return;
+    likeLockRef.current.add(postId);
+
+    toggleLike.mutate(postId, {
+      onSettled: () => {
+        likeLockRef.current.delete(postId);
+      },
+    });
+  };
+
 
   return (
     <MemberLayout>
@@ -257,7 +264,8 @@ export default function CommunityPage() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => toggleLike.mutate(post.id)}
+                        onClick={() => handleToggleLike(post.id)}
+                        disabled={toggleLike.isPending && toggleLike.variables === post.id}
                         className={`gap-2 ${isLiked ? 'text-red-500 hover:text-red-600' : 'text-muted-foreground hover:text-foreground'}`}
                       >
                         <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />

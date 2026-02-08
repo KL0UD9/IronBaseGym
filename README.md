@@ -192,11 +192,39 @@ A modern, full-featured gym management system built with cutting-edge web techno
 
 Use these test accounts to explore different user roles:
 
-| Role | Email | Password | Access Level |
-|------|-------|----------|--------------|
-| **Admin** | `kloud@test.com` | `1234567890` | Full access to admin dashboard, member management, classes, billing, orders, settings |
-| **Trainer** | `trainer1@test.com` | `1234567890` | Member features + view class bookings, appear on trainer map |
-| **Member** | `member1@test.com` | `1234567890` | Dashboard, classes, videos, nutrition, coach, community, store, profile |
+### Login Credentials
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  ADMIN ACCOUNT                                                  │
+│  Email:    kloud@test.com                                       │
+│  Password: 1234567890                                           │
+│  Access:   Full admin dashboard, members, classes, billing,     │
+│            orders, check-in kiosk, settings                     │
+├─────────────────────────────────────────────────────────────────┤
+│  TRAINER ACCOUNT                                                │
+│  Email:    trainer1@test.com                                    │
+│  Password: 1234567890                                           │
+│  Access:   All member features + view class bookings,           │
+│            appear on trainer map                                │
+├─────────────────────────────────────────────────────────────────┤
+│  MEMBER ACCOUNT                                                 │
+│  Email:    member1@test.com                                     │
+│  Password: 1234567890                                           │
+│  Access:   Dashboard, classes, videos, nutrition, AI coach,     │
+│            community, store, arena, referrals, profile          │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Quick Reference Table
+
+| Role | Email | Password |
+|------|-------|----------|
+| 👑 Admin | `kloud@test.com` | `1234567890` |
+| 🏋️ Trainer | `trainer1@test.com` | `1234567890` |
+| 👤 Member | `member1@test.com` | `1234567890` |
+
+> **Note**: All accounts share the same password for easy testing: `1234567890`
 
 ---
 

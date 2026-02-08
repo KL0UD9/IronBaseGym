@@ -72,7 +72,7 @@ export default function LandingPage() {
             <span className="gradient-text">{t('landing.hero.headline')}</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto animate-fade-in">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
             {t('landing.hero.subheadline')}
           </p>
 

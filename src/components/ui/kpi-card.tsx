@@ -36,7 +36,7 @@ export function KPICard({ title, value, subtitle, icon: Icon, trend, className }
           </div>
         )}
       </div>
-      <div className="absolute bottom-4 right-4 p-3 rounded-xl bg-primary/10 text-primary">
+      <div className="absolute bottom-2 right-4 p-3 rounded-xl bg-primary/10 text-primary">
         <Icon className="h-6 w-6" />
       </div>
     </div>

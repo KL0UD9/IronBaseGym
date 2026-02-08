@@ -1,0 +1,447 @@
+{
+  "commandSearch": {
+    "placeholder": "トレーナー、商品、動画、ページを検索...",
+    "noResults": "結果が見つかりません。",
+    "categories": {
+      "pages": "ページ",
+      "trainers": "トレーナー",
+      "products": "商品",
+      "videos": "動画",
+      "posts": "コミュニティ投稿"
+    }
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "edit": "編集",
+    "add": "追加",
+    "search": "検索",
+    "filter": "フィルター",
+    "all": "すべて",
+    "noResults": "結果が見つかりません",
+    "error": "エラー",
+    "success": "成功",
+    "confirm": "確認",
+    "back": "戻る",
+    "next": "次へ",
+    "submit": "送信",
+    "signOut": "サインアウト",
+    "login": "ログイン",
+    "signUp": "新規登録",
+    "user": "ユーザー",
+    "logout": "ログアウト"
+  },
+  "brand": {
+    "name": "IronBase",
+    "tagline": "チャンピオンが生まれる場所"
+  },
+  "landing": {
+    "hero": {
+      "headline": "IronBase",
+      "subheadline": "チャンピオンが生まれる場所。最先端のフィットネスコミュニティに参加しよう。",
+      "cta": "今すぐ始める",
+      "ctaTrial": "無料トライアルを開始"
+    },
+    "stats": {
+      "activeMembers": "アクティブ会員",
+      "weeklyClasses": "週間クラス数",
+      "openAccess": "24時間利用可能"
+    },
+    "features": {
+      "title": "なぜ",
+      "titleHighlight": "IronBase",
+      "subtitle": "身体と心を変えるために必要なすべてがここに",
+      "access": {
+        "title": "24時間アクセス",
+        "description": "あなたのスケジュールでトレーニング。私たちの扉は決して閉まりません。"
+      },
+      "equipment": {
+        "title": "プロ仕様の設備",
+        "description": "あらゆるトレーニングスタイルに対応した最新のマシンとフリーウェイト。"
+      },
+      "sauna": {
+        "title": "サウナリカバリー",
+        "description": "トレーニング後は高級赤外線サウナでリラックスと回復を。"
+      }
+    },
+    "pricing": {
+      "title": "会員",
+      "titleHighlight": "プラン",
+      "subtitle": "あなたのフィットネスジャーニーに合ったプランを選択",
+      "mostPopular": "人気No.1",
+      "perMonth": "/月",
+      "perMonths": "ヶ月",
+      "getStarted": "始める",
+      "features": {
+        "gymAccess": "ジム全施設利用",
+        "lockerRoom": "ロッカールーム利用",
+        "groupClasses": "グループクラス",
+        "personalTraining": "パーソナルトレーニングセッション"
+      }
+    },
+    "cta": {
+      "title": "変わる準備は",
+      "titleHighlight": "できていますか",
+      "subtitle": "すでに目標を達成している数百人の会員に参加しよう。"
+    },
+    "footer": {
+      "copyright": "© 2026 IronBase. 全著作権所有。"
+    }
+  },
+  "nav": {
+    "admin": {
+      "dashboard": "ダッシュボード",
+      "members": "会員",
+      "classes": "クラス",
+      "billing": "請求",
+      "orders": "注文",
+      "memberships": "会員プラン",
+      "checkIn": "チェックイン",
+      "settings": "設定"
+    },
+    "member": {
+      "dashboard": "ダッシュボード",
+      "home": "ホーム",
+      "myClasses": "マイクラス",
+      "bookClass": "クラス予約",
+      "store": "ストア",
+      "community": "コミュニティ",
+      "coach": "コーチ",
+      "videos": "動画",
+      "profile": "プロフィール",
+      "nutrition": "栄養管理"
+    }
+  },
+  "videos": {
+    "title": "ワークアウトライブラリ",
+    "subtitle": "プレミアムフィットネスコンテンツ。いつでもどこでもトレーニング。",
+    "onDemand": "オンデマンド",
+    "continueWatching": "視聴を続ける",
+    "categories": {
+      "hiit": "HIIT",
+      "yoga": "ヨガ",
+      "strength": "筋力トレーニング",
+      "cardio": "有酸素運動",
+      "recovery": "リカバリー"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "コマンドセンター",
+      "subtitle": "ジム管理ダッシュボードへようこそ",
+      "kpi": {
+        "activeMembers": "アクティブ会員",
+        "monthlyRevenue": "月間収益",
+        "todayCheckIns": "本日のチェックイン",
+        "classesThisWeek": "今週のクラス数"
+      },
+      "calendar": {
+        "title": "週間クラススケジュール",
+        "noClasses": "クラスなし"
+      }
+    },
+    "orders": {
+      "title": "注文",
+      "subtitle": "ストア注文と発送を管理",
+      "kpi": {
+        "totalRevenue": "総収益",
+        "totalOrders": "総注文数",
+        "avgOrderValue": "平均注文額",
+        "pendingOrders": "保留中の注文"
+      },
+      "table": {
+        "orderId": "注文ID",
+        "customer": "顧客",
+        "items": "商品",
+        "total": "合計",
+        "status": "ステータス",
+        "date": "日付",
+        "actions": "アクション"
+      },
+      "status": {
+        "pending": "保留中",
+        "confirmed": "確認済み",
+        "shipped": "発送済み",
+        "completed": "完了",
+        "cancelled": "キャンセル"
+      },
+      "noOrders": "注文はまだありません",
+      "ordersWillAppear": "グッズストアからの注文がここに表示されます。"
+    }
+  },
+  "store": {
+    "title": "グッズストア",
+    "subtitle": "プレミアムジムギアとサプリメント",
+    "categories": {
+      "all": "すべて",
+      "apparel": "アパレル",
+      "supplements": "サプリメント",
+      "accessories": "アクセサリー",
+      "equipment": "器具"
+    },
+    "product": {
+      "outOfStock": "在庫切れ",
+      "inStock": "在庫あり",
+      "addToCart": "カートに追加",
+      "maxInCart": "カート上限"
+    },
+    "cart": {
+      "title": "ショッピングカート",
+      "empty": "カートは空です",
+      "emptySubtitle": "ジムギアを追加して始めよう！",
+      "continueShopping": "買い物を続ける",
+      "subtotal": "小計",
+      "shipping": "配送料",
+      "free": "無料",
+      "total": "合計",
+      "checkout": "購入手続き",
+      "noImage": "画像なし"
+    },
+    "checkout": {
+      "title": "購入手続き",
+      "subtitle": "注文を確認して購入を完了してください。",
+      "confirmOrder": "注文を確定",
+      "processing": "処理中...",
+      "complete": {
+        "title": "注文完了！",
+        "subtitle": "ご購入ありがとうございます。注文が確認され、まもなくお受け取りいただけます。"
+      }
+    },
+    "noProducts": "商品が見つかりません",
+    "tryDifferentCategory": "別のカテゴリをお試しください"
+  },
+  "community": {
+    "title": "コミュニティ",
+    "subtitle": "ジム仲間とつながろう",
+    "createPost": {
+      "placeholder": "何か共有したいことはありますか？ワークアウト、進捗、モチベーションを共有しよう...",
+      "button": "投稿"
+    },
+    "noPosts": "投稿はまだありません",
+    "beFirst": "最初に何か共有しよう！",
+    "toast": {
+      "postCreated": "投稿が作成されました！",
+      "postCreatedDesc": "投稿が公開されました。",
+      "error": "エラー",
+      "errorDesc": "投稿の作成に失敗しました。"
+    }
+  },
+  "coach": {
+    "title": "AIフィットネスコーチ",
+    "subtitle": "AIが提供するあなた専用のトレーニングアシスタント",
+    "emptyState": {
+      "title": "会話を始めよう",
+      "subtitle": "ワークアウト、栄養、フィットネス目標について何でも聞いてください。お手伝いします！"
+    },
+    "input": {
+      "placeholder": "コーチに何でも聞いてください..."
+    },
+    "mockResponse": "素晴らしい目標ですね！頑張り続けましょう！💪",
+    "suggestions": {
+      "workout": "良い脚のワークアウトは何ですか？",
+      "nutrition": "タンパク質はどれくらい摂るべきですか？",
+      "motivation": "ワークアウトのモチベーションが必要です"
+    },
+    "errorResponse": "現在応答に問題が発生しています。しばらくしてからもう一度お試しください。",
+    "fallbackResponse": "申し訳ありませんが、技術的な問題が発生しています。後でもう一度お試しいただくか、ワークアウト動画をご覧ください！",
+    "aiError": "AI応答の取得に失敗しました。フォールバックを使用します。",
+    "sendError": "メッセージの送信に失敗しました。もう一度お試しください。"
+  },
+  "auth": {
+    "welcome": "おかえりなさい",
+    "signIn": "アカウントにサインイン",
+    "noAccount": "アカウントをお持ちでないですか？",
+    "hasAccount": "すでにアカウントをお持ちですか？",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "forgotPassword": "パスワードをお忘れですか？"
+  },
+  "language": {
+    "toggle": "言語",
+    "en": "英語",
+    "es": "スペイン語",
+    "ja": "日本語"
+  },
+  "map": {
+    "title": "トレーナーを探す",
+    "subtitle": "近くのパーソナルトレーナーを発見",
+    "trainersFound": "トレーナー",
+    "within5km": "5km以内",
+    "away": "離れています",
+    "trainerLocation": "トレーナーの場所",
+    "trainerDescription": "このトレーナーとセッションを予約して、パーソナライズされたフィットネスジャーニーを始めましょう。",
+    "bookNow": "今すぐ予約"
+  },
+  "gamification": {
+    "levelUp": {
+      "title": "レベルアップ！",
+      "reached": "到達しました",
+      "keepGoing": "XPを獲得し続けて、より多くのレベルと実績をアンロックしよう！",
+      "continue": "続ける"
+    },
+    "trophyCase": {
+      "title": "トロフィーケース",
+      "unlocked": "アンロック済み",
+      "locked": "ロック中",
+      "unlockedAt": "アンロック日",
+      "empty": "まだ実績はありません。ジャーニーを始めよう！"
+    },
+    "profile": {
+      "totalXP": "総XP",
+      "achievements": "実績",
+      "level": "レベル",
+      "currentXP": "現在のXP",
+      "trophyCase": "トロフィーケース",
+      "statsTab": "統計",
+      "progressStats": "進捗統計"
+    }
+  },
+  "profile": {
+    "edit": {
+      "title": "プロフィールを編集",
+      "fullName": "氏名",
+      "fullNamePlaceholder": "氏名を入力",
+      "avatarUrl": "アバターURL（任意）",
+      "avatarHint": "クリックしてアップロードするか、下にURLを入力",
+      "success": "プロフィールが更新されました！",
+      "successDescription": "プロフィールが正常に更新されました。",
+      "error": "更新に失敗しました",
+      "fileTooLarge": "ファイルが大きすぎます",
+      "maxFileSize": "最大ファイルサイズは2MBです"
+    }
+  },
+  "nutrition": {
+    "title": "栄養トラッカー",
+    "subtitle": "毎日の食事摂取量とマクロを追跡",
+    "searchFood": "食品を検索",
+    "searchPlaceholder": "食品を検索...",
+    "noFoodsFound": "食品が見つかりません",
+    "logFood": "食品を記録",
+    "addFood": "食品を追加",
+    "foodAdded": "食品が追加されました！",
+    "foodRemoved": "食品が削除されました",
+    "errorAdding": "食品の追加中にエラーが発生しました",
+    "errorRemoving": "食品の削除中にエラーが発生しました",
+    "mealType": "食事",
+    "servings": "分量",
+    "dailyGoal": "1日のカロリー目標",
+    "goalUpdated": "目標が更新されました！",
+    "todaysMacros": "今日のマクロ",
+    "noDataYet": "まだ食品が記録されていません",
+    "total": "合計",
+    "caloriesRemaining": "残りカロリー",
+    "todaysLog": "今日の食品記録",
+    "noLogsToday": "今日は食品が記録されていません",
+    "startLogging": "「食品を記録」をクリックして追跡を開始",
+    "foodsLogged": "記録された食品",
+    "totalCalories": "総カロリー",
+    "macros": {
+      "protein": "タンパク質",
+      "carbs": "炭水化物",
+      "fat": "脂質"
+    },
+    "meals": {
+      "breakfast": "朝食",
+      "lunch": "昼食",
+      "dinner": "夕食",
+      "snack": "間食"
+    }
+  },
+  "arena": {
+    "title": "競技アリーナ",
+    "subtitle": "トーナメントに参加して仲間と競おう",
+    "bracket": "トーナメントブラケット",
+    "createTournament": "トーナメントを作成",
+    "tournamentName": "トーナメント名",
+    "namePlaceholder": "例：サマーショーダウン2026",
+    "description": "説明",
+    "descriptionPlaceholder": "任意のトーナメント説明...",
+    "startDate": "開始日",
+    "selectDate": "日付を選択",
+    "bracketSize": "ブラケットサイズ",
+    "participants": "参加者",
+    "create": "トーナメントを作成",
+    "tournamentCreated": "トーナメントが作成されました！",
+    "errorCreating": "トーナメントの作成中にエラーが発生しました",
+    "join": "トーナメントに参加",
+    "joined": "参加済み",
+    "joinedTournament": "トーナメントに参加しました！",
+    "errorJoining": "トーナメントへの参加中にエラーが発生しました",
+    "viewBracket": "ブラケットを見る",
+    "noDescription": "説明なし",
+    "startTournament": "トーナメントを開始",
+    "tournamentStarted": "トーナメントが開始されました！",
+    "tbd": "未定",
+    "clickToSetWinner": "クリックして勝者を設定",
+    "winnerSet": "勝者が設定されました！",
+    "errorSettingWinner": "勝者の設定中にエラーが発生しました",
+    "predictWinner": "勝者を予想",
+    "changePrediction": "予想を変更",
+    "yourPrediction": "あなたの予想",
+    "predictionSaved": "予想が保存されました！",
+    "errorSavingPrediction": "予想の保存中にエラーが発生しました",
+    "champion": "チャンピオン",
+    "awaitingChampion": "チャンピオン待ち",
+    "winner": "勝者",
+    "round": "ラウンド",
+    "totalTournaments": "トーナメント総数",
+    "activeTournaments": "アクティブ",
+    "yourTournaments": "あなたのトーナメント",
+    "predictions": "予想",
+    "noActiveTournaments": "アクティブなトーナメントはありません",
+    "noUpcomingTournaments": "予定されているトーナメントはありません",
+    "noCompletedTournaments": "完了したトーナメントはありません",
+    "status": {
+      "upcoming": "予定",
+      "active": "アクティブ",
+      "completed": "完了"
+    },
+    "rounds": {
+      "plural": "ラウンド",
+      "final": "決勝",
+      "semiFinal": "準決勝",
+      "quarterFinal": "準々決勝"
+    }
+  },
+  "referral": {
+    "title": "紹介して稼ぐ",
+    "subtitle": "友達を招待して登録ごとにクレジットを獲得",
+    "yourCode": "あなたの紹介コード",
+    "codeDescription": "このコードを友達と共有して、登録ごとに$10を獲得",
+    "shareLink": "または紹介リンクを共有",
+    "copyLink": "リンクをコピー",
+    "share": "共有",
+    "codeCopied": "紹介コードがコピーされました！",
+    "linkCopied": "紹介リンクがコピーされました！",
+    "copyError": "コピーに失敗しました",
+    "shareTitle": "IronBase Gymに参加しよう！",
+    "shareText": "私の紹介コードを使って登録すると、お互いに報酬がもらえます！",
+    "howItWorks": "仕組み",
+    "step1": "友達にあなた固有のコードを共有",
+    "step2": "友達があなたのコードを使って登録",
+    "step3": "登録ごとに$10クレジットを獲得！",
+    "totalEarned": "総獲得額",
+    "friendsReferred": "紹介した友達",
+    "pending": "保留中",
+    "peopleReferred": "紹介した人",
+    "friend": "友達",
+    "date": "日付",
+    "reward": "報酬",
+    "status": "ステータス",
+    "noReferrals": "まだ紹介はありません",
+    "startSharing": "コードを共有して報酬を獲得しよう！",
+    "anonymous": "匿名",
+    "referralCode": "紹介コード",
+    "valid": "有効！",
+    "invalid": "無効",
+    "bonusMessage": "このコードで登録するとボーナスがもらえます！",
+    "appliedSuccess": "紹介コードが適用されました！友達が報酬を獲得しました。",
+    "statuses": {
+      "pending": "保留中",
+      "credited": "付与済み",
+      "expired": "期限切れ"
+    }
+  }
+}

@@ -30,7 +30,58 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Inline skeleton for instant FCP - replaced when React loads -->
+      <style>
+        .ssr-skeleton {
+          min-height: 100vh;
+          background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          font-family: system-ui, -apple-system, sans-serif;
+        }
+        .ssr-logo {
+          width: 64px;
+          height: 64px;
+          background: rgba(139, 92, 246, 0.1);
+          border: 1px solid rgba(139, 92, 246, 0.2);
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 24px;
+          animation: pulse 2s infinite;
+        }
+        .ssr-logo svg {
+          width: 40px;
+          height: 40px;
+          color: #8b5cf6;
+        }
+        .ssr-title {
+          font-size: 3rem;
+          font-weight: bold;
+          background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 50%, #8b5cf6 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin: 0;
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+      </style>
+      <div class="ssr-skeleton">
+        <div class="ssr-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.5 6.5h11M6 12h12M4 17.5h16M9.5 6.5v11M14.5 6.5v11"/>
+          </svg>
+        </div>
+        <h1 class="ssr-title">IronBase</h1>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

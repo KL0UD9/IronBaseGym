@@ -87,20 +87,30 @@ export default function CommunityPage() {
   // Toggle like mutation
   const toggleLike = useMutation({
     mutationFn: async (postId: string) => {
-      const existingLike = posts?.find(p => p.id === postId)?.likes.find(l => l.user_id === user?.id);
+      // Fetch fresh like status directly from DB to avoid stale cache issues
+      const { data: existingLike } = await supabase
+        .from('likes')
+        .select('id')
+        .eq('post_id', postId)
+        .eq('user_id', user!.id)
+        .maybeSingle();
       
       if (existingLike) {
+        // Unlike - delete the existing like
         const { error } = await supabase
           .from('likes')
           .delete()
           .eq('post_id', postId)
           .eq('user_id', user!.id);
         if (error) throw error;
+        return { action: 'unliked' };
       } else {
+        // Like - insert new like
         const { error } = await supabase
           .from('likes')
           .insert({ user_id: user!.id, post_id: postId });
         if (error) throw error;
+        return { action: 'liked' };
       }
     },
     onSuccess: () => {

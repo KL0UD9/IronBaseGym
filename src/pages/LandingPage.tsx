@@ -5,7 +5,7 @@ import { Dumbbell, Clock, Wrench, Flame, ArrowRight, Check, Sparkles } from 'luc
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { LanguageToggle } from '@/components/LanguageToggle';
-
+import { ThemeToggle } from '@/components/ThemeToggle';
 export default function LandingPage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -42,8 +42,9 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Language Toggle - Fixed Position */}
-      <div className="fixed top-4 right-4 z-50">
+      {/* Language & Theme Toggle - Fixed Position */}
+      <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
+        <ThemeToggle />
         <LanguageToggle />
       </div>
 
@@ -163,13 +164,13 @@ export default function LandingPage() {
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
             </div>
           ) : (
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
               {memberships?.map((plan, index) => {
                 const isPopular = index === Math.floor((memberships.length - 1) / 2) || memberships.length === 1;
                 return (
                   <div 
                     key={plan.id}
-                    className={`glass-card p-8 relative transition-all duration-300 hover:-translate-y-2 ${
+                    className={`glass-card p-8 relative transition-all duration-300 hover:-translate-y-2 flex flex-col ${
                       isPopular ? 'border-primary/50 neon-glow' : ''
                     }`}
                   >
@@ -190,30 +191,30 @@ export default function LandingPage() {
                     {plan.description && (
                       <p className="text-muted-foreground text-sm mb-6">{plan.description}</p>
                     )}
-                    <ul className="space-y-3 mb-8">
+                    <ul className="space-y-3 mb-8 flex-1">
                       <li className="flex items-center gap-2 text-sm">
-                        <Check className="h-4 w-4 text-primary" />
+                        <Check className="h-4 w-4 text-primary flex-shrink-0" />
                         {t('landing.pricing.features.gymAccess')}
                       </li>
                       <li className="flex items-center gap-2 text-sm">
-                        <Check className="h-4 w-4 text-primary" />
+                        <Check className="h-4 w-4 text-primary flex-shrink-0" />
                         {t('landing.pricing.features.lockerRoom')}
                       </li>
                       {index >= 1 && (
                         <li className="flex items-center gap-2 text-sm">
-                          <Check className="h-4 w-4 text-primary" />
+                          <Check className="h-4 w-4 text-primary flex-shrink-0" />
                           {t('landing.pricing.features.groupClasses')}
                         </li>
                       )}
                       {index >= 2 && (
                         <li className="flex items-center gap-2 text-sm">
-                          <Check className="h-4 w-4 text-primary" />
+                          <Check className="h-4 w-4 text-primary flex-shrink-0" />
                           {t('landing.pricing.features.personalTraining')}
                         </li>
                       )}
                     </ul>
                     <Button 
-                      className="w-full" 
+                      className="w-full mt-auto" 
                       variant={isPopular ? 'default' : 'outline'}
                       onClick={() => navigate('/login')}
                     >

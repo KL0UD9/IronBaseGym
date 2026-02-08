@@ -265,22 +265,22 @@ export default function NutritionPage() {
               <p className="text-xs text-muted-foreground">{t('nutrition.totalCalories')}</p>
             </CardContent>
           </Card>
-          <Card className="glass-card">
-            <CardContent className="py-4 text-center">
+          <Card className="glass-card overflow-hidden">
+            <CardContent className="py-4 text-center min-w-0">
               <div className="h-6 w-6 mx-auto mb-2 rounded-full bg-chart-1/20 flex items-center justify-center text-xs font-bold" style={{ color: 'hsl(var(--chart-1))' }}>
                 P
               </div>
-              <p className="text-2xl font-bold">{totals.protein.toFixed(0)}g</p>
-              <p className="text-xs text-muted-foreground">{t('nutrition.macros.protein')}</p>
+              <p className="text-xl sm:text-2xl font-bold truncate">{totals.protein.toFixed(0)}g</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('nutrition.macros.protein')}</p>
             </CardContent>
           </Card>
-          <Card className="glass-card">
-            <CardContent className="py-4 text-center">
+          <Card className="glass-card overflow-hidden">
+            <CardContent className="py-4 text-center min-w-0">
               <div className="h-6 w-6 mx-auto mb-2 rounded-full bg-chart-2/20 flex items-center justify-center text-xs font-bold" style={{ color: 'hsl(var(--chart-2))' }}>
                 C
               </div>
-              <p className="text-2xl font-bold">{totals.carbs.toFixed(0)}g</p>
-              <p className="text-xs text-muted-foreground">{t('nutrition.macros.carbs')}</p>
+              <p className="text-xl sm:text-2xl font-bold truncate">{totals.carbs.toFixed(0)}g</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('nutrition.macros.carbs')}</p>
             </CardContent>
           </Card>
         </div>

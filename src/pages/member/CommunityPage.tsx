@@ -87,34 +87,62 @@ export default function CommunityPage() {
   // Toggle like mutation
   const toggleLike = useMutation({
     mutationFn: async (postId: string) => {
+      if (!user?.id) {
+        console.error('No user ID available for like toggle');
+        throw new Error('Not authenticated');
+      }
+      
+      console.log('Toggle like for post:', postId, 'user:', user.id);
+      
       // Fetch fresh like status directly from DB to avoid stale cache issues
-      const { data: existingLike } = await supabase
+      const { data: existingLike, error: fetchError } = await supabase
         .from('likes')
         .select('id')
         .eq('post_id', postId)
-        .eq('user_id', user!.id)
+        .eq('user_id', user.id)
         .maybeSingle();
+      
+      if (fetchError) {
+        console.error('Error fetching like status:', fetchError);
+        throw fetchError;
+      }
+      
+      console.log('Existing like:', existingLike);
       
       if (existingLike) {
         // Unlike - delete the existing like
+        console.log('Deleting like...');
         const { error } = await supabase
           .from('likes')
           .delete()
           .eq('post_id', postId)
-          .eq('user_id', user!.id);
-        if (error) throw error;
+          .eq('user_id', user.id);
+        if (error) {
+          console.error('Error deleting like:', error);
+          throw error;
+        }
+        console.log('Like deleted successfully');
         return { action: 'unliked' };
       } else {
         // Like - insert new like
+        console.log('Inserting like...');
         const { error } = await supabase
           .from('likes')
-          .insert({ user_id: user!.id, post_id: postId });
-        if (error) throw error;
+          .insert({ user_id: user.id, post_id: postId });
+        if (error) {
+          console.error('Error inserting like:', error);
+          throw error;
+        }
+        console.log('Like inserted successfully');
         return { action: 'liked' };
       }
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log('Toggle like success:', data);
       queryClient.invalidateQueries({ queryKey: ['community-posts'] });
+    },
+    onError: (error) => {
+      console.error('Toggle like error:', error);
     }
   });
 

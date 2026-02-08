@@ -12,7 +12,7 @@ import { Bot, Send, Loader2, Sparkles } from 'lucide-react';
 import { toast } from 'sonner';
 import { ChatMessage } from '@/components/coach/ChatMessage';
 
-interface ChatMessage {
+interface ChatMessageType {
   id: string;
   user_id: string;
   content: string;
@@ -26,6 +26,7 @@ export default function CoachPage() {
   const queryClient = useQueryClient();
   const [message, setMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [retryingMessageId, setRetryingMessageId] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Fetch chat messages
@@ -39,7 +40,7 @@ export default function CoachPage() {
         .order('created_at', { ascending: true });
       
       if (error) throw error;
-      return data as ChatMessage[];
+      return data as ChatMessageType[];
     },
     enabled: !!user
   });
@@ -60,11 +61,18 @@ export default function CoachPage() {
       setIsTyping(true);
       
       try {
+        // Get fresh messages for context
+        const { data: freshMessages } = await supabase
+          .from('chat_messages')
+          .select('*')
+          .eq('user_id', user!.id)
+          .order('created_at', { ascending: true });
+
         // Call AI coach edge function
         const { data, error } = await supabase.functions.invoke('ai-coach', {
           body: { 
             message: content,
-            conversationHistory: messages?.slice(-10) || []
+            conversationHistory: freshMessages?.slice(-20) || []
           }
         });
 
@@ -100,6 +108,143 @@ export default function CoachPage() {
     }
   });
 
+  // Edit and resend message
+  const editMessage = useMutation({
+    mutationFn: async ({ messageId, newContent }: { messageId: string; newContent: string }) => {
+      // Find the message index
+      const messageIndex = messages?.findIndex(m => m.id === messageId) ?? -1;
+      if (messageIndex === -1) return;
+
+      // Delete this message and all messages after it
+      const messagesToDelete = messages?.slice(messageIndex).map(m => m.id) || [];
+      
+      for (const id of messagesToDelete) {
+        await supabase.from('chat_messages').delete().eq('id', id);
+      }
+
+      // Invalidate to reflect deletion
+      await queryClient.invalidateQueries({ queryKey: ['chat-messages', user?.id] });
+
+      // Now send the new message
+      const { error: userMsgError } = await supabase
+        .from('chat_messages')
+        .insert({ user_id: user!.id, content: newContent, role: 'user' });
+      if (userMsgError) throw userMsgError;
+
+      await queryClient.invalidateQueries({ queryKey: ['chat-messages', user?.id] });
+
+      // Show typing indicator
+      setIsTyping(true);
+      
+      try {
+        // Get fresh messages for context
+        const { data: freshMessages } = await supabase
+          .from('chat_messages')
+          .select('*')
+          .eq('user_id', user!.id)
+          .order('created_at', { ascending: true });
+
+        const { data, error } = await supabase.functions.invoke('ai-coach', {
+          body: { 
+            message: newContent,
+            conversationHistory: freshMessages?.slice(-20) || []
+          }
+        });
+
+        if (error) throw error;
+
+        const aiResponse = data.response || t('coach.errorResponse');
+        
+        const { error: aiMsgError } = await supabase
+          .from('chat_messages')
+          .insert({ user_id: user!.id, content: aiResponse, role: 'assistant' });
+        if (aiMsgError) throw aiMsgError;
+      } catch (error) {
+        console.error('AI Coach error:', error);
+        const fallbackResponse = t('coach.fallbackResponse');
+        await supabase
+          .from('chat_messages')
+          .insert({ user_id: user!.id, content: fallbackResponse, role: 'assistant' });
+        toast.error(t('coach.aiError'));
+      }
+      
+      setIsTyping(false);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['chat-messages', user?.id] });
+    },
+    onError: (error) => {
+      console.error('Edit message error:', error);
+      setIsTyping(false);
+      toast.error(t('coach.sendError'));
+    }
+  });
+
+  // Retry/regenerate AI response
+  const retryMessage = useMutation({
+    mutationFn: async (assistantMessageId: string) => {
+      setRetryingMessageId(assistantMessageId);
+      
+      // Find the assistant message and the user message before it
+      const messageIndex = messages?.findIndex(m => m.id === assistantMessageId) ?? -1;
+      if (messageIndex <= 0) return;
+
+      const userMessage = messages?.[messageIndex - 1];
+      if (!userMessage || userMessage.role !== 'user') return;
+
+      // Delete the assistant message
+      await supabase.from('chat_messages').delete().eq('id', assistantMessageId);
+      await queryClient.invalidateQueries({ queryKey: ['chat-messages', user?.id] });
+
+      // Show typing indicator
+      setIsTyping(true);
+      
+      try {
+        // Get fresh messages for context (excluding the deleted one)
+        const { data: freshMessages } = await supabase
+          .from('chat_messages')
+          .select('*')
+          .eq('user_id', user!.id)
+          .order('created_at', { ascending: true });
+
+        const { data, error } = await supabase.functions.invoke('ai-coach', {
+          body: { 
+            message: userMessage.content,
+            conversationHistory: freshMessages?.slice(-20) || []
+          }
+        });
+
+        if (error) throw error;
+
+        const aiResponse = data.response || t('coach.errorResponse');
+        
+        const { error: aiMsgError } = await supabase
+          .from('chat_messages')
+          .insert({ user_id: user!.id, content: aiResponse, role: 'assistant' });
+        if (aiMsgError) throw aiMsgError;
+      } catch (error) {
+        console.error('AI Coach error:', error);
+        const fallbackResponse = t('coach.fallbackResponse');
+        await supabase
+          .from('chat_messages')
+          .insert({ user_id: user!.id, content: fallbackResponse, role: 'assistant' });
+        toast.error(t('coach.aiError'));
+      }
+      
+      setIsTyping(false);
+      setRetryingMessageId(null);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['chat-messages', user?.id] });
+    },
+    onError: (error) => {
+      console.error('Retry message error:', error);
+      setIsTyping(false);
+      setRetryingMessageId(null);
+      toast.error(t('coach.sendError'));
+    }
+  });
+
   // Scroll to bottom on new messages
   useEffect(() => {
     if (scrollRef.current) {
@@ -111,6 +256,14 @@ export default function CoachPage() {
     e.preventDefault();
     if (!message.trim() || sendMessage.isPending) return;
     sendMessage.mutate(message.trim());
+  };
+
+  const handleEdit = (messageId: string, newContent: string) => {
+    editMessage.mutate({ messageId, newContent });
+  };
+
+  const handleRetry = (messageId: string) => {
+    retryMessage.mutate(messageId);
   };
 
   return (
@@ -165,8 +318,12 @@ export default function CoachPage() {
                   {messages?.map((msg) => (
                     <ChatMessage
                       key={msg.id}
+                      messageId={msg.id}
                       content={msg.content}
                       role={msg.role}
+                      onEdit={msg.role === 'user' ? handleEdit : undefined}
+                      onRetry={msg.role === 'assistant' ? handleRetry : undefined}
+                      isRetrying={retryingMessageId === msg.id}
                     />
                   ))}
                   
@@ -194,14 +351,14 @@ export default function CoachPage() {
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder={t('coach.input.placeholder')}
                   className="flex-1 bg-background/50"
-                  disabled={sendMessage.isPending}
+                  disabled={sendMessage.isPending || editMessage.isPending}
                 />
                 <Button 
                   type="submit" 
                   size="icon"
-                  disabled={!message.trim() || sendMessage.isPending}
+                  disabled={!message.trim() || sendMessage.isPending || editMessage.isPending}
                 >
-                  {sendMessage.isPending ? (
+                  {sendMessage.isPending || editMessage.isPending ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
                   ) : (
                     <Send className="h-4 w-4" />

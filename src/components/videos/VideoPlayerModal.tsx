@@ -82,7 +82,22 @@ export function VideoPlayerModal({
   const youtubeEmbedUrl = useMemo(() => {
     if (!youtubeVideoId) return null;
     const startTime = Math.floor(initialProgress);
-    return `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&start=${startTime}&rel=0&modestbranding=1&enablejsapi=1`;
+
+    const params = new URLSearchParams({
+      autoplay: '1',
+      mute: '1',
+      start: String(startTime),
+      rel: '0',
+      modestbranding: '1',
+      playsinline: '1',
+    });
+
+    // Best practice when embedding 3rd-party players
+    if (typeof window !== 'undefined') {
+      params.set('origin', window.location.origin);
+    }
+
+    return `https://www.youtube-nocookie.com/embed/${youtubeVideoId}?${params.toString()}`;
   }, [youtubeVideoId, initialProgress]);
 
   // Initialize video when opened (non-YouTube only)

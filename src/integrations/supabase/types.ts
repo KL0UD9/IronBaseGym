@@ -84,6 +84,13 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "bookings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
+            referencedColumns: ["id"]
+          },
         ]
       }
       chat_messages: {
@@ -114,6 +121,13 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "chat_messages_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
             referencedColumns: ["id"]
           },
         ]
@@ -155,6 +169,13 @@ export type Database = {
             columns: ["trainer_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "classes_trainer_id_fkey"
+            columns: ["trainer_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
             referencedColumns: ["id"]
           },
         ]
@@ -200,6 +221,13 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "daily_food_logs_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
             referencedColumns: ["id"]
           },
         ]
@@ -305,6 +333,13 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "likes_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
+            referencedColumns: ["id"]
+          },
         ]
       }
       matches: {
@@ -353,10 +388,24 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "matches_player_1_id_fkey"
+            columns: ["player_1_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "matches_player_2_id_fkey"
             columns: ["player_2_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "matches_player_2_id_fkey"
+            columns: ["player_2_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
             referencedColumns: ["id"]
           },
           {
@@ -371,6 +420,13 @@ export type Database = {
             columns: ["winner_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "matches_winner_id_fkey"
+            columns: ["winner_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
             referencedColumns: ["id"]
           },
         ]
@@ -477,6 +533,13 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "orders_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
+            referencedColumns: ["id"]
+          },
         ]
       }
       posts: {
@@ -507,6 +570,13 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "posts_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
             referencedColumns: ["id"]
           },
         ]
@@ -549,10 +619,24 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "predictions_predicted_winner_id_fkey"
+            columns: ["predicted_winner_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "predictions_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "predictions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
             referencedColumns: ["id"]
           },
         ]
@@ -638,6 +722,13 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "profiles_referred_by_fkey"
+            columns: ["referred_by"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
+            referencedColumns: ["id"]
+          },
         ]
       }
       referral_earnings: {
@@ -677,10 +768,24 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "referral_earnings_referred_id_fkey"
+            columns: ["referred_id"]
+            isOneToOne: true
+            referencedRelation: "trainer_locations"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "referral_earnings_referrer_id_fkey"
             columns: ["referrer_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "referral_earnings_referrer_id_fkey"
+            columns: ["referrer_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
             referencedColumns: ["id"]
           },
         ]
@@ -720,6 +825,13 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tournament_participants_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
             referencedColumns: ["id"]
           },
         ]
@@ -766,6 +878,13 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "tournaments_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
+            referencedColumns: ["id"]
+          },
         ]
       }
       user_achievements: {
@@ -800,6 +919,13 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_achievements_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
             referencedColumns: ["id"]
           },
         ]
@@ -845,6 +971,13 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_memberships_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
             referencedColumns: ["id"]
           },
         ]
@@ -904,6 +1037,13 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: true
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_stats_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "trainer_locations"
             referencedColumns: ["id"]
           },
         ]
@@ -1010,6 +1150,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "watch_history_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "trainer_locations"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "watch_history_video_id_fkey"
             columns: ["video_id"]
             isOneToOne: false
@@ -1028,6 +1175,30 @@ export type Database = {
           created_at: string | null
           id: string | null
           image_url: string | null
+        }
+        Relationships: []
+      }
+      trainer_locations: {
+        Row: {
+          avatar_url: string | null
+          full_name: string | null
+          id: string | null
+          lat: number | null
+          lng: number | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id?: string | null
+          lat?: number | null
+          lng?: number | null
+        }
+        Update: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id?: string | null
+          lat?: number | null
+          lng?: number | null
         }
         Relationships: []
       }

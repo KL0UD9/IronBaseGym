@@ -83,6 +83,7 @@ export function ProfileEditModal({ open, onOpenChange }: ProfileEditModalProps) 
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      // Security: Validate file size (max 2MB)
       if (file.size > 2 * 1024 * 1024) {
         toast({
           title: t('profile.edit.fileTooLarge'),
@@ -91,6 +92,28 @@ export function ProfileEditModal({ open, onOpenChange }: ProfileEditModalProps) 
         });
         return;
       }
+      
+      // Security: Validate file type - only allow safe image formats
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+      if (!allowedTypes.includes(file.type)) {
+        toast({
+          title: t('profile.edit.invalidFileType') || 'Invalid file type',
+          description: t('profile.edit.allowedFileTypes') || 'Please use JPEG, PNG, WebP, or GIF images',
+          variant: 'destructive',
+        });
+        return;
+      }
+      
+      // Security: Block SVG files which can contain embedded scripts
+      if (file.type === 'image/svg+xml' || file.name.toLowerCase().endsWith('.svg')) {
+        toast({
+          title: t('profile.edit.invalidFileType') || 'Invalid file type',
+          description: t('profile.edit.svgNotAllowed') || 'SVG files are not allowed for security reasons',
+          variant: 'destructive',
+        });
+        return;
+      }
+      
       setAvatarFile(file);
       setAvatarPreview(URL.createObjectURL(file));
     }

@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 const emailSchema = z.string().email('Invalid email address');
 const passwordSchema = z.string().min(6, 'Password must be at least 6 characters');
+const REFERRAL_CODE_PATTERN = /^GYM-[A-Z0-9]{2,6}-\d{3,4}$/;
 
 export default function Auth() {
   const { t } = useTranslation();
@@ -72,12 +73,17 @@ export default function Auth() {
   };
 
   const handleReferralCodeChange = (value: string) => {
-    const upperValue = value.toUpperCase();
+    // Trim and limit length for security
+    const upperValue = value.toUpperCase().trim().slice(0, 20);
     setReferralCode(upperValue);
     
-    // Debounce validation
+    // Validate format before checking database
     if (upperValue.length >= 8) {
-      validateReferralCode(upperValue);
+      if (REFERRAL_CODE_PATTERN.test(upperValue)) {
+        validateReferralCode(upperValue);
+      } else {
+        setReferralValid(false);
+      }
     } else {
       setReferralValid(null);
     }
@@ -141,11 +147,11 @@ export default function Auth() {
       return;
     }
 
-    // Process referral if valid code was entered
-    if (referralCode && referralValid && data?.user) {
+    // Process referral if valid code was entered and format is correct
+    if (referralCode && referralValid && data?.user && REFERRAL_CODE_PATTERN.test(referralCode)) {
       try {
         const { data: result, error: refError } = await supabase.rpc('process_referral', {
-          referrer_code: referralCode,
+          referrer_code: referralCode.trim(),
           new_user_id: data.user.id,
         });
         

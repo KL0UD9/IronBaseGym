@@ -11,6 +11,7 @@ import { Globe } from 'lucide-react';
 const languages = [
   { code: 'en', label: 'English', flag: '🇺🇸' },
   { code: 'es', label: 'Español', flag: '🇪🇸' },
+  { code: 'ja', label: '日本語', flag: '🇯🇵' },
 ];
 
 export function LanguageToggle() {

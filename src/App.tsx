@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,35 +8,46 @@ import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { ThemeProvider } from "next-themes";
 import '@/lib/i18n';
-import LandingPage from "./pages/LandingPage";
-import Auth from "./pages/Auth";
-import NotFound from "./pages/NotFound";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import MembersPage from "./pages/admin/MembersPage";
-import ClassesPage from "./pages/admin/ClassesPage";
-import BillingPage from "./pages/admin/BillingPage";
-import SettingsPage from "./pages/admin/SettingsPage";
-import OrdersPage from "./pages/admin/OrdersPage";
-import CheckInPage from "./pages/CheckIn";
-import MemberDashboard from "./pages/member/MemberDashboard";
-import BookClassPage from "./pages/member/BookClassPage";
-import MyClassesPage from "./pages/member/MyClassesPage";
-import StorePage from "./pages/member/StorePage";
-import CommunityPage from "./pages/member/CommunityPage";
-import CoachPage from "./pages/member/CoachPage";
-import VideosPage from "./pages/member/VideosPage";
-import TrainerMapPage from "./pages/member/TrainerMapPage";
-import ProfilePage from "./pages/member/ProfilePage";
-import NutritionPage from "./pages/member/NutritionPage";
-import ArenaPage from "./pages/member/ArenaPage";
-import ReferralPage from "./pages/member/ReferralPage";
 import { Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { GamificationProvider } from "@/contexts/GamificationContext";
-import { LevelUpModal } from "@/components/gamification/LevelUpModal";
-import { CommandSearch } from "@/components/CommandSearch";
+
+// Eagerly load landing page for fast initial render
+import LandingPage from "./pages/LandingPage";
+
+// Lazy load all other pages for code splitting
+const Auth = lazy(() => import("./pages/Auth"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const MembersPage = lazy(() => import("./pages/admin/MembersPage"));
+const ClassesPage = lazy(() => import("./pages/admin/ClassesPage"));
+const BillingPage = lazy(() => import("./pages/admin/BillingPage"));
+const SettingsPage = lazy(() => import("./pages/admin/SettingsPage"));
+const OrdersPage = lazy(() => import("./pages/admin/OrdersPage"));
+const CheckInPage = lazy(() => import("./pages/CheckIn"));
+const MemberDashboard = lazy(() => import("./pages/member/MemberDashboard"));
+const BookClassPage = lazy(() => import("./pages/member/BookClassPage"));
+const MyClassesPage = lazy(() => import("./pages/member/MyClassesPage"));
+const StorePage = lazy(() => import("./pages/member/StorePage"));
+const CommunityPage = lazy(() => import("./pages/member/CommunityPage"));
+const CoachPage = lazy(() => import("./pages/member/CoachPage"));
+const VideosPage = lazy(() => import("./pages/member/VideosPage"));
+const TrainerMapPage = lazy(() => import("./pages/member/TrainerMapPage"));
+const ProfilePage = lazy(() => import("./pages/member/ProfilePage"));
+const NutritionPage = lazy(() => import("./pages/member/NutritionPage"));
+const ArenaPage = lazy(() => import("./pages/member/ArenaPage"));
+const ReferralPage = lazy(() => import("./pages/member/ReferralPage"));
+const LevelUpModal = lazy(() => import("@/components/gamification/LevelUpModal").then(m => ({ default: m.LevelUpModal })));
+const CommandSearch = lazy(() => import("@/components/CommandSearch").then(m => ({ default: m.CommandSearch })));
 
 const queryClient = new QueryClient();
+
+// Loading fallback component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <Loader2 className="h-8 w-8 animate-spin text-primary" />
+  </div>
+);
 
 function ProtectedRoute({ children, requiredRole }: { children: React.ReactNode; requiredRole?: 'admin' | 'trainer' | 'member' }) {
   const { user, profile, loading } = useAuth();
@@ -85,11 +97,12 @@ function ProtectedRoute({ children, requiredRole }: { children: React.ReactNode;
 
 function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<Auth />} />
-      <Route path="/auth" element={<Navigate to="/login" replace />} />
-      <Route path="/check-in" element={<CheckInPage />} />
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Auth />} />
+        <Route path="/auth" element={<Navigate to="/login" replace />} />
+        <Route path="/check-in" element={<CheckInPage />} />
       
       {/* Legacy /member/* redirects to /dashboard/* */}
       <Route path="/member/community" element={<Navigate to="/dashboard/community" replace />} />
@@ -190,8 +203,9 @@ function AppRoutes() {
         </ProtectedRoute>
       } />
 
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 }
 

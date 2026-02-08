@@ -109,17 +109,17 @@ export function MacroDonutChart({ protein, carbs, fat, calories, calorieGoal }: 
 
             {/* Macro breakdown */}
             <div className="grid grid-cols-3 gap-2 text-center">
-              <div className="p-3 rounded-lg bg-chart-1/10 border border-chart-1/20">
-                <p className="text-lg font-bold" style={{ color: COLORS.protein }}>{protein.toFixed(0)}g</p>
-                <p className="text-xs text-muted-foreground">{t('nutrition.macros.protein')}</p>
+              <div className="p-2 sm:p-3 rounded-lg bg-chart-1/10 border border-chart-1/20 min-w-0">
+                <p className="text-sm sm:text-lg font-bold truncate" style={{ color: COLORS.protein }}>{protein.toFixed(0)}g</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('nutrition.macros.protein')}</p>
               </div>
-              <div className="p-3 rounded-lg bg-chart-2/10 border border-chart-2/20">
-                <p className="text-lg font-bold" style={{ color: COLORS.carbs }}>{carbs.toFixed(0)}g</p>
-                <p className="text-xs text-muted-foreground">{t('nutrition.macros.carbs')}</p>
+              <div className="p-2 sm:p-3 rounded-lg bg-chart-2/10 border border-chart-2/20 min-w-0">
+                <p className="text-sm sm:text-lg font-bold truncate" style={{ color: COLORS.carbs }}>{carbs.toFixed(0)}g</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('nutrition.macros.carbs')}</p>
               </div>
-              <div className="p-3 rounded-lg bg-chart-3/10 border border-chart-3/20">
-                <p className="text-lg font-bold" style={{ color: COLORS.fat }}>{fat.toFixed(0)}g</p>
-                <p className="text-xs text-muted-foreground">{t('nutrition.macros.fat')}</p>
+              <div className="p-2 sm:p-3 rounded-lg bg-chart-3/10 border border-chart-3/20 min-w-0">
+                <p className="text-sm sm:text-lg font-bold truncate" style={{ color: COLORS.fat }}>{fat.toFixed(0)}g</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{t('nutrition.macros.fat')}</p>
               </div>
             </div>
           </div>

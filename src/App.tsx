@@ -53,11 +53,20 @@ function ProtectedRoute({ children, requiredRole }: { children: React.ReactNode;
     return <Navigate to="/auth" replace />;
   }
 
-  if (requiredRole && profile?.role !== requiredRole) {
-    if (profile?.role === 'admin') {
+  if (requiredRole) {
+    // Admin can access admin routes, trainers can access trainer routes
+    if (requiredRole === 'admin' && profile?.role !== 'admin') {
+      // Non-admins trying to access admin routes
+      return <Navigate to="/dashboard" replace />;
+    }
+    if (requiredRole === 'trainer' && profile?.role !== 'trainer' && profile?.role !== 'admin') {
+      // Only trainers and admins can access trainer routes
+      return <Navigate to="/dashboard" replace />;
+    }
+    if (requiredRole === 'member' && profile?.role === 'admin') {
+      // Admins trying to access member-only routes go to admin dashboard
       return <Navigate to="/admin" replace />;
     }
-    return <Navigate to="/dashboard" replace />;
   }
 
   return <>{children}</>;
@@ -177,7 +186,7 @@ function AppRoutes() {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
       <TooltipProvider>
         <Toaster />
         <Sonner />

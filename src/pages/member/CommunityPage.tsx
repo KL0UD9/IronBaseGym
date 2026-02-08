@@ -85,22 +85,12 @@ export default function CommunityPage() {
     }
   });
 
-  // Toggle like mutation
+  // Toggle like mutation with optimistic updates
   const toggleLike = useMutation({
-    mutationFn: async (postId: string) => {
+    mutationFn: async ({ postId, isCurrentlyLiked }: { postId: string; isCurrentlyLiked: boolean }) => {
       if (!user?.id) throw new Error('Not authenticated');
 
-      // Fetch fresh like status directly from DB to avoid stale cache issues
-      const { data: existingLike, error: fetchError } = await supabase
-        .from('likes')
-        .select('id')
-        .eq('post_id', postId)
-        .eq('user_id', user.id)
-        .maybeSingle();
-
-      if (fetchError) throw fetchError;
-
-      if (existingLike) {
+      if (isCurrentlyLiked) {
         // Unlike
         const { error } = await supabase
           .from('likes')
@@ -111,7 +101,7 @@ export default function CommunityPage() {
         return { action: 'unliked' as const };
       }
 
-      // Like (idempotent - ignores duplicates)
+      // Like
       const { error } = await supabase
         .from('likes')
         .upsert(
@@ -121,15 +111,43 @@ export default function CommunityPage() {
       if (error) throw error;
       return { action: 'liked' as const };
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['community-posts'] });
+    onMutate: async ({ postId, isCurrentlyLiked }) => {
+      // Cancel any outgoing refetches
+      await queryClient.cancelQueries({ queryKey: ['community-posts'] });
+
+      // Snapshot the previous value
+      const previousPosts = queryClient.getQueryData<Post[]>(['community-posts']);
+
+      // Optimistically update the cache
+      queryClient.setQueryData<Post[]>(['community-posts'], (old) =>
+        old?.map((post) =>
+          post.id === postId
+            ? {
+                ...post,
+                likes: isCurrentlyLiked
+                  ? post.likes.filter((l) => l.user_id !== user?.id)
+                  : [...post.likes, { user_id: user!.id }],
+              }
+            : post
+        ) ?? []
+      );
+
+      return { previousPosts };
     },
-    onError: () => {
+    onError: (_err, _variables, context) => {
+      // Rollback on error
+      if (context?.previousPosts) {
+        queryClient.setQueryData(['community-posts'], context.previousPosts);
+      }
       toast({
         title: t('community.toast.error'),
         description: t('community.toast.errorDesc'),
         variant: 'destructive',
       });
+    },
+    onSettled: () => {
+      // Refetch to ensure server state is synced
+      queryClient.invalidateQueries({ queryKey: ['community-posts'] });
     },
   });
 
@@ -161,16 +179,19 @@ export default function CommunityPage() {
     return name?.split(' ').map(n => n[0]).join('').toUpperCase() || '?';
   };
 
-  const handleToggleLike = (postId: string) => {
-    // Guard against double-triggered clicks (and fast taps on mobile)
+  const handleToggleLike = (postId: string, isCurrentlyLiked: boolean) => {
+    // Guard against double-triggered clicks
     if (likeLockRef.current.has(postId)) return;
     likeLockRef.current.add(postId);
 
-    toggleLike.mutate(postId, {
-      onSettled: () => {
-        likeLockRef.current.delete(postId);
-      },
-    });
+    toggleLike.mutate(
+      { postId, isCurrentlyLiked },
+      {
+        onSettled: () => {
+          likeLockRef.current.delete(postId);
+        },
+      }
+    );
   };
 
 
@@ -264,8 +285,8 @@ export default function CommunityPage() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => handleToggleLike(post.id)}
-                        disabled={toggleLike.isPending && toggleLike.variables === post.id}
+                        onClick={() => handleToggleLike(post.id, isLiked)}
+                        disabled={toggleLike.isPending && toggleLike.variables?.postId === post.id}
                         className={`gap-2 ${isLiked ? 'text-red-500 hover:text-red-600' : 'text-muted-foreground hover:text-foreground'}`}
                       >
                         <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />

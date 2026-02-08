@@ -111,13 +111,62 @@ serve(async (req) => {
       );
     }
 
-    const { message, conversationHistory = [] } = await req.json();
+    const body = await req.json();
+    const { message, conversationHistory = [] } = body;
 
-    if (!message) {
+    // Validate message exists and is a string
+    if (!message || typeof message !== 'string') {
       return new Response(
-        JSON.stringify({ error: "Message is required" }),
+        JSON.stringify({ error: "Message is required and must be a string" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+    }
+
+    // Trim and validate message length (1-4000 characters)
+    const trimmedMessage = message.trim();
+    if (trimmedMessage.length === 0) {
+      return new Response(
+        JSON.stringify({ error: "Message cannot be empty" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    if (trimmedMessage.length > 4000) {
+      return new Response(
+        JSON.stringify({ error: "Message is too long. Maximum 4000 characters allowed." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Validate conversation history is an array and within limits
+    if (!Array.isArray(conversationHistory)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid conversation history format" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    if (conversationHistory.length > 50) {
+      return new Response(
+        JSON.stringify({ error: "Conversation history too long. Maximum 50 messages." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Validate each message in conversation history
+    for (const msg of conversationHistory) {
+      if (!msg || typeof msg.content !== 'string' || typeof msg.role !== 'string') {
+        return new Response(
+          JSON.stringify({ error: "Invalid message format in conversation history" }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+      if (msg.content.length > 4000) {
+        return new Response(
+          JSON.stringify({ error: "A message in conversation history is too long" }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
     }
 
     const apiKey = Deno.env.get("LOVABLE_API_KEY");
@@ -133,9 +182,9 @@ serve(async (req) => {
       { role: "system", content: EXPERT_SYSTEM_PROMPT },
       ...conversationHistory.slice(-20).map((msg: { role: string; content: string }) => ({
         role: msg.role === "user" ? "user" : "assistant",
-        content: msg.content,
+        content: msg.content.trim(),
       })),
-      { role: "user", content: message },
+      { role: "user", content: trimmedMessage },
     ];
 
     // Use gemini-2.5-pro for highest quality fitness advice

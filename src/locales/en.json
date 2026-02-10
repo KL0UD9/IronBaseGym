@@ -31,7 +31,17 @@
     "login": "Log In",
     "signUp": "Sign Up",
     "user": "User",
-    "logout": "Logout"
+    "logout": "Logout",
+    "optional": "optional",
+    "with": "with",
+    "at": "at",
+    "min": "min",
+    "less": "Less",
+    "more": "More",
+    "today": "Today",
+    "active": "Active",
+    "expired": "Expired",
+    "pending": "Pending"
   },
   "brand": {
     "name": "IronBase",
@@ -142,6 +152,69 @@
         "noClasses": "No classes"
       }
     },
+    "members": {
+      "title": "Member Directory",
+      "subtitle": "Manage your gym members",
+      "allMembers": "All Members",
+      "searchPlaceholder": "Search members...",
+      "filterByStatus": "Filter by status",
+      "allStatus": "All Status",
+      "member": "Member",
+      "membership": "Membership",
+      "status": "Status",
+      "joined": "Joined",
+      "noMembership": "No membership",
+      "noMembers": "No members found"
+    },
+    "billing": {
+      "title": "Billing & Revenue",
+      "subtitle": "Track payments and revenue trends",
+      "totalRevenue6m": "Total Revenue (6 months)",
+      "overduePayments": "Overdue Payments",
+      "membersExpired": "member(s) with expired membership",
+      "revenueTrends": "Revenue Trends (Last 6 Months)",
+      "revenue": "Revenue",
+      "noOverdue": "No overdue payments",
+      "allUpToDate": "All members are up to date!",
+      "unknownMember": "Unknown Member"
+    },
+    "classes": {
+      "title": "Class Schedule",
+      "subtitle": "Manage your weekly class schedule",
+      "createClass": "Create Class",
+      "createNewClass": "Create New Class",
+      "className": "Class Name",
+      "classNamePlaceholder": "e.g., HIIT, Yoga, Spin",
+      "trainer": "Trainer",
+      "selectTrainer": "Select a trainer",
+      "date": "Date",
+      "startTime": "Start Time",
+      "duration": "Duration (min)",
+      "capacity": "Capacity",
+      "spots": "spots",
+      "thisWeek": "This Week"
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Manage your gym settings and data",
+      "demoData": "Demo Data",
+      "demoDataDescription": "Generate sample data for testing and demonstration purposes",
+      "seedDataWillGenerate": "Seed Data will generate:",
+      "seedItem1": "30 fake members with random names and Active status",
+      "seedItem2": "$50,000+ worth of revenue transactions over the last 6 months",
+      "seedItem3": "200 random check-in records for heatmap visualization",
+      "seedDemoData": "Seed Demo Data",
+      "seedingData": "Seeding Data...",
+      "seedSuccess": "Data seeded successfully!",
+      "seedSuccessDesc": "Created {{members}} members with {{checkIns}} check-ins.",
+      "seedError": "Failed to seed data",
+      "seedWarning": "This creates real database entries. Only use in development or demo environments. Running multiple times will create duplicate data.",
+      "warning": "Warning:",
+      "members": "Members",
+      "memberships": "Memberships",
+      "revenue": "Revenue",
+      "checkIns": "Check-ins"
+    },
     "orders": {
       "title": "Orders",
       "subtitle": "Manage store orders and fulfillment",
@@ -170,6 +243,67 @@
       "noOrders": "No orders yet",
       "ordersWillAppear": "Orders from the merch store will appear here."
     }
+  },
+  "memberDashboard": {
+    "welcomeBack": "Welcome back, {{name}}!",
+    "fitnessOverview": "Here's your fitness overview",
+    "myMembership": "My Membership",
+    "validUntil": "Valid until: {{date}}",
+    "perMonth": "{{price}}/month",
+    "noActiveMembership": "No active membership",
+    "viewPlans": "View Plans",
+    "quickActions": "Quick Actions",
+    "bookAClass": "Book a Class",
+    "viewMyClasses": "View My Classes",
+    "upcomingClasses": "Upcoming Classes",
+    "noUpcomingClasses": "No upcoming classes",
+    "bookFirstClass": "Book Your First Class"
+  },
+  "bookClass": {
+    "title": "Book a Class",
+    "subtitle": "Find and book your next workout",
+    "spotsLeft": "{{count}} spots left",
+    "booked": "Booked",
+    "booking": "Booking...",
+    "joinWaitlist": "Join Waitlist",
+    "bookClass": "Book Class",
+    "addedToWaitlist": "Added to waitlist!",
+    "classBooked": "Class booked successfully!",
+    "alreadyBooked": "You have already booked this class",
+    "failedToBook": "Failed to book class",
+    "signInToBook": "Please sign in to book a class",
+    "noClasses": "No upcoming classes available"
+  },
+  "myClasses": {
+    "title": "My Classes",
+    "subtitle": "Manage your class bookings",
+    "upcomingClasses": "Upcoming Classes",
+    "noUpcoming": "No upcoming classes",
+    "bookAClass": "Book a Class",
+    "pastCancelled": "Past & Cancelled",
+    "cancelBooking": "Cancel",
+    "bookingCancelled": "Booking cancelled",
+    "failedToCancel": "Failed to cancel booking"
+  },
+  "checkIn": {
+    "title": "Member Check-In",
+    "searchPlaceholder": "Search member by name...",
+    "searching": "Searching...",
+    "noMembers": "No members found",
+    "accessGranted": "Access Granted",
+    "welcome": "Welcome, {{name}}!",
+    "paymentRequired": "Payment Required",
+    "membershipExpired": "{{name}}, your membership has expired"
+  },
+  "heatmap": {
+    "title": "Check-In Activity",
+    "checkInsThisYear": "{{count}} check-ins this year",
+    "loadingActivity": "Loading activity..."
+  },
+  "xpDisplay": {
+    "xpTotal": "XP Total",
+    "next": "Next: {{title}}",
+    "xpToLevel": "{{xp}} XP to level {{level}}"
   },
   "store": {
     "title": "Merch Store",
@@ -256,9 +390,22 @@
     "hasAccount": "Already have an account?",
     "email": "Email",
     "password": "Password",
-    "forgotPassword": "Forgot password?"
+    "forgotPassword": "Forgot password?",
+    "gymManagement": "Gym Management System",
+    "signInTab": "Sign In",
+    "signUpTab": "Sign Up",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "John Doe",
+    "createAccount": "Create Account",
+    "invalidCredentials": "Invalid email or password",
+    "accountCreated": "Account created successfully!",
+    "alreadyRegistered": "This email is already registered. Please sign in.",
+    "enterFullName": "Please enter your full name",
+    "welcomeBack": "Welcome back!",
+    "invalidEmail": "Invalid email address",
+    "passwordMinLength": "Password must be at least 6 characters"
   },
-"language": {
+  "language": {
     "toggle": "Language",
     "en": "English",
     "es": "Spanish"

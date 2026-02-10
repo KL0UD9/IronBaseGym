@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { supabase } from '@/integrations/supabase/client';
 import { Input } from '@/components/ui/input';
@@ -38,6 +39,7 @@ interface MemberWithMembership {
 }
 
 export default function MembersPage() {
+  const { t } = useTranslation();
   const [members, setMembers] = useState<MemberWithMembership[]>([]);
   const [filteredMembers, setFilteredMembers] = useState<MemberWithMembership[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -106,22 +108,22 @@ export default function MembersPage() {
 
   const getMembershipName = (member: MemberWithMembership) => {
     const activeMembership = member.user_memberships?.[0];
-    return activeMembership?.membership?.name || 'No membership';
+    return activeMembership?.membership?.name || t('admin.members.noMembership');
   };
 
   return (
     <DashboardLayout>
       <div className="space-y-6 animate-fade-in">
         <div>
-          <h1 className="text-3xl font-bold">Member Directory</h1>
-          <p className="text-muted-foreground mt-1">Manage your gym members</p>
+          <h1 className="text-3xl font-bold">{t('admin.members.title')}</h1>
+          <p className="text-muted-foreground mt-1">{t('admin.members.subtitle')}</p>
         </div>
 
         <Card className="glass-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Users className="h-5 w-5 text-primary" />
-              All Members
+              {t('admin.members.allMembers')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -130,7 +132,7 @@ export default function MembersPage() {
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder="Search members..."
+                  placeholder={t('admin.members.searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10"
@@ -138,13 +140,13 @@ export default function MembersPage() {
               </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
                 <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Filter by status" />
+                  <SelectValue placeholder={t('admin.members.filterByStatus')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="active">Active</SelectItem>
-                  <SelectItem value="expired">Expired</SelectItem>
-                  <SelectItem value="pending">Pending</SelectItem>
+                  <SelectItem value="all">{t('admin.members.allStatus')}</SelectItem>
+                  <SelectItem value="active">{t('common.active')}</SelectItem>
+                  <SelectItem value="expired">{t('common.expired')}</SelectItem>
+                  <SelectItem value="pending">{t('common.pending')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -154,10 +156,10 @@ export default function MembersPage() {
               <Table>
                 <TableHeader>
                   <TableRow className="bg-muted/50">
-                    <TableHead>Member</TableHead>
-                    <TableHead>Membership</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Joined</TableHead>
+                    <TableHead>{t('admin.members.member')}</TableHead>
+                    <TableHead>{t('admin.members.membership')}</TableHead>
+                    <TableHead>{t('admin.members.status')}</TableHead>
+                    <TableHead>{t('admin.members.joined')}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -185,7 +187,7 @@ export default function MembersPage() {
                   {filteredMembers.length === 0 && (
                     <TableRow>
                       <TableCell colSpan={4} className="text-center py-8 text-muted-foreground">
-                        No members found
+                        {t('admin.members.noMembers')}
                       </TableCell>
                     </TableRow>
                   )}

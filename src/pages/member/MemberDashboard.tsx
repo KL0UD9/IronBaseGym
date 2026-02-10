@@ -4,7 +4,7 @@ import { MemberLayout } from '@/components/layout/MemberLayout';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, CreditCard, Dumbbell, Sparkles } from 'lucide-react';
+import { Calendar, CreditCard, Dumbbell, Sparkles, Film, Apple, Swords, Gift, Map, ShoppingBag, MessageSquare, Bot, User } from 'lucide-react';
 import { format } from 'date-fns';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
@@ -109,6 +109,35 @@ export default function MemberDashboard() {
               </Button>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Quick Navigation Grid */}
+        <div>
+          <h2 className="text-lg font-semibold mb-3">{t('memberDashboard.explore')}</h2>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+            {[
+              { label: t('nav.member.bookClass'), icon: Dumbbell, path: '/dashboard/book' },
+              { label: t('nav.member.myClasses'), icon: Calendar, path: '/dashboard/classes' },
+              { label: t('nav.member.videos'), icon: Film, path: '/dashboard/videos' },
+              { label: t('nav.member.nutrition'), icon: Apple, path: '/dashboard/nutrition' },
+              { label: t('arena.title'), icon: Swords, path: '/dashboard/arena' },
+              { label: t('referral.title'), icon: Gift, path: '/dashboard/referrals' },
+              { label: t('map.title'), icon: Map, path: '/dashboard/map' },
+              { label: t('nav.member.store'), icon: ShoppingBag, path: '/dashboard/store' },
+              { label: t('nav.member.community'), icon: MessageSquare, path: '/dashboard/community' },
+              { label: t('nav.member.coach'), icon: Bot, path: '/dashboard/coach' },
+              { label: t('nav.member.profile'), icon: User, path: '/dashboard/profile' },
+            ].map((item) => (
+              <button
+                key={item.path}
+                onClick={() => navigate(item.path)}
+                className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/30 border border-border hover:border-primary/30 hover:bg-primary/5 transition-all"
+              >
+                <item.icon className="h-6 w-6 text-primary" />
+                <span className="text-xs font-medium text-center leading-tight">{item.label}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         <CheckInHeatmap />

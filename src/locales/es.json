@@ -150,7 +150,8 @@
       "calendar": {
         "title": "Horario Semanal de Clases",
         "noClasses": "Sin clases"
-      }
+      },
+      "manage": "Gestionar"
     },
     "members": {
       "title": "Directorio de Miembros",
@@ -257,7 +258,8 @@
     "viewMyClasses": "Ver Mis Clases",
     "upcomingClasses": "Próximas Clases",
     "noUpcomingClasses": "Sin clases próximas",
-    "bookFirstClass": "Reserva Tu Primera Clase"
+    "bookFirstClass": "Reserva Tu Primera Clase",
+    "explore": "Explorar"
   },
   "bookClass": {
     "title": "Reservar una Clase",

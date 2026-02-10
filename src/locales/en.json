@@ -150,7 +150,8 @@
       "calendar": {
         "title": "Weekly Class Schedule",
         "noClasses": "No classes"
-      }
+      },
+      "manage": "Manage"
     },
     "members": {
       "title": "Member Directory",
@@ -257,7 +258,8 @@
     "viewMyClasses": "View My Classes",
     "upcomingClasses": "Upcoming Classes",
     "noUpcomingClasses": "No upcoming classes",
-    "bookFirstClass": "Book Your First Class"
+    "bookFirstClass": "Book Your First Class",
+    "explore": "Explore"
   },
   "bookClass": {
     "title": "Book a Class",

@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { KPICard } from '@/components/ui/kpi-card';
-import { Users, DollarSign, UserCheck, Calendar } from 'lucide-react';
+import { Users, DollarSign, UserCheck, Calendar, Receipt, Package, Settings } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { format, startOfWeek, addDays, isToday } from 'date-fns';
@@ -24,6 +25,7 @@ export default function AdminDashboard() {
   const [todayCheckIns, setTodayCheckIns] = useState(0);
   const [weeklyClasses, setWeeklyClasses] = useState<ClassWithTrainer[]>([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchDashboardData();
@@ -139,6 +141,30 @@ export default function AdminDashboard() {
             value={weeklyClasses.length}
             icon={Calendar}
           />
+        </div>
+
+        {/* Quick Navigation */}
+        <div>
+          <h2 className="text-lg font-semibold mb-3">{t('admin.dashboard.manage')}</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            {[
+              { label: t('nav.admin.members'), icon: Users, path: '/admin/members' },
+              { label: t('nav.admin.classes'), icon: Calendar, path: '/admin/classes' },
+              { label: t('nav.admin.billing'), icon: Receipt, path: '/admin/billing' },
+              { label: t('nav.admin.orders'), icon: Package, path: '/admin/orders' },
+              { label: t('nav.admin.checkIn'), icon: UserCheck, path: '/check-in' },
+              { label: t('nav.admin.settings'), icon: Settings, path: '/admin/settings' },
+            ].map((item) => (
+              <button
+                key={item.path}
+                onClick={() => navigate(item.path)}
+                className="flex flex-col items-center gap-2 p-4 rounded-xl bg-muted/30 border border-border hover:border-primary/30 hover:bg-primary/5 transition-all"
+              >
+                <item.icon className="h-6 w-6 text-primary" />
+                <span className="text-xs font-medium text-center leading-tight">{item.label}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Weekly Calendar */}

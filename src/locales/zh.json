@@ -150,7 +150,8 @@
       "calendar": {
         "title": "每周课程表",
         "noClasses": "无课程"
-      }
+      },
+      "manage": "管理"
     },
     "members": {
       "title": "会员目录",
@@ -257,7 +258,8 @@
     "viewMyClasses": "查看我的课程",
     "upcomingClasses": "即将开始的课程",
     "noUpcomingClasses": "暂无即将开始的课程",
-    "bookFirstClass": "预约您的第一节课"
+    "bookFirstClass": "预约您的第一节课",
+    "explore": "探索"
   },
   "bookClass": {
     "title": "预约课程",

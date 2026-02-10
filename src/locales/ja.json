@@ -150,7 +150,8 @@
       "calendar": {
         "title": "週間クラススケジュール",
         "noClasses": "クラスなし"
-      }
+      },
+      "manage": "管理"
     },
     "members": {
       "title": "会員ディレクトリ",
@@ -257,7 +258,8 @@
     "viewMyClasses": "マイクラスを見る",
     "upcomingClasses": "今後のクラス",
     "noUpcomingClasses": "今後のクラスはありません",
-    "bookFirstClass": "最初のクラスを予約する"
+    "bookFirstClass": "最初のクラスを予約する",
+    "explore": "探索する"
   },
   "bookClass": {
     "title": "クラスを予約",

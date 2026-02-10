@@ -268,7 +268,7 @@ export default function CoachPage() {
 
   return (
     <MemberLayout>
-      <div className="max-w-3xl mx-auto h-[calc(100vh-12rem)]">
+      <div className="max-w-3xl mx-auto h-[calc(100vh-10rem)] md:h-[calc(100vh-8rem)]">
         <Card className="glass-card h-full flex flex-col">
           <CardHeader className="border-b border-border pb-4">
             <div className="flex items-center gap-3">

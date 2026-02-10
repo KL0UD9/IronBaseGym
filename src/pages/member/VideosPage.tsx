@@ -164,7 +164,7 @@ export default function VideosPage() {
 
   return (
     <MemberLayout>
-      <div className="space-y-8 animate-fade-in -mx-4 md:-mx-6">
+      <div className="space-y-8 animate-fade-in -mx-4 md:-mx-6 overflow-x-hidden">
         {/* Hero Header */}
         <div className="relative h-[300px] md:h-[400px] overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-10" />

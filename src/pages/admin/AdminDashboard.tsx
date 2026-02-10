@@ -150,7 +150,7 @@ export default function AdminDashboard() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-7 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-4">
               {weekDays.map((day) => (
                 <div key={day.label} className="space-y-3">
                   <div className={cn(
@@ -170,7 +170,7 @@ export default function AdminDashboard() {
                       {day.fullDate}
                     </p>
                   </div>
-                  <div className="space-y-2 min-h-[100px]">
+                  <div className="space-y-2 min-h-[60px] md:min-h-[100px]">
                     {getClassesForDay(day.date).map((classItem) => (
                       <div
                         key={classItem.id}

@@ -139,7 +139,7 @@ export default function ReferralPage() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Card className="glass-card">
             <CardContent className="py-6">
               <div className="flex items-center gap-4">
@@ -215,20 +215,24 @@ export default function ReferralPage() {
             {/* Referral Link */}
             <div className="space-y-2">
               <label className="text-sm text-muted-foreground">{t('referral.shareLink')}</label>
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Input
                   value={referralLink}
                   readOnly
-                  className="text-sm bg-background"
+                  className="text-sm bg-background min-w-0"
                 />
-                <Button onClick={() => handleCopy(referralLink, 'link')} variant="outline" className="gap-2 shrink-0">
-                  <Copy className="h-4 w-4" />
-                  {t('referral.copyLink')}
-                </Button>
-                <Button onClick={handleShare} className="gap-2 shrink-0">
-                  <Share2 className="h-4 w-4" />
-                  {t('referral.share')}
-                </Button>
+                <div className="flex gap-2">
+                  <Button onClick={() => handleCopy(referralLink, 'link')} variant="outline" className="gap-2 shrink-0 flex-1 sm:flex-none">
+                    <Copy className="h-4 w-4" />
+                    <span className="hidden sm:inline">{t('referral.copyLink')}</span>
+                    <span className="sm:hidden">{t('referral.copyLink')}</span>
+                  </Button>
+                  <Button onClick={handleShare} className="gap-2 shrink-0 flex-1 sm:flex-none">
+                    <Share2 className="h-4 w-4" />
+                    <span className="hidden sm:inline">{t('referral.share')}</span>
+                    <span className="sm:hidden">{t('referral.share')}</span>
+                  </Button>
+                </div>
               </div>
             </div>
 

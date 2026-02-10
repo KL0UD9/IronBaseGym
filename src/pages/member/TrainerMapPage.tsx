@@ -87,7 +87,7 @@ export default function TrainerMapPage() {
 
   return (
     <MemberLayout>
-      <div className="flex flex-col h-[calc(100vh-4rem)] md:h-[calc(100vh-2rem)]">
+      <div className="flex flex-col h-[calc(100vh-8rem)] md:h-[calc(100vh-2rem)]">
         {/* Header */}
         <div className="px-4 py-4 bg-background/95 backdrop-blur-sm border-b border-border">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">

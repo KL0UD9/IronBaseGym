@@ -31,7 +31,17 @@
     "login": "ログイン",
     "signUp": "新規登録",
     "user": "ユーザー",
-    "logout": "ログアウト"
+    "logout": "ログアウト",
+    "optional": "任意",
+    "with": "担当",
+    "at": "",
+    "min": "分",
+    "less": "少ない",
+    "more": "多い",
+    "today": "今日",
+    "active": "アクティブ",
+    "expired": "期限切れ",
+    "pending": "保留中"
   },
   "brand": {
     "name": "IronBase",
@@ -142,6 +152,69 @@
         "noClasses": "クラスなし"
       }
     },
+    "members": {
+      "title": "会員ディレクトリ",
+      "subtitle": "ジム会員を管理",
+      "allMembers": "全会員",
+      "searchPlaceholder": "会員を検索...",
+      "filterByStatus": "ステータスで絞り込み",
+      "allStatus": "すべてのステータス",
+      "member": "会員",
+      "membership": "会員プラン",
+      "status": "ステータス",
+      "joined": "入会日",
+      "noMembership": "会員プランなし",
+      "noMembers": "会員が見つかりません"
+    },
+    "billing": {
+      "title": "請求と収益",
+      "subtitle": "支払いと収益トレンドを追跡",
+      "totalRevenue6m": "総収益（6ヶ月）",
+      "overduePayments": "未払い",
+      "membersExpired": "名の会員の会員資格が期限切れ",
+      "revenueTrends": "収益トレンド（過去6ヶ月）",
+      "revenue": "収益",
+      "noOverdue": "未払いはありません",
+      "allUpToDate": "全会員の支払いが完了しています！",
+      "unknownMember": "不明な会員"
+    },
+    "classes": {
+      "title": "クラススケジュール",
+      "subtitle": "週間クラススケジュールを管理",
+      "createClass": "クラスを作成",
+      "createNewClass": "新しいクラスを作成",
+      "className": "クラス名",
+      "classNamePlaceholder": "例：HIIT、ヨガ、スピン",
+      "trainer": "トレーナー",
+      "selectTrainer": "トレーナーを選択",
+      "date": "日付",
+      "startTime": "開始時間",
+      "duration": "時間（分）",
+      "capacity": "定員",
+      "spots": "席",
+      "thisWeek": "今週"
+    },
+    "settings": {
+      "title": "設定",
+      "subtitle": "ジムの設定とデータを管理",
+      "demoData": "デモデータ",
+      "demoDataDescription": "テストとデモ用のサンプルデータを生成",
+      "seedDataWillGenerate": "シードデータは以下を生成します：",
+      "seedItem1": "ランダムな名前でアクティブ状態の30人の架空会員",
+      "seedItem2": "過去6ヶ月間で$50,000以上の収益取引",
+      "seedItem3": "ヒートマップ表示用の200件のランダムなチェックイン記録",
+      "seedDemoData": "デモデータを生成",
+      "seedingData": "データ生成中...",
+      "seedSuccess": "データが正常に生成されました！",
+      "seedSuccessDesc": "{{members}}人の会員と{{checkIns}}件のチェックインを作成しました。",
+      "seedError": "データ生成に失敗しました",
+      "seedWarning": "これは実際のデータベースエントリを作成します。開発環境またはデモ環境でのみ使用してください。複数回実行すると重複データが作成されます。",
+      "warning": "警告：",
+      "members": "会員",
+      "memberships": "会員プラン",
+      "revenue": "収益",
+      "checkIns": "チェックイン"
+    },
     "orders": {
       "title": "注文",
       "subtitle": "ストア注文と発送を管理",
@@ -170,6 +243,67 @@
       "noOrders": "注文はまだありません",
       "ordersWillAppear": "グッズストアからの注文がここに表示されます。"
     }
+  },
+  "memberDashboard": {
+    "welcomeBack": "おかえりなさい、{{name}}さん！",
+    "fitnessOverview": "フィットネス概要",
+    "myMembership": "マイ会員プラン",
+    "validUntil": "有効期限: {{date}}",
+    "perMonth": "{{price}}/月",
+    "noActiveMembership": "有効な会員プランがありません",
+    "viewPlans": "プランを見る",
+    "quickActions": "クイックアクション",
+    "bookAClass": "クラスを予約",
+    "viewMyClasses": "マイクラスを見る",
+    "upcomingClasses": "今後のクラス",
+    "noUpcomingClasses": "今後のクラスはありません",
+    "bookFirstClass": "最初のクラスを予約する"
+  },
+  "bookClass": {
+    "title": "クラスを予約",
+    "subtitle": "次のワークアウトを見つけて予約",
+    "spotsLeft": "残り{{count}}席",
+    "booked": "予約済み",
+    "booking": "予約中...",
+    "joinWaitlist": "ウェイトリストに参加",
+    "bookClass": "クラスを予約",
+    "addedToWaitlist": "ウェイトリストに追加されました！",
+    "classBooked": "クラスが正常に予約されました！",
+    "alreadyBooked": "このクラスはすでに予約済みです",
+    "failedToBook": "クラスの予約に失敗しました",
+    "signInToBook": "クラスを予約するにはサインインしてください",
+    "noClasses": "利用可能なクラスがありません"
+  },
+  "myClasses": {
+    "title": "マイクラス",
+    "subtitle": "クラスの予約を管理",
+    "upcomingClasses": "今後のクラス",
+    "noUpcoming": "今後のクラスはありません",
+    "bookAClass": "クラスを予約",
+    "pastCancelled": "過去とキャンセル",
+    "cancelBooking": "キャンセル",
+    "bookingCancelled": "予約がキャンセルされました",
+    "failedToCancel": "予約のキャンセルに失敗しました"
+  },
+  "checkIn": {
+    "title": "会員チェックイン",
+    "searchPlaceholder": "名前で会員を検索...",
+    "searching": "検索中...",
+    "noMembers": "会員が見つかりません",
+    "accessGranted": "アクセス許可",
+    "welcome": "ようこそ、{{name}}さん！",
+    "paymentRequired": "お支払いが必要です",
+    "membershipExpired": "{{name}}さん、会員資格が期限切れです"
+  },
+  "heatmap": {
+    "title": "チェックイン活動",
+    "checkInsThisYear": "今年{{count}}回のチェックイン",
+    "loadingActivity": "活動を読み込み中..."
+  },
+  "xpDisplay": {
+    "xpTotal": "XP合計",
+    "next": "次: {{title}}",
+    "xpToLevel": "レベル{{level}}まであと{{xp}} XP"
   },
   "store": {
     "title": "グッズストア",
@@ -256,7 +390,20 @@
     "hasAccount": "すでにアカウントをお持ちですか？",
     "email": "メールアドレス",
     "password": "パスワード",
-    "forgotPassword": "パスワードをお忘れですか？"
+    "forgotPassword": "パスワードをお忘れですか？",
+    "gymManagement": "ジム管理システム",
+    "signInTab": "サインイン",
+    "signUpTab": "新規登録",
+    "fullName": "氏名",
+    "fullNamePlaceholder": "山田太郎",
+    "createAccount": "アカウントを作成",
+    "invalidCredentials": "メールアドレスまたはパスワードが無効です",
+    "accountCreated": "アカウントが正常に作成されました！",
+    "alreadyRegistered": "このメールアドレスはすでに登録されています。サインインしてください。",
+    "enterFullName": "氏名を入力してください",
+    "welcomeBack": "おかえりなさい！",
+    "invalidEmail": "無効なメールアドレスです",
+    "passwordMinLength": "パスワードは6文字以上にしてください"
   },
   "language": {
     "toggle": "言語",

@@ -31,7 +31,17 @@
     "login": "登录",
     "signUp": "注册",
     "user": "用户",
-    "logout": "退出"
+    "logout": "退出",
+    "optional": "可选",
+    "with": "教练",
+    "at": "",
+    "min": "分钟",
+    "less": "少",
+    "more": "多",
+    "today": "今天",
+    "active": "活跃",
+    "expired": "已过期",
+    "pending": "待处理"
   },
   "brand": {
     "name": "IronBase",
@@ -142,6 +152,69 @@
         "noClasses": "无课程"
       }
     },
+    "members": {
+      "title": "会员目录",
+      "subtitle": "管理您的健身房会员",
+      "allMembers": "全部会员",
+      "searchPlaceholder": "搜索会员...",
+      "filterByStatus": "按状态筛选",
+      "allStatus": "全部状态",
+      "member": "会员",
+      "membership": "会员资格",
+      "status": "状态",
+      "joined": "加入日期",
+      "noMembership": "无会员资格",
+      "noMembers": "未找到会员"
+    },
+    "billing": {
+      "title": "账单与收入",
+      "subtitle": "跟踪付款和收入趋势",
+      "totalRevenue6m": "总收入（6个月）",
+      "overduePayments": "逾期付款",
+      "membersExpired": "名会员的会员资格已过期",
+      "revenueTrends": "收入趋势（过去6个月）",
+      "revenue": "收入",
+      "noOverdue": "无逾期付款",
+      "allUpToDate": "所有会员均已缴费！",
+      "unknownMember": "未知会员"
+    },
+    "classes": {
+      "title": "课程安排",
+      "subtitle": "管理您的每周课程安排",
+      "createClass": "创建课程",
+      "createNewClass": "创建新课程",
+      "className": "课程名称",
+      "classNamePlaceholder": "例如：HIIT、瑜伽、动感单车",
+      "trainer": "教练",
+      "selectTrainer": "选择教练",
+      "date": "日期",
+      "startTime": "开始时间",
+      "duration": "时长（分钟）",
+      "capacity": "容量",
+      "spots": "个名额",
+      "thisWeek": "本周"
+    },
+    "settings": {
+      "title": "设置",
+      "subtitle": "管理您的健身房设置和数据",
+      "demoData": "演示数据",
+      "demoDataDescription": "生成用于测试和演示的示例数据",
+      "seedDataWillGenerate": "种子数据将生成：",
+      "seedItem1": "30个随机名称的虚拟会员，状态为活跃",
+      "seedItem2": "过去6个月超过$50,000的收入交易",
+      "seedItem3": "200条随机签到记录用于热力图可视化",
+      "seedDemoData": "生成演示数据",
+      "seedingData": "正在生成数据...",
+      "seedSuccess": "数据生成成功！",
+      "seedSuccessDesc": "已创建{{members}}名会员和{{checkIns}}次签到。",
+      "seedError": "数据生成失败",
+      "seedWarning": "这会创建真实的数据库条目。仅在开发或演示环境中使用。多次运行将创建重复数据。",
+      "warning": "警告：",
+      "members": "会员",
+      "memberships": "会员资格",
+      "revenue": "收入",
+      "checkIns": "签到"
+    },
     "orders": {
       "title": "订单",
       "subtitle": "管理商店订单和配送",
@@ -170,6 +243,67 @@
       "noOrders": "暂无订单",
       "ordersWillAppear": "商店订单将显示在这里。"
     }
+  },
+  "memberDashboard": {
+    "welcomeBack": "欢迎回来，{{name}}！",
+    "fitnessOverview": "您的健身概览",
+    "myMembership": "我的会员",
+    "validUntil": "有效期至：{{date}}",
+    "perMonth": "{{price}}/月",
+    "noActiveMembership": "无有效会员资格",
+    "viewPlans": "查看计划",
+    "quickActions": "快捷操作",
+    "bookAClass": "预约课程",
+    "viewMyClasses": "查看我的课程",
+    "upcomingClasses": "即将开始的课程",
+    "noUpcomingClasses": "暂无即将开始的课程",
+    "bookFirstClass": "预约您的第一节课"
+  },
+  "bookClass": {
+    "title": "预约课程",
+    "subtitle": "查找并预约您的下一次锻炼",
+    "spotsLeft": "剩余{{count}}个名额",
+    "booked": "已预约",
+    "booking": "预约中...",
+    "joinWaitlist": "加入候补名单",
+    "bookClass": "预约课程",
+    "addedToWaitlist": "已加入候补名单！",
+    "classBooked": "课程预约成功！",
+    "alreadyBooked": "您已预约过此课程",
+    "failedToBook": "课程预约失败",
+    "signInToBook": "请登录后预约课程",
+    "noClasses": "暂无可用课程"
+  },
+  "myClasses": {
+    "title": "我的课程",
+    "subtitle": "管理您的课程预约",
+    "upcomingClasses": "即将开始的课程",
+    "noUpcoming": "暂无即将开始的课程",
+    "bookAClass": "预约课程",
+    "pastCancelled": "历史与已取消",
+    "cancelBooking": "取消",
+    "bookingCancelled": "预约已取消",
+    "failedToCancel": "取消预约失败"
+  },
+  "checkIn": {
+    "title": "会员签到",
+    "searchPlaceholder": "按姓名搜索会员...",
+    "searching": "搜索中...",
+    "noMembers": "未找到会员",
+    "accessGranted": "允许进入",
+    "welcome": "欢迎，{{name}}！",
+    "paymentRequired": "需要付款",
+    "membershipExpired": "{{name}}，您的会员资格已过期"
+  },
+  "heatmap": {
+    "title": "签到活动",
+    "checkInsThisYear": "今年{{count}}次签到",
+    "loadingActivity": "正在加载活动..."
+  },
+  "xpDisplay": {
+    "xpTotal": "XP总计",
+    "next": "下一级：{{title}}",
+    "xpToLevel": "距离{{level}}级还需{{xp}} XP"
   },
   "store": {
     "title": "商品商店",
@@ -260,7 +394,20 @@
     "hasAccount": "已有账户？",
     "email": "邮箱",
     "password": "密码",
-    "forgotPassword": "忘记密码？"
+    "forgotPassword": "忘记密码？",
+    "gymManagement": "健身房管理系统",
+    "signInTab": "登录",
+    "signUpTab": "注册",
+    "fullName": "姓名",
+    "fullNamePlaceholder": "张三",
+    "createAccount": "创建账户",
+    "invalidCredentials": "邮箱或密码无效",
+    "accountCreated": "账户创建成功！",
+    "alreadyRegistered": "此邮箱已注册。请登录。",
+    "enterFullName": "请输入您的姓名",
+    "welcomeBack": "欢迎回来！",
+    "invalidEmail": "无效的邮箱地址",
+    "passwordMinLength": "密码至少需要6个字符"
   },
   "language": {
     "toggle": "语言",

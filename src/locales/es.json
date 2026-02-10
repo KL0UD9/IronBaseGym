@@ -31,7 +31,17 @@
     "login": "Iniciar Sesión",
     "signUp": "Registrarse",
     "user": "Usuario",
-    "logout": "Salir"
+    "logout": "Salir",
+    "optional": "opcional",
+    "with": "con",
+    "at": "a las",
+    "min": "min",
+    "less": "Menos",
+    "more": "Más",
+    "today": "Hoy",
+    "active": "Activo",
+    "expired": "Expirado",
+    "pending": "Pendiente"
   },
   "brand": {
     "name": "IronBase",
@@ -142,6 +152,69 @@
         "noClasses": "Sin clases"
       }
     },
+    "members": {
+      "title": "Directorio de Miembros",
+      "subtitle": "Gestiona los miembros de tu gimnasio",
+      "allMembers": "Todos los Miembros",
+      "searchPlaceholder": "Buscar miembros...",
+      "filterByStatus": "Filtrar por estado",
+      "allStatus": "Todos los Estados",
+      "member": "Miembro",
+      "membership": "Membresía",
+      "status": "Estado",
+      "joined": "Inscrito",
+      "noMembership": "Sin membresía",
+      "noMembers": "No se encontraron miembros"
+    },
+    "billing": {
+      "title": "Facturación e Ingresos",
+      "subtitle": "Seguimiento de pagos y tendencias de ingresos",
+      "totalRevenue6m": "Ingresos Totales (6 meses)",
+      "overduePayments": "Pagos Vencidos",
+      "membersExpired": "miembro(s) con membresía expirada",
+      "revenueTrends": "Tendencias de Ingresos (Últimos 6 Meses)",
+      "revenue": "Ingresos",
+      "noOverdue": "Sin pagos vencidos",
+      "allUpToDate": "¡Todos los miembros están al día!",
+      "unknownMember": "Miembro Desconocido"
+    },
+    "classes": {
+      "title": "Horario de Clases",
+      "subtitle": "Gestiona tu horario semanal de clases",
+      "createClass": "Crear Clase",
+      "createNewClass": "Crear Nueva Clase",
+      "className": "Nombre de la Clase",
+      "classNamePlaceholder": "ej., HIIT, Yoga, Spinning",
+      "trainer": "Entrenador",
+      "selectTrainer": "Seleccionar entrenador",
+      "date": "Fecha",
+      "startTime": "Hora de Inicio",
+      "duration": "Duración (min)",
+      "capacity": "Capacidad",
+      "spots": "lugares",
+      "thisWeek": "Esta Semana"
+    },
+    "settings": {
+      "title": "Configuración",
+      "subtitle": "Gestiona la configuración y datos de tu gimnasio",
+      "demoData": "Datos Demo",
+      "demoDataDescription": "Genera datos de ejemplo para pruebas y demostración",
+      "seedDataWillGenerate": "Los datos semilla generarán:",
+      "seedItem1": "30 miembros ficticios con nombres aleatorios y estado Activo",
+      "seedItem2": "Más de $50,000 en transacciones de ingresos en los últimos 6 meses",
+      "seedItem3": "200 registros de check-in aleatorios para visualización de mapa de calor",
+      "seedDemoData": "Generar Datos Demo",
+      "seedingData": "Generando Datos...",
+      "seedSuccess": "¡Datos generados exitosamente!",
+      "seedSuccessDesc": "Se crearon {{members}} miembros con {{checkIns}} check-ins.",
+      "seedError": "Error al generar datos",
+      "seedWarning": "Esto crea entradas reales en la base de datos. Solo úsalo en entornos de desarrollo o demostración. Ejecutarlo varias veces creará datos duplicados.",
+      "warning": "Advertencia:",
+      "members": "Miembros",
+      "memberships": "Membresías",
+      "revenue": "Ingresos",
+      "checkIns": "Check-ins"
+    },
     "orders": {
       "title": "Pedidos",
       "subtitle": "Gestiona los pedidos de la tienda y envíos",
@@ -170,6 +243,67 @@
       "noOrders": "Sin pedidos aún",
       "ordersWillAppear": "Los pedidos de la tienda aparecerán aquí."
     }
+  },
+  "memberDashboard": {
+    "welcomeBack": "¡Bienvenido, {{name}}!",
+    "fitnessOverview": "Tu resumen de fitness",
+    "myMembership": "Mi Membresía",
+    "validUntil": "Válido hasta: {{date}}",
+    "perMonth": "{{price}}/mes",
+    "noActiveMembership": "Sin membresía activa",
+    "viewPlans": "Ver Planes",
+    "quickActions": "Acciones Rápidas",
+    "bookAClass": "Reservar una Clase",
+    "viewMyClasses": "Ver Mis Clases",
+    "upcomingClasses": "Próximas Clases",
+    "noUpcomingClasses": "Sin clases próximas",
+    "bookFirstClass": "Reserva Tu Primera Clase"
+  },
+  "bookClass": {
+    "title": "Reservar una Clase",
+    "subtitle": "Encuentra y reserva tu próximo entrenamiento",
+    "spotsLeft": "{{count}} lugares disponibles",
+    "booked": "Reservado",
+    "booking": "Reservando...",
+    "joinWaitlist": "Unirse a Lista de Espera",
+    "bookClass": "Reservar Clase",
+    "addedToWaitlist": "¡Agregado a lista de espera!",
+    "classBooked": "¡Clase reservada exitosamente!",
+    "alreadyBooked": "Ya reservaste esta clase",
+    "failedToBook": "Error al reservar clase",
+    "signInToBook": "Inicia sesión para reservar una clase",
+    "noClasses": "No hay clases disponibles"
+  },
+  "myClasses": {
+    "title": "Mis Clases",
+    "subtitle": "Gestiona tus reservas de clases",
+    "upcomingClasses": "Clases Próximas",
+    "noUpcoming": "Sin clases próximas",
+    "bookAClass": "Reservar una Clase",
+    "pastCancelled": "Pasadas y Canceladas",
+    "cancelBooking": "Cancelar",
+    "bookingCancelled": "Reserva cancelada",
+    "failedToCancel": "Error al cancelar reserva"
+  },
+  "checkIn": {
+    "title": "Registro de Miembros",
+    "searchPlaceholder": "Buscar miembro por nombre...",
+    "searching": "Buscando...",
+    "noMembers": "No se encontraron miembros",
+    "accessGranted": "Acceso Concedido",
+    "welcome": "¡Bienvenido, {{name}}!",
+    "paymentRequired": "Pago Requerido",
+    "membershipExpired": "{{name}}, tu membresía ha expirado"
+  },
+  "heatmap": {
+    "title": "Actividad de Check-In",
+    "checkInsThisYear": "{{count}} check-ins este año",
+    "loadingActivity": "Cargando actividad..."
+  },
+  "xpDisplay": {
+    "xpTotal": "XP Total",
+    "next": "Siguiente: {{title}}",
+    "xpToLevel": "{{xp}} XP para nivel {{level}}"
   },
   "store": {
     "title": "Tienda de Merch",
@@ -256,9 +390,22 @@
     "hasAccount": "¿Ya tienes cuenta?",
     "email": "Correo electrónico",
     "password": "Contraseña",
-    "forgotPassword": "¿Olvidaste tu contraseña?"
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "gymManagement": "Sistema de Gestión de Gimnasio",
+    "signInTab": "Iniciar Sesión",
+    "signUpTab": "Registrarse",
+    "fullName": "Nombre Completo",
+    "fullNamePlaceholder": "Juan Pérez",
+    "createAccount": "Crear Cuenta",
+    "invalidCredentials": "Correo o contraseña inválidos",
+    "accountCreated": "¡Cuenta creada exitosamente!",
+    "alreadyRegistered": "Este correo ya está registrado. Por favor inicia sesión.",
+    "enterFullName": "Por favor ingresa tu nombre completo",
+    "welcomeBack": "¡Bienvenido de nuevo!",
+    "invalidEmail": "Dirección de correo inválida",
+    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres"
   },
-"language": {
+  "language": {
     "toggle": "Idioma",
     "en": "Inglés",
     "es": "Español"
